@@ -1,6 +1,5 @@
 import logging
 
-
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('p2k2_converter')
 
