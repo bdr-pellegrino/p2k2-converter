@@ -3,7 +3,7 @@ from zipfile import BadZipFile
 
 from p2k2_converter.pipeline.source.xlsm_source import XlsmSource
 from openpyxl import Workbook
-
+import os
 
 class XlsmSourceTest(unittest.TestCase):
     def setUp(self):
@@ -14,6 +14,10 @@ class XlsmSourceTest(unittest.TestCase):
             "simple": "test/data/dummy.xlsm",
             "malformed": "test/data/dummy.xlsx"
         }
+
+        # Create folder if it doesn't exist
+        if not os.path.exists("test/data"):
+            os.makedirs("test/data")
 
         workbook = Workbook()
         sheet = workbook.active

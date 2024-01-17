@@ -26,35 +26,40 @@ class DummyDataMapper(DataMapper):
 class DataExtractorTest(unittest.TestCase):
 
     def setUp(self):
-        self.__extractor_no_source = DummyDataExtractor("dummy_extractor")
-        self.__extractor_with_source = DummyDataExtractor("dummy_extractor", source=ArraySource())
+        self.__extractors = {
+            "no_source": DummyDataExtractor("dummy_extractor"),
+            "with_source": DummyDataExtractor("dummy_extractor", source=ArraySource())
+        }
 
     def test_cant_extract_if_resource_is_not_set(self):
         with self.assertRaises(ValueError):
-            self.__extractor_no_source.execute()
+            self.__extractors["no_source"].execute()
 
     def test_can_extract_data(self):
-        self.assertEqual(self.__extractor_with_source.execute(), [1, 2, 3, 4, 5])
+        self.assertEqual(self.__extractors["with_source"].execute(), [1, 2, 3, 4, 5])
 
     def test_with_set_data(self):
-        self.__extractor_no_source.set_data(ArraySource())
-        self.assertEqual(self.__extractor_no_source.execute(), [1, 2, 3, 4, 5])
+        self.__extractors["no_source"].set_data(ArraySource())
+        self.assertEqual(self.__extractors["no_source"].execute(), [1, 2, 3, 4, 5])
 
 
 class DataMapperTest(unittest.TestCase):
 
+    def setUp(self):
+        self.__extractor = DummyDataExtractor("dummy_extractor", source=ArraySource())
+
+        self.__mappers = {
+            "no_data": DummyDataMapper("dummy_mapper"),
+            "with_data": DummyDataMapper("dummy_mapper", data=self.__extractor.execute())
+        }
+
     def test_cant_extract_if_resource_is_not_set(self):
-        mapper = DummyDataMapper("dummy_mapper")
         with self.assertRaises(ValueError):
-            mapper.execute()
+            self.__mappers["no_data"].execute()
 
     def test_can_extract_data(self):
-        extractor = DummyDataExtractor("dummy_extractor", source=ArraySource())
-        mapper = DummyDataMapper("mapper", data=extractor.execute())
-        self.assertEqual(mapper.execute(), 15)
+        self.assertEqual(self.__mappers["with_data"].execute(), 15)
 
     def test_with_set_data(self):
-        extractor = DummyDataExtractor("dummy_extractor", source=ArraySource())
-        mapper = DummyDataMapper("dummy")
-        mapper.set_data(extractor.execute())
-        self.assertEqual(mapper.execute(), 15)
+        self.__mappers["no_data"].set_data(self.__extractor.execute())
+        self.assertEqual(self.__mappers["no_data"].execute(), 15)
