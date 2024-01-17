@@ -4,6 +4,7 @@ from zipfile import BadZipFile
 from p2k2_converter.pipeline.source.xlsm_source import XlsmSource
 from openpyxl import Workbook
 
+
 class XlsmSourceTest(unittest.TestCase):
     def setUp(self):
         """

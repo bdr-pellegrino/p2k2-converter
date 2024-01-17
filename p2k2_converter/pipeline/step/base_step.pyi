@@ -6,7 +6,7 @@ class BaseStep:
     def __init__(self, name: str):
         self.__name = name
 
-    def get_name(self) -> str:
+    def name(self) -> str:
         """
         Returns the name of the step.
         """
