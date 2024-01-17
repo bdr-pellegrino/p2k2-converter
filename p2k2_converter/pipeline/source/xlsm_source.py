@@ -2,10 +2,8 @@ from contextlib import contextmanager
 from openpyxl import load_workbook
 from openpyxl.workbook import Workbook
 
-from p2k2_converter.source.source import Source
 
-
-class XlsmSource(Source):
+class XlsmSource:
     def __init__(self, path):
         super().__init__()
         self.__path = path

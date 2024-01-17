@@ -144,3 +144,7 @@ dmypy.json
 # Node modules
 node_modules/
 
+# Testing data
+test/data/
+
+
