@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from openpyxl import load_workbook
 from openpyxl.workbook import Workbook
-from base_source import BaseSource
+from .base_source import BaseSource
 
 
 class XlsmSource(BaseSource):
