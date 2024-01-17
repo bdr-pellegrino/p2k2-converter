@@ -17,6 +17,6 @@ class DataExtractor(BaseStep):
         Extracts data from the source
         """
         pass
-    
+
 
 
