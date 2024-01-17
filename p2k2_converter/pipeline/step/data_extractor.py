@@ -1,13 +1,16 @@
 from abc import ABC, abstractmethod
+
+
 from .base_step import BaseStep, T
+from ..source.base_source import BaseSource
 
 
 class DataExtractor(BaseStep, ABC):
-    def __init__(self, name: str, source=None):
+    def __init__(self, name: str, source: BaseSource = None):
         super().__init__(name)
         self.__source = source
 
-    def set_data(self, source):
+    def set_data(self, source: BaseSource):
         self.__source = source
 
     def execute(self) -> T:
@@ -18,6 +21,3 @@ class DataExtractor(BaseStep, ABC):
     @abstractmethod
     def extract_data(self, source) -> T:
         pass
-
-
-

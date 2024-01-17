@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from .base_step import BaseStep, T
 
 
-class DataExtractor(BaseStep, ABC):
-    def __init__(self, name: str, data=None):
+class DataMapper(BaseStep, ABC):
+    def __init__(self, name: str, data: any = None):
         super().__init__(name)
         self.__data = data
 
