@@ -7,7 +7,6 @@ from p2k2_converter.pipeline.step.data_mapper import DataMapper
 
 
 class ArraySource(BaseSource):
-
     @contextmanager
     def open(self):
         yield [1, 2, 3, 4, 5]
@@ -25,22 +24,25 @@ class DummyDataMapper(DataMapper):
 
 
 class DataExtractorTest(unittest.TestCase):
+
+    def setUp(self):
+        self.__extractor_no_source = DummyDataExtractor("dummy_extractor")
+        self.__extractor_with_source = DummyDataExtractor("dummy_extractor", source=ArraySource())
+
     def test_cant_extract_if_resource_is_not_set(self):
-        extractor = DummyDataExtractor("dummy_extractor")
         with self.assertRaises(ValueError):
-            extractor.execute()
+            self.__extractor_no_source.execute()
 
     def test_can_extract_data(self):
-        extractor = DummyDataExtractor("dummy_extractor", source=ArraySource())
-        self.assertEqual(extractor.execute(), [1, 2, 3, 4, 5])
+        self.assertEqual(self.__extractor_with_source.execute(), [1, 2, 3, 4, 5])
 
     def test_with_set_data(self):
-        extractor = DummyDataExtractor("dummy_extractor")
-        extractor.set_data(ArraySource())
-        self.assertEqual(extractor.execute(), [1, 2, 3, 4, 5])
+        self.__extractor_no_source.set_data(ArraySource())
+        self.assertEqual(self.__extractor_no_source.execute(), [1, 2, 3, 4, 5])
 
 
 class DataMapperTest(unittest.TestCase):
+
     def test_cant_extract_if_resource_is_not_set(self):
         mapper = DummyDataMapper("dummy_mapper")
         with self.assertRaises(ValueError):

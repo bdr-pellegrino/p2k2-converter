@@ -6,7 +6,7 @@ T = TypeVar('T')
 
 
 class BaseSource(ABC):
-    @contextmanager
+
     @abstractmethod
     def open(self) -> T:
         pass

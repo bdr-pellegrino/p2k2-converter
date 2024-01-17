@@ -3,6 +3,7 @@ from .base_step import BaseStep, T
 
 
 class DataMapper(BaseStep, ABC):
+
     def __init__(self, name: str, data: any = None):
         super().__init__(name)
         self.__data = data
