@@ -1,9 +1,10 @@
 import unittest
-from zipfile import BadZipFile
-
-from p2k2_converter.pipeline.source.xlsm_source import XlsmSource
-from openpyxl import Workbook
 import os
+
+from zipfile import BadZipFile
+from openpyxl import Workbook
+from p2k2_converter.pipeline.source import XlsmSource
+
 
 class XlsmSourceTest(unittest.TestCase):
     def setUp(self):

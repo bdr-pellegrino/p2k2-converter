@@ -1,9 +1,9 @@
 import unittest
 from contextlib import contextmanager
 
-from p2k2_converter.pipeline.source.base_source import BaseSource
-from p2k2_converter.pipeline.step.data_extractor import DataExtractor
-from p2k2_converter.pipeline.step.data_mapper import DataMapper
+from p2k2_converter.pipeline.source import BaseSource
+from p2k2_converter.pipeline.step import DataExtractor
+from p2k2_converter.pipeline.step import DataMapper
 
 
 class ArraySource(BaseSource):

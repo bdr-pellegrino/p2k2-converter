@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from .base_step import BaseStep, T
-from ..source.base_source import BaseSource
+
+from p2k2_converter.pipeline.source import BaseSource
 
 
 class DataExtractor(BaseStep, ABC):
