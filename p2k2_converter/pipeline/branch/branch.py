@@ -23,6 +23,7 @@ class Branch:
 
         self.__name = name
         self.__executed = False
+        self.__data: T = None
 
     def add_step(self, step: BaseStep, force: bool = False) -> None:
         if isinstance(step, DataExtractor):
@@ -37,6 +38,11 @@ class Branch:
     def get_name(self) -> str:
         return self.__name
 
+    def get_data(self) -> T:
+        if not self.__executed:
+            raise RuntimeError("Branch not executed yet")
+        return copy(self.__data)
+
     def get_steps(self) -> dict[str, BaseStep]:
         return copy(self.__steps)
 
@@ -48,12 +54,11 @@ class Branch:
             raise RuntimeError("No DataExtractor set for this branch")
 
         self.__steps["extractor"].set_data(source)
-        data = self.__steps["extractor"].execute()
+        self.__data = self.__steps["extractor"].execute()
 
         for mapper in self.__steps["mappers"].values():
-            mapper.set_data(data)
-            data = mapper.execute()
+            mapper.set_data(self.__data)
+            self.__data = mapper.execute()
 
         self.__executed = True
-
-        return data
+        return self.__data

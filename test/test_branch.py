@@ -82,3 +82,14 @@ class BranchTest(unittest.TestCase):
             branch.add_step(DoubleMapper("double_mapper"))
             branch.execute(source)
 
+    def test_get_data_before_execution(self):
+        branch = self.__branches["with_steps"]
+        with self.assertRaises(RuntimeError):
+            branch.get_data()
+
+    def test_get_data_after_execution(self):
+        branch = self.__branches["with_steps"]
+        source = ArraySource()
+        branch.execute(source)
+        self.assertEqual(branch.get_data(), 15)
+    
