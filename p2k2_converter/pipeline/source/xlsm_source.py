@@ -6,7 +6,7 @@ from .base_source import BaseSource
 
 class XlsmSource(BaseSource):
 
-    def __init__(self, path):
+    def __init__(self, path: str):
         super().__init__()
         self.__path = path
 
