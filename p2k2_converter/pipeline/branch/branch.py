@@ -46,7 +46,8 @@ class Branch:
         data = self.__steps["extractor"].execute()
 
         for mapper in self.__steps["mappers"].values():
-            data = mapper.map(data)
+            mapper.set_data(data)
+            data = mapper.execute()
 
         self.__executed = True
 

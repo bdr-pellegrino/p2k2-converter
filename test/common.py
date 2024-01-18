@@ -21,3 +21,7 @@ class DummyDataMapper(DataMapper):
     def extract_data(self, data: list[int]) -> int:
         return sum(data)
 
+
+class DoubleMapper(DataMapper):
+    def extract_data(self, data: list[int]) -> list[int]:
+        return [x * 2 for x in data]
