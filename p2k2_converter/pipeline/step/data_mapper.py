@@ -1,5 +1,9 @@
 from abc import ABC, abstractmethod
 from .base_step import BaseStep, T
+from ..source import BaseSource
+from typing import TypeVar
+
+U = TypeVar('U')
 
 
 class DataMapper(BaseStep, ABC):
@@ -8,7 +12,7 @@ class DataMapper(BaseStep, ABC):
         super().__init__(name)
         self.__data = data
 
-    def set_data(self, source):
+    def set_data(self, source: BaseSource):
         self.__data = source
 
     def execute(self) -> T:
@@ -17,5 +21,5 @@ class DataMapper(BaseStep, ABC):
         return self.extract_data(self.__data)
 
     @abstractmethod
-    def extract_data(self, data) -> T:
+    def extract_data(self, data: U) -> T:
         pass
