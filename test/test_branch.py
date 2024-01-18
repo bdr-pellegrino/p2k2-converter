@@ -92,4 +92,3 @@ class BranchTest(unittest.TestCase):
         source = ArraySource()
         branch.execute(source)
         self.assertEqual(branch.get_data(), 15)
-    
