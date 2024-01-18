@@ -8,10 +8,10 @@ T = TypeVar("T")
 class Pipeline:
     def __init__(self, source: BaseSource, branches: list[Branch]):
         self.__source = source
-
         self.__branches = {}
         for branch in branches:
             self.__branches[branch.get_name()] = branch
+        self.__executed = False
 
     def add_branch(self, branch: Branch, force: bool = False) -> None:
         if branch.get_name() in self.__branches and not force:
@@ -19,12 +19,17 @@ class Pipeline:
         self.__branches[branch.get_name()] = branch
 
     def execute(self) -> None:
-        with self.__source.open() as resource:
+        if self.__executed:
+            raise RuntimeError("Pipeline already executed")
+        try:
             for branch in self.__branches.values():
-                branch.execute(resource)
+                branch.execute(self.__source)
+            self.__executed = True
+        except Exception as e:
+            self.__executed = False
 
     def get(self, name: str) -> T:
-        if name not in self.__branches:
+        if name not in self.__branches.keys():
             raise ValueError("Branch not found")
         else:
             return self.__branches[name].get_data()
