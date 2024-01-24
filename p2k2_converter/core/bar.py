@@ -5,7 +5,7 @@ from copy import deepcopy as copy
 
 @dataclass
 class Bar:
-    name: str
+    code: str
     length: float
     cuts: list[Cut]
 
