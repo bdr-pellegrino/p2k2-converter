@@ -23,14 +23,6 @@ class Forbiddenspace:
             "type": "Attribute",
         }
     )
-    content: List[object] = field(
-        default_factory=list,
-        metadata={
-            "type": "Wildcard",
-            "namespace": "##any",
-            "mixed": True,
-        }
-    )
 
 
 @dataclass
@@ -52,12 +44,12 @@ class Machining:
             "type": "Attribute",
         }
     )
-    content: List[object] = field(
-        default_factory=list,
+    clampnear: Optional[int] = field(
+        default=None,
         metadata={
-            "type": "Wildcard",
-            "namespace": "##any",
-            "mixed": True,
+            "name": "CLAMPNEAR",
+            "type": "Element",
+            "namespace": "org.unibo.p2k2",
         }
     )
 
