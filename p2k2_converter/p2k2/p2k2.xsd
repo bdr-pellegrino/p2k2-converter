@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="org.unibo.p2k2"
+           xmlns="org.unibo.p2k2"
+           elementFormDefault="qualified">
+
+    <xs:element name="JOB">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="VER" type="version"/>
+                <xs:element name="HEAD" type="head"/>
+                <xs:element name="BODY" type="body"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Describe a version node type -->
+    <xs:complexType name="version">
+        <xs:sequence>
+            <xs:element name="MJ" type="xs:integer"/>
+            <xs:element name="MN" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a head node type -->
+    <xs:complexType name="head">
+        <xs:sequence>
+            <xs:element name="PDAT" type="pdat" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="pdat">
+        <xs:sequence>
+            <xs:element name="CODE" type="xs:string"/>
+            <xs:element name="DICL" type="xs:string"/>
+            <xs:element name="DOCL" type="xs:string"/>
+            <xs:element name="BQTY" type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a body node type -->
+    <xs:complexType name="body">
+        <xs:sequence>
+            <xs:element name="BAR" type="bar" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a bar node type -->
+    <xs:complexType name="bar">
+        <xs:sequence>
+            <xs:element name="BRAN" type="xs:string"/>
+            <xs:element name="SYST" type="xs:string"/>
+            <xs:element name="CODE" type="xs:string"/>
+            <xs:element name="DICL" type="xs:string"/>
+            <xs:element name="DOCL" type="xs:string"/>
+            <xs:element name="LEN" type="xs:nonNegativeInteger"/>
+            <xs:element name="LENR" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="H" type="xs:nonNegativeInteger"/>
+            <xs:element name="MLT" type="xs:nonNegativeInteger"/>
+            <xs:element name="CUT" type="cut" maxOccurs="unbounded"/>
+            <xs:element name="SFRIDO" type="sfrido" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a sfrido node type -->
+    <xs:complexType name="sfrido">
+        <xs:sequence>
+            <xs:element name="IDXPEZZO" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="TROLLEY" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="SLOT" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- Describe a cut node type -->
+    <xs:complexType name="cut">
+        <xs:sequence>
+            <xs:element name="ANGL" type="xs:nonNegativeInteger"/>
+            <xs:element name="ANGR" type="xs:nonNegativeInteger"/>
+            <xs:element name="AB1" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="AB2" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="IL" type="xs:nonNegativeInteger"/>
+            <xs:element name="OL" type="xs:nonNegativeInteger"/>
+            <xs:element name="TRML" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="TRMR" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="TAL" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="TAR" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="ORCD" type="xs:string" minOccurs="0"/>
+            <xs:element name="TINA" type="xs:string" minOccurs="0"/>
+            <xs:element name="CSNA" type="xs:string" minOccurs="0"/>
+            <xs:element name="IDQUADRO" type="xs:string" minOccurs="0"/>
+            <xs:element name="BCOD" type="xs:string" minOccurs="0"/>
+            <xs:element name="LBL" type="xs:string" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="MACHININGS" type="machinings" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="CUT" type="cut" minOccurs="0"/>
+            <xs:element name="EXIT" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="AREA" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="2"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="STOP" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="TROLLEY" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="SLOT" type="xs:nonNegativeInteger" minOccurs="0"/>
+            <xs:element name="FORBIDDENSPACES" type="forbiddenspaces" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a machining node type -->
+    <xs:complexType name="machinings">
+        <xs:sequence>
+            <xs:element name="MACHINING" type="machining" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a machining node type -->
+    <xs:complexType name="machining" mixed="true">
+        <xs:sequence>
+            <xs:element name="CLAMPNEAR" />
+        </xs:sequence>
+        <xs:attribute name="WCODE" type="xs:string"/>
+        <xs:attribute name="OFFSET" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+
+    <!-- Describe a forbiddenspaces node type -->
+    <xs:complexType name="forbiddenspaces">
+        <xs:sequence>
+            <xs:element name="FORBIDDENSPACE" type="forbiddenspace" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Describe a forbiddenspace node type -->
+    <xs:complexType name="forbiddenspace" mixed="true">
+        <xs:attribute name="START" type="xs:nonNegativeInteger"/>
+        <xs:attribute name="END" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+</xs:schema>
