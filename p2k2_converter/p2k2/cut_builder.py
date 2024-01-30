@@ -1,95 +1,97 @@
-from abc import ABC
 from p2k2_converter.p2k2.classes import Cut, Machining, Forbiddenspace
 
 
-class CutBuilder(ABC):
+class CutBuilder:
     def __init__(self):
+        self.__trolley_code = None
+        self.__trolley_slot_code = None
+        self.__stop_code = None
+        self.__area = None
+        self.__bar_code = None
+        self.__exit_number = None
+        self.__square_number = None
+        self.__customer_name = None
+        self.__typology = None
+        self.__order_code = None
+        self.__right_trim_cut_angle = None
+        self.__left_trim_cut_angle = None
+        self.__right_trim_cut_length = None
+        self.__left_trim_cut_length = None
+        self.__inferior_cut_length = None
+        self.__superior_cut_length = None
+        self.__right_beta_cutting_angle = None
+        self.__right_cutting_angle = None
+        self.__left_cutting_angle = None
+        self.__left_beta_cutting_angle = None
         self.__labels = []
         self.__machinings = []
         self.__forbidden_spaces = []
 
-    @staticmethod
     def add_left_cutting_angle(self, angle: int) -> 'CutBuilder':
         self.__left_cutting_angle = angle
         return self
 
-    @staticmethod
     def add_right_cutting_angle(self, angle: int) -> 'CutBuilder':
         self.__right_cutting_angle = angle
         return self
 
-    @staticmethod
     def add_right_beta_cutting_angle(self, angle: int) -> 'CutBuilder':
         self.__right_beta_cutting_angle = angle
         return self
 
-    @staticmethod
     def add_left_beta_cutting_angle(self, angle: int) -> 'CutBuilder':
         self.__left_beta_cutting_angle = angle
         return self
 
-    @staticmethod
     def add_cut_length(self, length: int) -> 'CutBuilder':
         self.add_superior_cut_length(length)
         self.add_inferior_cut_length(length)
         return self
 
-    @staticmethod
     def add_superior_cut_length(self, length: int) -> 'CutBuilder':
         self.__superior_cut_length = length
         return self
 
-    @staticmethod
     def add_inferior_cut_length(self, length: int) -> 'CutBuilder':
         self.__inferior_cut_length = length
         return self
 
-    @staticmethod
     def add_left_trim_cut_length(self, length: int) -> 'CutBuilder':
         self.__left_trim_cut_length = length
         return self
 
-    @staticmethod
     def add_right_trim_cut_length(self, length: int) -> 'CutBuilder':
         self.__right_trim_cut_length = length
         return self
 
-    @staticmethod
     def add_left_trim_cut_angle(self, angle: int) -> 'CutBuilder':
         self.__left_trim_cut_angle = angle
         return self
 
-    @staticmethod
     def add_right_trim_cut_angle(self, angle: int) -> 'CutBuilder':
         self.__right_trim_cut_angle = angle
         return self
 
-    @staticmethod
     def add_order_code(self, code: str) -> 'CutBuilder':
         self.__order_code = code
         return self
 
-    @staticmethod
     def add_typology(self, typology: str) -> 'CutBuilder':
         self.__typology = typology
         return self
 
-    @staticmethod
     def add_customer_name(self, name: str) -> 'CutBuilder':
         self.__customer_name = name
         return self
 
-    @staticmethod
     def add_square_number(self, number: str) -> 'CutBuilder':
         self.__square_number = number
         return self
 
-    @staticmethod
     def add_bar_code(self, code: str) -> 'CutBuilder':
         self.__bar_code = code
         return self
 
-    @staticmethod
     def add_label(self, label: str) -> 'CutBuilder':
         if len(self.__labels) < 4:
             self.__labels.append(label)
@@ -97,42 +99,34 @@ class CutBuilder(ABC):
             raise ValueError("Max 4 labels allowed")
         return self
 
-    @staticmethod
     def add_machining(self, code: str, offset: int, clamp_near: int = None) -> 'CutBuilder':
         self.__machinings.append(Machining(code, offset, clamp_near))
         return self
 
-    @staticmethod
     def add_exit(self, exit_number: int) -> 'CutBuilder':
         self.__exit_number = exit_number
         return self
 
-    @staticmethod
     def add_area(self, area: int) -> 'CutBuilder':
         self.__area = area
         return self
 
-    @staticmethod
     def add_stop(self, stop_code: int) -> 'CutBuilder':
         self.__stop_code = stop_code
         return self
 
-    @staticmethod
     def add_trolley(self, trolley_code: int) -> 'CutBuilder':
         self.__trolley_code = trolley_code
         return self
 
-    @staticmethod
     def add_trolley_slot(self, trolley_slot_code: int) -> 'CutBuilder':
         self.__trolley_slot_code = trolley_slot_code
         return self
 
-    @staticmethod
     def add_forbidden_space(self, start: int, end: int) -> 'CutBuilder':
         self.__forbidden_spaces.append(Forbiddenspace(start, end))
         return self
 
-    @staticmethod
     def build(self) -> Cut:
         if self.__left_cutting_angle is None or self.__right_cutting_angle is None:
             raise ValueError("Cutting angles are both required for producing a cut")
