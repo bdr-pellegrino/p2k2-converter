@@ -64,8 +64,8 @@ class BarBuilder:
             docl=self.__outer_color,
             len=self.__length,
             lenr=self.__remaining_length,
-            mlt=self.__bars_cut_together,
             h=self.__height,
+            mlt=self.__bars_cut_together,
             cut=self.__cuts,
             sfrido=self.__off_cut
         )

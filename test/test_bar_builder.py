@@ -34,4 +34,3 @@ class BarBuilderTest(unittest.TestCase):
                 .add_cut(CutBuilder().add_right_cutting_angle(90).add_left_cutting_angle(90).add_cut_length(100).build()) \
                 .build()
 
-    
