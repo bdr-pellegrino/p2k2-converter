@@ -1,4 +1,4 @@
-from p2k2 import (
+from .p2k2 import (
     Job,
     Bar,
     Body,

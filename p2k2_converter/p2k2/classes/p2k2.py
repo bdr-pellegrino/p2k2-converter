@@ -1,13 +1,11 @@
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-__NAMESPACE__ = "org.unibo.p2k2"
-
 
 @dataclass
 class Forbiddenspace:
     class Meta:
-        name = "forbiddenspace"
+        name = "FORBIDDENSPACE"
 
     start: Optional[int] = field(
         default=None,
@@ -23,12 +21,20 @@ class Forbiddenspace:
             "type": "Attribute",
         }
     )
+    content: List[object] = field(
+        default_factory=list,
+        metadata={
+            "type": "Wildcard",
+            "namespace": "##any",
+            "mixed": True,
+        }
+    )
 
 
 @dataclass
 class Machining:
     class Meta:
-        name = "machining"
+        name = "MACHINING"
 
     wcode: Optional[str] = field(
         default=None,
@@ -48,8 +54,7 @@ class Machining:
         default=None,
         metadata={
             "name": "CLAMPNEAR",
-            "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "type": "Attribute",
         }
     )
 
@@ -57,14 +62,14 @@ class Machining:
 @dataclass
 class Pdat:
     class Meta:
-        name = "pdat"
+        name = "PDAT"
 
     code: Optional[str] = field(
         default=None,
         metadata={
             "name": "CODE",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -73,7 +78,7 @@ class Pdat:
         metadata={
             "name": "DICL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -82,7 +87,7 @@ class Pdat:
         metadata={
             "name": "DOCL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -91,7 +96,7 @@ class Pdat:
         metadata={
             "name": "BQTY",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -100,30 +105,30 @@ class Pdat:
 @dataclass
 class Sfrido:
     class Meta:
-        name = "sfrido"
+        name = "SFRIDO"
 
-    idxpezzo: List[str] = field(
-        default_factory=list,
+    idxpezzo: Optional[str] = field(
+        default=None,
         metadata={
             "name": "IDXPEZZO",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
-    trolley: List[int] = field(
-        default_factory=list,
+    trolley: Optional[int] = field(
+        default=None,
         metadata={
             "name": "TROLLEY",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
-    slot: List[int] = field(
-        default_factory=list,
+    slot: Optional[int] = field(
+        default=None,
         metadata={
             "name": "SLOT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
 
@@ -131,14 +136,14 @@ class Sfrido:
 @dataclass
 class Version:
     class Meta:
-        name = "version"
+        name = "VERSION"
 
     mj: Optional[int] = field(
         default=None,
         metadata={
             "name": "MJ",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -147,7 +152,7 @@ class Version:
         metadata={
             "name": "MN",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -156,14 +161,14 @@ class Version:
 @dataclass
 class Forbiddenspaces:
     class Meta:
-        name = "forbiddenspaces"
+        name = "FORBIDDENSPACES"
 
     forbiddenspace: List[Forbiddenspace] = field(
         default_factory=list,
         metadata={
             "name": "FORBIDDENSPACE",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
 
@@ -171,14 +176,14 @@ class Forbiddenspaces:
 @dataclass
 class Head:
     class Meta:
-        name = "head"
+        name = "HEAD"
 
     pdat: List[Pdat] = field(
         default_factory=list,
         metadata={
             "name": "PDAT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "min_occurs": 1,
         }
     )
@@ -187,14 +192,14 @@ class Head:
 @dataclass
 class Machinings:
     class Meta:
-        name = "machinings"
+        name = "MACHININGS"
 
     machining: List[Machining] = field(
         default_factory=list,
         metadata={
             "name": "MACHINING",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
 
@@ -202,14 +207,14 @@ class Machinings:
 @dataclass
 class Cut:
     class Meta:
-        name = "cut"
+        name = "CUT"
 
     angl: Optional[int] = field(
         default=None,
         metadata={
             "name": "ANGL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -218,7 +223,7 @@ class Cut:
         metadata={
             "name": "ANGR",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -227,7 +232,7 @@ class Cut:
         metadata={
             "name": "AB1",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     ab2: Optional[int] = field(
@@ -235,7 +240,7 @@ class Cut:
         metadata={
             "name": "AB2",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     il: Optional[int] = field(
@@ -243,7 +248,7 @@ class Cut:
         metadata={
             "name": "IL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -252,7 +257,7 @@ class Cut:
         metadata={
             "name": "OL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -261,7 +266,7 @@ class Cut:
         metadata={
             "name": "TRML",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     trmr: Optional[int] = field(
@@ -269,7 +274,7 @@ class Cut:
         metadata={
             "name": "TRMR",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     tal: Optional[int] = field(
@@ -277,7 +282,7 @@ class Cut:
         metadata={
             "name": "TAL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     tar: Optional[int] = field(
@@ -285,7 +290,7 @@ class Cut:
         metadata={
             "name": "TAR",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     orcd: Optional[str] = field(
@@ -293,7 +298,7 @@ class Cut:
         metadata={
             "name": "ORCD",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     tina: Optional[str] = field(
@@ -301,7 +306,7 @@ class Cut:
         metadata={
             "name": "TINA",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     csna: Optional[str] = field(
@@ -309,7 +314,7 @@ class Cut:
         metadata={
             "name": "CSNA",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     idquadro: Optional[str] = field(
@@ -317,7 +322,7 @@ class Cut:
         metadata={
             "name": "IDQUADRO",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     bcod: Optional[str] = field(
@@ -325,7 +330,7 @@ class Cut:
         metadata={
             "name": "BCOD",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     lbl: List[str] = field(
@@ -333,16 +338,16 @@ class Cut:
         metadata={
             "name": "LBL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "max_occurs": 4,
         }
     )
-    machinings: List[Machinings] = field(
-        default_factory=list,
+    machinings: Optional["Machinings"] = field(
+        default=None,
         metadata={
             "name": "MACHININGS",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     cut: Optional["Cut"] = field(
@@ -350,7 +355,7 @@ class Cut:
         metadata={
             "name": "CUT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     exit: Optional[int] = field(
@@ -358,7 +363,7 @@ class Cut:
         metadata={
             "name": "EXIT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     area: Optional[int] = field(
@@ -366,7 +371,7 @@ class Cut:
         metadata={
             "name": "AREA",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "min_inclusive": 1,
             "max_inclusive": 2,
         }
@@ -376,7 +381,7 @@ class Cut:
         metadata={
             "name": "STOP",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     trolley: Optional[int] = field(
@@ -384,7 +389,7 @@ class Cut:
         metadata={
             "name": "TROLLEY",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     slot: Optional[int] = field(
@@ -392,7 +397,7 @@ class Cut:
         metadata={
             "name": "SLOT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     forbiddenspaces: List[Forbiddenspaces] = field(
@@ -400,7 +405,7 @@ class Cut:
         metadata={
             "name": "FORBIDDENSPACES",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
 
@@ -408,14 +413,14 @@ class Cut:
 @dataclass
 class Bar:
     class Meta:
-        name = "bar"
+        name = "BAR"
 
     bran: Optional[str] = field(
         default=None,
         metadata={
             "name": "BRAN",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -424,7 +429,7 @@ class Bar:
         metadata={
             "name": "SYST",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -433,7 +438,7 @@ class Bar:
         metadata={
             "name": "CODE",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -442,7 +447,7 @@ class Bar:
         metadata={
             "name": "DICL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -451,7 +456,7 @@ class Bar:
         metadata={
             "name": "DOCL",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -460,7 +465,7 @@ class Bar:
         metadata={
             "name": "LEN",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -469,7 +474,7 @@ class Bar:
         metadata={
             "name": "LENR",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
     h: Optional[int] = field(
@@ -477,7 +482,7 @@ class Bar:
         metadata={
             "name": "H",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -486,7 +491,7 @@ class Bar:
         metadata={
             "name": "MLT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "required": True,
         }
     )
@@ -495,7 +500,7 @@ class Bar:
         metadata={
             "name": "CUT",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "min_occurs": 1,
         }
     )
@@ -504,7 +509,7 @@ class Bar:
         metadata={
             "name": "SFRIDO",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
         }
     )
 
@@ -512,14 +517,14 @@ class Bar:
 @dataclass
 class Body:
     class Meta:
-        name = "body"
+        name = "BODY"
 
     bar: List[Bar] = field(
         default_factory=list,
         metadata={
             "name": "BAR",
             "type": "Element",
-            "namespace": "org.unibo.p2k2",
+            "namespace": "",
             "min_occurs": 1,
         }
     )
@@ -529,13 +534,13 @@ class Body:
 class Job:
     class Meta:
         name = "JOB"
-        namespace = "org.unibo.p2k2"
 
     ver: Optional[Version] = field(
         default=None,
         metadata={
             "name": "VER",
             "type": "Element",
+            "namespace": "",
             "required": True,
         }
     )
@@ -544,6 +549,7 @@ class Job:
         metadata={
             "name": "HEAD",
             "type": "Element",
+            "namespace": "",
             "required": True,
         }
     )
@@ -552,6 +558,7 @@ class Job:
         metadata={
             "name": "BODY",
             "type": "Element",
+            "namespace": "",
             "required": True,
         }
     )

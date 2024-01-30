@@ -1,4 +1,4 @@
-from p2k2_converter.p2k2.classes import Cut, Machining, Forbiddenspace
+from p2k2_converter.p2k2.classes import Cut, Machining, Machinings, Forbiddenspace
 
 
 class CutBuilder:
@@ -133,6 +133,9 @@ class CutBuilder:
 
         if self.__inferior_cut_length is None or self.__superior_cut_length is None:
             raise ValueError("Cutting lengths are both required for producing a cut")
+
+        if len(self.__machinings) > 0:
+            self.__machinings = Machinings(self.__machinings)
 
         return Cut(
             angl=self.__left_cutting_angle,

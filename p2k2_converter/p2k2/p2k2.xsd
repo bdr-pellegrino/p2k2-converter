@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="org.unibo.p2k2"
-           xmlns="org.unibo.p2k2"
-           elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:element name="JOB">
         <xs:complexType>
@@ -66,9 +63,9 @@
     <!-- Describe a sfrido node type -->
     <xs:complexType name="sfrido">
         <xs:sequence>
-            <xs:element name="IDXPEZZO" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="TROLLEY" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="SLOT" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="IDXPEZZO" type="xs:string" />
+            <xs:element name="TROLLEY" type="xs:nonNegativeInteger" />
+            <xs:element name="SLOT" type="xs:nonNegativeInteger" />
         </xs:sequence>
     </xs:complexType>
 
@@ -92,7 +89,7 @@
             <xs:element name="IDQUADRO" type="xs:string" minOccurs="0"/>
             <xs:element name="BCOD" type="xs:string" minOccurs="0"/>
             <xs:element name="LBL" type="xs:string" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="MACHININGS" type="machinings" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="MACHININGS" type="machinings" minOccurs="0"/>
             <xs:element name="CUT" type="cut" minOccurs="0"/>
             <xs:element name="EXIT" type="xs:nonNegativeInteger" minOccurs="0"/>
             <xs:element name="AREA" minOccurs="0">
