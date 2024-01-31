@@ -25,7 +25,7 @@ normal_cut = CutBuilder()\
 
 length_of_bar = 6000
 total_length = 0
-current_bar = BarBuilder("PELLEGRINO", "CLOSE", "PROFILO SOGLIA")\
+current_bar = BarBuilder("PELLEGRINO", "CLOSE", "PROFILO DOGA")\
                 .add_length(length_of_bar)\
                 .add_height(100)
 
@@ -33,47 +33,51 @@ for i in range(number_of_pieces):
     total_length += length
     if total_length > length_of_bar:
         bars.append(current_bar.build())
-        current_bar = BarBuilder("PELLEGRINO", "CLOSE", "PROFILO SOGLIA").add_length(length_of_bar) \
+        current_bar = BarBuilder("PELLEGRINO", "CLOSE", "PROFILO DOGA").add_length(length_of_bar) \
                 .add_height(100)
 
         total_length = 0
         current_bar.add_cut(CutBuilder().add_left_cutting_angle(90).add_right_cutting_angle(90).add_cut_length(length).build())
 
+    if i == number_of_pieces - 1:
+        # Define the offset of the holes based on the length of the piece
+        cut = CutBuilder()\
+                .add_left_cutting_angle(90) \
+                .add_right_cutting_angle(90) \
+                .add_cut_length(length - trim_length)\
+                .add_machining("FORO ANTA", 20) \
+                .add_machining("FORO ANTA", 53) \
+                .build()
+        current_bar.add_cut(cut)
+        bars.append(current_bar.build())
     else:
-        if i == number_of_pieces - 1:
+        if i == 0:
             # Define the offset of the holes based on the length of the piece
             cut = CutBuilder()\
                     .add_left_cutting_angle(90) \
                     .add_right_cutting_angle(90) \
-                    .add_cut_length(length - trim_length)\
+                    .add_cut_length(length) \
                     .add_machining("FORO ANTA", 20) \
                     .add_machining("FORO ANTA", 53) \
                     .build()
             current_bar.add_cut(cut)
-            bars.append(current_bar.build())
-        else:
-            if i == 0:
-                # Define the offset of the holes based on the length of the piece
-                cut = CutBuilder()\
-                        .add_left_cutting_angle(90) \
-                        .add_right_cutting_angle(90) \
-                        .add_cut_length(length) \
-                        .add_machining("FORO ANTA", 20) \
-                        .add_machining("FORO ANTA", 53) \
-                        .build()
-                current_bar.add_cut(cut)
 
-            elif i == number_of_pieces / 2:
-                cut = CutBuilder()\
-                        .add_left_cutting_angle(90) \
-                        .add_right_cutting_angle(90) \
-                        .add_cut_length(length) \
-                        .add_machining("FORO ANTA", 20) \
-                        .add_machining("FORO ANTA", 53) \
-                        .build()
-                current_bar.add_cut(cut)
-            else:
-                current_bar.add_cut(normal_cut.build())
+        elif i == number_of_pieces / 2:
+            cut = CutBuilder()\
+                    .add_left_cutting_angle(90) \
+                    .add_right_cutting_angle(90) \
+                    .add_cut_length(length) \
+                    .add_machining("FORO ANTA", 20) \
+                    .add_machining("FORO ANTA", 53) \
+                    .build()
+            current_bar.add_cut(cut)
+        else:
+            cut = CutBuilder()\
+                    .add_left_cutting_angle(90)\
+                    .add_right_cutting_angle(90)\
+                    .add_cut_length(length)
+
+            current_bar.add_cut(cut.build())
 
 # Operations for "Canalino verticale"
 number_of_pieces = 2
