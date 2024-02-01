@@ -5,35 +5,29 @@ from p2k2_converter.pipeline.step import BaseStep, DataExtractor
 from typing import TypeVar
 
 T = TypeVar("T")
+Q = TypeVar("Q")
 
 
 class Branch:
     def __init__(self, name: str, steps: list[BaseStep] = None):
-        self.__steps = {
-            "extractor": None,
-            "mappers": {},
-        }
-
+        self.__starting_step = None
+        self.__last_step = None
         if steps is not None:
             for step in steps:
-                if isinstance(step, DataExtractor):
-                    self.__steps["extractor"] = step
-                else:
-                    self.__steps["mappers"][step.get_name()] = step
+                self.add_step(step)
 
         self.__name = name
         self.__executed = False
         self.__data: T = None
+        self.__result: Q = None
 
-    def add_step(self, step: BaseStep, force: bool = False) -> None:
-        if isinstance(step, DataExtractor):
-            if self.__steps["extractor"] is not None and not force:
-                raise ValueError("DataExtractor already set for this branch")
-            self.__steps["extractor"] = step
+    def add_step(self, step: BaseStep) -> None:
+        if self.__starting_step is None:
+            self.__starting_step = step
+            self.__last_step = step
         else:
-            if step.get_name() in self.__steps["mappers"] and not force:
-                raise ValueError("DataMapper already set for this branch")
-            self.__steps["mappers"][step.get_name()] = step
+            self.__last_step.set_next(step)
+            self.__last_step = step
 
     def get_name(self) -> str:
         return self.__name
@@ -43,22 +37,18 @@ class Branch:
             raise RuntimeError("Branch not executed yet")
         return copy(self.__data)
 
-    def get_steps(self) -> dict[str, BaseStep]:
-        return copy(self.__steps)
+    def get_result(self) -> Q:
+        if not self.__executed:
+            raise RuntimeError("Branch not executed yet")
+        return copy(self.__result)
 
     def execute(self, source: BaseSource) -> T:
         if self.__executed:
             raise RuntimeError("Branch already executed")
 
-        if self.__steps["extractor"] is None:
-            raise RuntimeError("No DataExtractor set for this branch")
+        if self.__starting_step is None:
+            raise RuntimeError("Branch has no steps")
 
-        self.__steps["extractor"].set_data(source)
-        self.__data = self.__steps["extractor"].execute()
-
-        for mapper in self.__steps["mappers"].values():
-            mapper.set_data(self.__data)
-            self.__data = mapper.execute()
-
+        self.__data, self.__result = self.__starting_step.run(source, None)
         self.__executed = True
-        return self.__data
+        return self.__result

@@ -32,4 +32,4 @@ class Pipeline:
         if name not in self.__branches.keys():
             raise ValueError("Branch not found")
         else:
-            return self.__branches[name].get_data()
+            return self.__branches[name].get_result()
