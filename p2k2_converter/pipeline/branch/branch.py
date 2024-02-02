@@ -29,7 +29,7 @@ class Branch:
             self.__last_step.set_next(step)
             self.__last_step = step
 
-    def add_step_from_lambda(self, name: str, step: Callable[[T, any], Q]) -> None:
+    def create_step_from_lambda(self, name: str, step: Callable[[T, any], Q]) -> None:
         class LambdaStep(BaseStep):
             def __init__(self):
                 super().__init__(name)

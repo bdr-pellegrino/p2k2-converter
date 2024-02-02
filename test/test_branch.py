@@ -56,6 +56,6 @@ class BranchTest(unittest.TestCase):
     def test_add_step_from_lambda(self):
         branch = Branch("lambda")
         branch.add_step(DummyDataExtractor("data_extractor"))
-        branch.add_step_from_lambda("lambda_step", lambda s, d: [s, sum(d) * 2])
+        branch.create_step_from_lambda("lambda_step", lambda s, d: [s, sum(d) * 2])
         source = ArraySource()
         self.assertEqual(branch.execute(source), 30)
