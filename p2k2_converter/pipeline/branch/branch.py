@@ -1,8 +1,8 @@
 from copy import deepcopy as copy
 
 from p2k2_converter.pipeline.source import BaseSource
-from p2k2_converter.pipeline.step import BaseStep, DataExtractor
-from typing import TypeVar
+from p2k2_converter.pipeline.step import BaseStep
+from typing import TypeVar, Callable
 
 T = TypeVar("T")
 Q = TypeVar("Q")
@@ -28,6 +28,16 @@ class Branch:
         else:
             self.__last_step.set_next(step)
             self.__last_step = step
+
+    def add_step_from_lambda(self, name: str, step: Callable[[T, any], Q]) -> None:
+        class LambdaStep(BaseStep):
+            def __init__(self):
+                super().__init__(name)
+
+            def execute(self, source: BaseSource, data: any) -> list[T, Q]:
+                return step(source, data)
+
+        return self.add_step(LambdaStep())
 
     def get_name(self) -> str:
         return self.__name
