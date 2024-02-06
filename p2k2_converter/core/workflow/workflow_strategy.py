@@ -13,7 +13,7 @@ class WorkflowStrategy(ABC):
         pass
 
     @abstractmethod
-    def cuts_definition(self, source, data):
+    def bars_definition(self, source, data):
         pass
 
     @abstractmethod
