@@ -9,45 +9,106 @@ class TestCloseWorkflow(unittest.TestCase):
 
     def setUp(self):
         self.__test_files = {
-            "data_insertion": "data/close/inserimento_dati.xlsm",
             "product_worksheet": "data/close/close.xlsm"
         }
         self.__close_workflow = Close()
+        self.__profile_config = {
+            "PROFILO DOGA": {
+                "cuts_quantity": 10,
+                "cuts_length": 741,
+                "l_angle": 90,
+                "r_angle": 90
+            },
+
+            "CANALINO VERTICALE": {
+                "cuts_quantity": 2,
+                "cuts_length": 1970,
+                "l_angle": 45,
+                "r_angle": 45,
+            },
+
+            "CANALINO ORIZZONTALE": {
+                "cuts_quantity": 2,
+                "cuts_length": 760,
+                "l_angle": 45,
+                "r_angle": 45,
+            },
+
+            "MONTANTE SX": {
+                "cuts_quantity": 1,
+                "cuts_length": 2000,
+                "l_angle": 90,
+                "r_angle": 45,
+            },
+
+            "TRAVERSO SUPERIORE": {
+                "cuts_quantity": 1,
+                "cuts_length": 804,
+                "l_angle": 45,
+                "r_angle": 90,
+            },
+
+            "MONTANTE DX": {
+                "cuts_quantity": 1,
+                "cuts_length": 2000,
+                "l_angle": 45,
+                "r_angle": 45,
+            },
+
+            "PROFILO SOGLIA": {
+                "cuts_quantity": 1,
+                "cuts_length": 804,
+                "l_angle": 90,
+                "r_angle": 90
+            }
+        }
 
     def test_model_definition(self):
-        source = XlsmSource(self.__test_files["data_insertion"])
+        source = XlsmSource(self.__test_files["product_worksheet"])
+
         with source.open() as src:
             workbook, model = self.__close_workflow.model_definition(src, None)
+
             self.assertEqual(model.name, "CLOSE")
             self.assertEqual(model.width, 100)
-            self.assertEqual(model.height, 200)
+            self.assertEqual(model.height, 80)
 
     def test_check_profiles(self):
-        profiles_name = [
-            "PROFILO DOGA",
-            "CANALINO VERTICALE",
-            "CANALINO ORIZZONTALE",
-            "MONTANTE SX",
-            "TRAVERSO SUPERIORE",
-            "MONTANTE DX",
-            "PROFILO SOGLIA"
-        ]
         source = XlsmSource(self.__test_files["product_worksheet"])
-        with source.open() as src:
-            _, model = self.__close_workflow.profiles_definition(src, Model("CLOSE", 100, 200))
-            for profile in model.profiles:
-                self.assertIn(profile.code, profiles_name)
-                profiles_name.remove(profile.code)
-            self.assertEqual(len(profiles_name), 0)
+        checked_profiles = []
 
-    def test_profiles_definition_with_refinement(self):
+        with source.open() as src:
+            _, model = self.__close_workflow.profiles_definition(
+                *self.__close_workflow.model_definition(src, None)
+            )
+
+            profiles = list(self.__profile_config.keys())
+            for code in model.profiles:
+                self.assertIn(code, profiles)
+                checked_profiles.append(code)
+
+            self.assertEqual(checked_profiles, profiles)
+
+    def test_bars_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
-        with source.open() as src:
-            src["prod CLOSE"]["CM8"] = 1.5
-            _, model = self.__close_workflow.profiles_definition(src, Model("CLOSE", 100, 200))
-            for profile in model.profiles:
-                if profile.code == "PROFILO DOGA":
-                    self.assertEqual(profile.refinement, 1.5)
-                    return
 
-            self.fail("Refinement not found")
+        with source.open() as src:
+            _, model = self.__close_workflow.bars_definition(
+                *self.__close_workflow.profiles_definition(
+                    *self.__close_workflow.model_definition(src, None)
+                )
+            )
+
+            for profile_name in self.__profile_config:
+                profile_configuration = self.__profile_config[profile_name]
+                bars = model.profiles[profile_name].bars
+
+                total_cuts = sum([len(bar.cuts) for bar in bars])
+                self.assertEqual(total_cuts, profile_configuration["cuts_quantity"])
+
+                cut_length = profile_configuration["cuts_length"]
+                for bar in bars:
+                    for cut in bar.cuts:
+                        self.assertEqual(cut.length, cut_length)
+
+                    self.assertLessEqual(sum([cut.length for cut in bar.cuts]), bar.length)

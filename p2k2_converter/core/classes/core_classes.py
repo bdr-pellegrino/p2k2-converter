@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 
 @dataclass
@@ -51,14 +51,6 @@ class Machining:
     )
 
 
-@dataclass
-class Bar:
-    serial_code: Optional[str] = field(
-        metadata={"description": "Serial code of the bar"}
-    )
-    length: Optional[float] = field(
-        metadata={"description": "Length of the bar"}
-    )
 
 
 @dataclass
@@ -74,6 +66,20 @@ class Cut:
     angleR: Optional[int] = field(
         default=90,
         metadata={"description": "Right cut angle"}
+    )
+
+
+@dataclass
+class Bar:
+    serial_code: Optional[str] = field(
+        metadata={"description": "Serial code of the bar"}
+    )
+    length: Optional[float] = field(
+        metadata={"description": "Length of the bar"}
+    )
+    cuts: List[Cut] = field (
+        default_factory=list,
+        metadata={"description": "List of cuts being applied to the bar"}
     )
 
 
@@ -118,8 +124,8 @@ class Model:
         default_factory=list,
         metadata={"description": "List of optionals to be applied to the model"}
     )
-    profiles: List[Profile] = field(
-        default_factory=list,
+    profiles: Dict[str, Profile] = field(
+        default_factory=dict,
         metadata={"description": "List of profiles being used for producing this model"}
     )
 
