@@ -25,9 +25,10 @@ class Pipeline:
         if self.__executed:
             raise RuntimeError("Pipeline already executed")
         try:
-            for branch in self.__branches.values():
-                branch.execute(self.__source)
-            self.__executed = True
+            with self.__source.open() as opened_source:
+                for branch in self.__branches.values():
+                    branch.execute(opened_source)
+                self.__executed = True
         except Exception as e:
             self.__executed = False
 

@@ -11,8 +11,7 @@ class ArraySource(BaseSource):
 
 class DummyDataExtractor(BaseStep):
     def execute(self, source, data):
-        with source.open() as opened_data:
-            return [source, opened_data]
+        return [source, source]
 
 
 class DummyDataMapper(BaseStep):

@@ -20,14 +20,16 @@ class BranchTest(unittest.TestCase):
     def test_execution_of_branch(self):
         branch = self.__branches["with_steps"]
         source = ArraySource()
-        self.assertEqual(branch.execute(source), 15)
+        with source.open() as opened_source:
+            self.assertEqual(branch.execute(opened_source), 15)
 
     def test_cant_execute_branch_twice(self):
         branch = self.__branches["with_steps"]
         source = ArraySource()
-        branch.execute(source)
-        with self.assertRaises(RuntimeError):
-            branch.execute(source)
+        with source.open() as opened_source:
+            branch.execute(opened_source)
+            with self.assertRaises(RuntimeError):
+                branch.execute(opened_source)
 
     def test_ordered_execution_of_tests(self):
         branch = self.__branches["no_steps"]
@@ -35,12 +37,14 @@ class BranchTest(unittest.TestCase):
         branch.add_step(DoubleMapper("double_mapper"))
         branch.add_step(DummyDataMapper("data_mapper"))
         source = ArraySource()
-        self.assertEqual(branch.execute(source), 30)
+        with source.open() as opened_source:
+            self.assertEqual(branch.execute(opened_source), 30)
 
         with self.assertRaises(TypeError):
             branch = self.__branches["with_steps"]
             branch.add_step(DoubleMapper("double_mapper"))
-            branch.execute(source)
+            with source.open() as opened_source:
+                branch.execute(opened_source)
 
     def test_get_data_before_execution(self):
         branch = self.__branches["with_steps"]
@@ -50,12 +54,14 @@ class BranchTest(unittest.TestCase):
     def test_get_data_after_execution(self):
         branch = self.__branches["with_steps"]
         source = ArraySource()
-        branch.execute(source)
-        self.assertEqual(branch.get_result(), 15)
+        with source.open() as opened_source:
+            branch.execute(opened_source)
+            self.assertEqual(branch.get_result(), 15)
 
     def test_add_step_from_lambda(self):
         branch = Branch("lambda")
         branch.add_step(DummyDataExtractor("data_extractor"))
         branch.create_step_from_lambda("lambda_step", lambda s, d: [s, sum(d) * 2])
         source = ArraySource()
-        self.assertEqual(branch.execute(source), 30)
+        with source.open() as opened_source:
+            self.assertEqual(branch.execute(opened_source), 30)

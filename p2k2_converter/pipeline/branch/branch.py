@@ -52,7 +52,7 @@ class Branch:
             raise RuntimeError("Branch not executed yet")
         return copy(self.__result)
 
-    def execute(self, source: BaseSource) -> T:
+    def execute(self, source: any) -> T:
         if self.__executed:
             raise RuntimeError("Branch already executed")
 

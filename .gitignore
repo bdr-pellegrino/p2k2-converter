@@ -146,5 +146,6 @@ node_modules/
 
 # Testing data
 test/data/*
-!test/data/close
+!test/data/close/close.xlsm
+!test/data/close/inserimento_dati.xlsm
 
