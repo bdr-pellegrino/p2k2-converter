@@ -146,5 +146,5 @@ node_modules/
 
 # Testing data
 test/data/*
-!test/data/barriere.xlsm
+!test/data/close
 

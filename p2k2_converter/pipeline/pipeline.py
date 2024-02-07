@@ -6,12 +6,15 @@ T = TypeVar("T")
 
 
 class Pipeline:
-    def __init__(self, source: BaseSource, branches: list[Branch]):
+    def __init__(self, branches: list[Branch] = None, source: BaseSource = None):
         self.__source = source
         self.__branches = {}
         for branch in branches:
             self.__branches[branch.get_name()] = branch
         self.__executed = False
+
+    def set_source(self, source: BaseSource) -> None:
+        self.__source = source
 
     def add_branch(self, branch: Branch, force: bool = False) -> None:
         if branch.get_name() in self.__branches and not force:
