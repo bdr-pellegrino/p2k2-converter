@@ -1,6 +1,5 @@
 import unittest
 
-from p2k2_converter.core.classes import Model
 from p2k2_converter.core.workflow.close import Close
 from p2k2_converter.pipeline.source import XlsmSource
 
@@ -11,13 +10,17 @@ class TestCloseWorkflow(unittest.TestCase):
         self.__test_files = {
             "product_worksheet": "data/close/close.xlsm"
         }
-        self.__close_workflow = Close()
+        self.__close_workflow = Close(row=8)
         self.__profile_config = {
             "PROFILO DOGA": {
                 "cuts_quantity": 10,
                 "cuts_length": 741,
                 "l_angle": 90,
-                "r_angle": 90
+                "r_angle": 90,
+                "machinings": {
+                    "FORO ANTA": [115, 138, 920, 943, 520, 543],
+                    "FORO SCASSI TELAIO": [126.25, 931.25, 531.25]
+                }
             },
 
             "CANALINO VERTICALE": {
@@ -112,3 +115,25 @@ class TestCloseWorkflow(unittest.TestCase):
                         self.assertEqual(cut.length, cut_length)
 
                     self.assertLessEqual(sum([cut.length for cut in bar.cuts]), bar.length)
+
+    def test_machining_definition(self):
+        source = XlsmSource(self.__test_files["product_worksheet"])
+
+        with source.open() as src:
+            _, model = self.__close_workflow.machining_definition(
+                *self.__close_workflow.bars_definition(
+                    *self.__close_workflow.profiles_definition(
+                        *self.__close_workflow.model_definition(src, None)
+                    )
+                )
+            )
+
+        for profile_name in self.__profile_config:
+            profile_configuration = self.__profile_config[profile_name]
+            profile = model.profiles[profile_name]
+
+            for machining in profile.machinings:
+                self.assertIn(machining.code, profile_configuration["machinings"])
+                self.assertIn(machining.offset, profile_configuration["machinings"][machining.code])
+
+

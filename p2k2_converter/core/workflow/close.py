@@ -1,13 +1,14 @@
 from p2k2_converter.core.workflow import WorkflowStrategy
-from p2k2_converter.core.classes import Model, Profile, Bar, Cut
+from p2k2_converter.core.classes import Model, Profile, Bar, Cut, Machining
 from openpyxl import Workbook
 from typing import List
+import re
 
 
 class Close(WorkflowStrategy):
 
-    def __init__(self):
-        self.__cell_row = None
+    def __init__(self, row: int):
+        self.__cell_row = row
         self.__profile_config = {
             "PROFILO DOGA": {
                 "refinement_position": "CM",
@@ -16,7 +17,18 @@ class Close(WorkflowStrategy):
                 "l_angle": 90,
                 "r_angle": 90,
                 "bar_length": 6000,
-                "bar_code": "PROFILO DOGA"
+                "bar_code": "PROFILO DOGA",
+                "machinings": {
+                    "FORO ANTA": {
+                        "starting_position": "DW",
+                        "ending_position": "EB",
+                    },
+                    "FORO SCASSI TELAIO": {
+                        "starting_position": "ED",
+                        "ending_position": "EF",
+                    },
+
+                }
             },
             "CANALINO VERTICALE": {
                 "quantity_position": "CR",
@@ -70,17 +82,13 @@ class Close(WorkflowStrategy):
 
     def model_definition(self, workbook, data) -> [Workbook, Model]:
         product_worksheet = workbook["prod CLOSE"]
-        data_range = product_worksheet["C8:F23"]
+        data_row = product_worksheet[f"C{self.__cell_row}:F{self.__cell_row}"]
+        cell_data = [cell.value for row in data_row for cell in row]
 
-        for row in data_range:
-            row_cell = [cell.value for cell in row]
-            name = row_cell[0]
-            if name == "CLOSE":
-                self.__cell_row = row[0].row
-                width = row_cell[2]
-                height = row_cell[3]
-
-                return [workbook, Model(name, width, height)]
+        name = cell_data[0]
+        width = cell_data[2]
+        height = cell_data[3]
+        return [workbook, Model(name, width, height)]
 
     def profiles_definition(self, workbook, model) -> [Workbook, Model]:
         product_worksheet = workbook["prod CLOSE"]
@@ -140,5 +148,29 @@ class Close(WorkflowStrategy):
 
         return [workbook, model]
 
-    def machining_definition(self, workbook, data):
-        return f"{workbook} machining definition: {data}"
+    def machining_definition(self, workbook, model) -> [Workbook, Model]:
+        product_worksheet = workbook["prod CLOSE"]
+
+        for profile in model.profiles:
+            config = self.__profile_config[profile]
+
+            if "machinings" in config:
+
+                for machining in config["machinings"]:
+                    machining_config = config["machinings"][machining]
+                    starting_position = f"{machining_config['starting_position']}{self.__cell_row}"
+                    ending_position = f"{machining_config['ending_position']}{self.__cell_row}"
+                    cell_data = product_worksheet[f"{starting_position}:{ending_position}"]
+
+                    cell_values = [cell.value for hole_position in cell_data for cell in hole_position]
+                    for value in cell_values:
+                        # Sanitize the value transforming it to a float
+                        if type(value) == str:
+                            match = re.search(r'\b\d+,\d+\b', value)
+
+                            if match:
+                                value = float(match.group().replace(',', '.'))
+
+                        model.profiles[profile].machinings.append(Machining(machining, value))
+
+        return [workbook, model]

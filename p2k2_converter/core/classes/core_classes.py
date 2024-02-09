@@ -50,8 +50,9 @@ class Machining:
         metadata={"description": "Code of the machining"}
     )
 
-
-
+    offset: Optional[float] = field(
+        metadata={"description": "Offset of the machining"}
+    )
 
 @dataclass
 class Cut:
