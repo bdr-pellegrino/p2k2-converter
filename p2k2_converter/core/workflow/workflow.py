@@ -8,11 +8,9 @@ import yaml
 
 class Workflow(WorkflowStrategy):
 
-    def __init__(self, row: int, config_file_path: str, workflow_name: str):
-        # TODO: USE PATHLIB
+    def __init__(self, row: int, config_file: dict, workflow_name: str):
         self.__cell_row = row
-        with open(config_file_path, "r") as file:
-            self.__profile_config = yaml.safe_load(file)[workflow_name]
+        self.__profile_config = config_file[workflow_name]
 
     def model_definition(self, workbook, data) -> [Workbook, Model]:
         product_worksheet = workbook[self.__profile_config["worksheet"]]

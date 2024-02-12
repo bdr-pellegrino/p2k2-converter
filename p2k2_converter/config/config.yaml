@@ -1,0 +1,96 @@
+GLOBALS:
+
+  input-worksheet: "IMMISSIONE DATI"
+  product-column: "I"
+  starting-row: 64
+  ending-row: 79
+
+CLOSE:
+  worksheet: "prod CLOSE"
+  product-column: "C"
+  pieces-column: "D"
+  width-column: "E"
+  height-column: "F"
+  starting-row: 8
+  ending-row: 23
+
+  profiles:
+
+    - code: "PROFILO DOGA"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      refinement-column: "CM"
+      quantity-column: "CI"
+      length-column: "CJ"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      bar-length: 6000
+      bar-code: "PROFILO DOGA"
+      machinings:
+        - code: "FORO ANTA"
+          starting-column: "DW"
+          ending-column: "DX"
+        - code: "FORO SCASSI TELAIO"
+          starting-column: "ED"
+          ending-column: "EF"
+
+    - code: "CANALINO VERTICALE"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "CR"
+      length-column: "CS"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      bar-length: 6000
+      bar-code: "CANALINO VERTICALE"
+
+    - code: "CANALINO ORIZZONTALE"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "CV"
+      length-column: "CW"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      bar-length: 6000
+      bar-code: "CANALINO ORIZZONTALE"
+
+    - code: "MONTANTE SX"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "DA"
+      length-column: "DB"
+      left-angle-cut: 90
+      right-angle-cut: 45
+      bar-length: 6000
+      bar-code: "MONTANTE SX"
+
+    - code: "TRAVERSO SUPERIORE"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "DE"
+      length-column: "DF"
+      left-angle-cut: 45
+      right-angle-cut: 90
+      bar-length: 6000
+      bar-code: "TRAVERSO SUPERIORE"
+
+    - code: "MONTANTE DX"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "DI"
+      length-column: "DJ"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      bar-length: 6000
+      bar-code: "MONTANTE DX"
+
+    - code: "PROFILO SOGLIA"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "DM"
+      length-column: "DN"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      bar-length: 6000
+      bar-code: "PROFILO SOGLIA"
+
