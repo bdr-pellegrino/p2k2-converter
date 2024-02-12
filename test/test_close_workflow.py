@@ -1,6 +1,6 @@
 import unittest
 
-from p2k2_converter.core.workflow.close import Close
+from p2k2_converter.core.workflow.workflow import Workflow
 from p2k2_converter.pipeline.source import XlsmSource
 
 
@@ -8,9 +8,14 @@ class TestCloseWorkflow(unittest.TestCase):
 
     def setUp(self):
         self.__test_files = {
-            "product_worksheet": "data/close/close.xlsm"
+            "product_worksheet": "data/close/close.xlsm",
+            "config_file": "data/structure_configuration.yaml"
         }
-        self.__close_workflow = Close(row=8)
+        self.__close_workflow = Workflow(
+            row=8,
+            config_file_path=self.__test_files["config_file"],
+            workflow_name="CLOSE"
+        )
         self.__profile_config = {
             "PROFILO DOGA": {
                 "cuts_quantity": 10,
