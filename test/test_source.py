@@ -1,5 +1,6 @@
 import unittest
-import os
+import tempfile
+from os import path
 
 from zipfile import BadZipFile
 from openpyxl import Workbook
@@ -11,14 +12,11 @@ class XlsmSourceTest(unittest.TestCase):
         """
         Setting up dummy data files
         """
+        self.__temp_dir = tempfile.mkdtemp()
         self.__test_files = {
-            "simple": "test/data/dummy.xlsm",
-            "malformed": "test/data/dummy.xlsx"
+            "simple": path.join(self.__temp_dir, "dummy.xlsm"),
+            "malformed": path.join(self.__temp_dir, "dummy.xlsx")
         }
-
-        # Create folder if it doesn't exist
-        if not os.path.exists("test/data"):
-            os.makedirs("test/data")
 
         workbook = Workbook()
         sheet = workbook.active

@@ -1,6 +1,7 @@
 from contextlib import contextmanager
 from openpyxl import load_workbook
 from openpyxl.workbook import Workbook
+from openpyxl.utils.exceptions import InvalidFileException
 from .base_source import BaseSource
 
 
@@ -12,6 +13,7 @@ class XlsmSource(BaseSource):
 
     @contextmanager
     def open(self) -> Workbook:
-        wb = load_workbook(self.__path, read_only=True)
+        wb = load_workbook(self.__path, data_only=True)
         yield wb
         wb.close()
+

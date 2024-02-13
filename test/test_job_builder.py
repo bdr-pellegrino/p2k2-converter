@@ -2,7 +2,7 @@ import unittest
 from p2k2_converter.p2k2 import BarBuilder, CutBuilder, JobBuilder
 
 
-class MyTestCase(unittest.TestCase):
+class JobBuilderTest(unittest.TestCase):
 
     def test_build_job(self):
         job = JobBuilder().add_bar(BarBuilder("brand", "system", "profile_code") \

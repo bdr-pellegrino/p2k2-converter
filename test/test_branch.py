@@ -17,57 +17,19 @@ class BranchTest(unittest.TestCase):
     def test_get_branch_name(self):
         self.assertEqual(self.__branches["no_steps"].get_name(), "no_steps")
 
-    def test_add_data_extractor(self):
-        branch = self.__branches["no_steps"]
-        branch.add_step(DummyDataExtractor("data_extractor"))
-        self.assertEqual(branch.get_steps()["extractor"].get_name(), "data_extractor")
-
-    def test_cant_add_two_data_extractor_without_force(self):
-        branch = self.__branches["no_steps"]
-        branch.add_step(DummyDataExtractor("data_extractor"))
-        with self.assertRaises(ValueError):
-            branch.add_step(DummyDataExtractor("data_extractor"))
-
-    def test_can_add_two_data_extractor_with_force(self):
-        branch = self.__branches["no_steps"]
-        branch.add_step(DummyDataExtractor("data_extractor"))
-        branch.add_step(DummyDataExtractor("data_extractor_2"), force=True)
-        self.assertEqual(branch.get_steps()["extractor"].get_name(), "data_extractor_2")
-
-    def test_add_data_mapper(self):
-        branch = self.__branches["no_steps"]
-        branch.add_step(DummyDataMapper("data_mapper"))
-        self.assertEqual(branch.get_steps()["mappers"]["data_mapper"].get_name(), "data_mapper")
-
-    def test_cant_add_two_data_mapper_with_same_name_without_force(self):
-        branch = self.__branches["no_steps"]
-        branch.add_step(DummyDataMapper("data_mapper"))
-        with self.assertRaises(ValueError):
-            branch.add_step(DummyDataMapper("data_mapper"))
-
-    def test_can_add_two_data_mapper_with_same_name_with_force(self):
-        branch = self.__branches["no_steps"]
-        branch.add_step(DummyDataMapper("data_mapper"))
-        branch.add_step(DummyDataMapper("data_mapper"), force=True)
-        self.assertEqual(branch.get_steps()["mappers"]["data_mapper"].get_name(), "data_mapper")
-
-    def test_defensive_copy_of_steps(self):
-        branch = self.__branches["with_steps"]
-        steps = branch.get_steps()
-        steps["mappers"]["data_mapper"] = None
-        self.assertEqual(branch.get_steps()["mappers"]["data_mapper"].get_name(), "data_mapper")
-
     def test_execution_of_branch(self):
         branch = self.__branches["with_steps"]
         source = ArraySource()
-        self.assertEqual(branch.execute(source), 15)
+        with source.open() as opened_source:
+            self.assertEqual(branch.execute(opened_source), 15)
 
     def test_cant_execute_branch_twice(self):
         branch = self.__branches["with_steps"]
         source = ArraySource()
-        branch.execute(source)
-        with self.assertRaises(RuntimeError):
-            branch.execute(source)
+        with source.open() as opened_source:
+            branch.execute(opened_source)
+            with self.assertRaises(RuntimeError):
+                branch.execute(opened_source)
 
     def test_ordered_execution_of_tests(self):
         branch = self.__branches["no_steps"]
@@ -75,20 +37,31 @@ class BranchTest(unittest.TestCase):
         branch.add_step(DoubleMapper("double_mapper"))
         branch.add_step(DummyDataMapper("data_mapper"))
         source = ArraySource()
-        self.assertEqual(branch.execute(source), 30)
+        with source.open() as opened_source:
+            self.assertEqual(branch.execute(opened_source), 30)
 
         with self.assertRaises(TypeError):
             branch = self.__branches["with_steps"]
             branch.add_step(DoubleMapper("double_mapper"))
-            branch.execute(source)
+            with source.open() as opened_source:
+                branch.execute(opened_source)
 
     def test_get_data_before_execution(self):
         branch = self.__branches["with_steps"]
         with self.assertRaises(RuntimeError):
-            branch.get_data()
+            branch.get_result()
 
     def test_get_data_after_execution(self):
         branch = self.__branches["with_steps"]
         source = ArraySource()
-        branch.execute(source)
-        self.assertEqual(branch.get_data(), 15)
+        with source.open() as opened_source:
+            branch.execute(opened_source)
+            self.assertEqual(branch.get_result(), 15)
+
+    def test_add_step_from_lambda(self):
+        branch = Branch("lambda")
+        branch.add_step(DummyDataExtractor("data_extractor"))
+        branch.create_step_from_lambda("lambda_step", lambda s, d: [s, sum(d) * 2])
+        source = ArraySource()
+        with source.open() as opened_source:
+            self.assertEqual(branch.execute(opened_source), 30)

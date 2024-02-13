@@ -1,6 +1,7 @@
 import unittest
 from p2k2_converter.p2k2 import CutBuilder
 
+
 class CutBuilderTest(unittest.TestCase):
     def test_build_cut(self):
         cut = CutBuilder() \
