@@ -4,6 +4,15 @@ GLOBALS:
   product-column: "I"
   starting-row: 64
   ending-row: 79
+  buyer:
+    column: "F"
+    full-name-row: 11
+    address-row: 12
+    floor-row: 13
+    city-row: 14
+    telephone-row: 15
+    cellphone-row: 16
+    email-row: 17
 
 CLOSE:
   worksheet: "prod CLOSE"

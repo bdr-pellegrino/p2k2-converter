@@ -1,6 +1,6 @@
 from p2k2_converter.pipeline.branch import Branch
 from p2k2_converter.pipeline.source import BaseSource
-from typing import TypeVar
+from typing import TypeVar, List
 
 T = TypeVar("T")
 
@@ -38,3 +38,8 @@ class Pipeline:
             raise ValueError("Branch not found")
         else:
             return self.__branches[name].get_result()
+
+    def get_branches_result(self) -> List[any]:
+        return [branch.get_result() for branch in self.__branches.values()]
+
+

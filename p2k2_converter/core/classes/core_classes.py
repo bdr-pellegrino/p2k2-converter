@@ -28,14 +28,6 @@ class Buyer:
         metadata={"description": "City of the buyer"}
     )
 
-    zip: Optional[str] = field(
-        metadata={"description": "Zip code of the buyer"}
-    )
-
-    country: Optional[str] = field(
-        metadata={"description": "Country of the buyer"}
-    )
-
 
 @dataclass
 class ModelOptional:
@@ -53,6 +45,7 @@ class Machining:
     offset: Optional[float] = field(
         metadata={"description": "Offset of the machining"}
     )
+
 
 @dataclass
 class Cut:

@@ -1,7 +1,6 @@
 import argparse
-from openpyxl import load_workbook
-from openpyxl.utils.exceptions import InvalidFileException
 from p2k2_converter.core import Parser
+from pathlib import Path
 from p2k2_converter.config import DEFAULT_CONFIG
 
 parser = argparse.ArgumentParser(description='Converts a cut sheet file into a P2K2 file.')
@@ -12,19 +11,8 @@ parser.add_argument("-o", "--output", type=str, help="The output file name.")
 args = parser.parse_args()
 config_path = args.config if args.config is not None else DEFAULT_CONFIG
 
-path = args.file
-try:
-    wb = load_workbook(path)
-except FileNotFoundError:
-    print(f"Error: File {path} not found.")
-    exit(1)
-except InvalidFileException:
-    print(f"Error: File {path} is not a valid xlsm file.")
-    exit(1)
-
-file_parser = Parser(workbook=wb, config_file=config_path)
+file_parser = Parser(workbook_path=Path(args.file), config_file=config_path)
 file_parser.parse()
-
 
 
 # this is the main module of your app
