@@ -80,19 +80,19 @@ class GetMinimumPythonVersion(distutils.cmd.Command):
         print(".".join(python_version[2:].split(".")[:2]))
 
 
-url = 'https://github.com/aequitas-aod/p2k2_converter'
+url = 'https://github.com/bdr-pellegrino/p2k2_converter'
 
 
 setup(
     name='p2k2_converter',  # Required
     version=version,
-    description='Description of the project here',
+    description='Pellegrino file converter to p2k2 specification',
     license='Apache 2.0 License',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url=url,
-    author='Name Surname',
-    author_email='name.surname@organization.domain',
+    author='Giovanni Antonioni',
+    author_email='giovanni.antonioni@unibo.it',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
