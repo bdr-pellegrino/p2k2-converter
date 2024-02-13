@@ -1,6 +1,7 @@
 import unittest
-from data import INPUT_FILE, CONFIGURATION_FILE
+from data import INPUT_FILE
 from p2k2_converter.core import Parser
+from p2k2_converter.config import DEFAULT_CONFIG
 
 
 class ParserTest(unittest.TestCase):
@@ -31,7 +32,7 @@ class ParserTest(unittest.TestCase):
 
     def test_parse(self):
 
-        parser = Parser(workbook_path=INPUT_FILE, config_file=CONFIGURATION_FILE)
+        parser = Parser(workbook_path=INPUT_FILE, config_file=DEFAULT_CONFIG)
         order = parser.parse()
 
         # Check buyer information

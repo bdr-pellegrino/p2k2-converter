@@ -1,6 +1,9 @@
 import unittest
 from p2k2_converter.core.workflow.workflow import Workflow
 from p2k2_converter.pipeline.source import XlsmSource
+from p2k2_converter.config import DEFAULT_CONFIG
+from test.data.close import WORKSHEET
+
 import yaml
 
 
@@ -8,8 +11,8 @@ class TestCloseWorkflow(unittest.TestCase):
 
     def setUp(self):
         self.__test_files = {
-            "product_worksheet": "data/close/close.xlsm",
-            "config_file": "data/structure_configuration.yaml"
+            "product_worksheet": WORKSHEET,
+            "config_file": DEFAULT_CONFIG
         }
 
         with open(self.__test_files["config_file"], "r") as file:

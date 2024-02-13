@@ -12,7 +12,7 @@ GLOBALS:
     city-row: 14
     telephone-row: 15
     cellphone-row: 16
-    email-row: 17
+    email-row: 18
 
 CLOSE:
   worksheet: "prod CLOSE"
