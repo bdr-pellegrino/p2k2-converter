@@ -1,5 +1,5 @@
 import unittest
-from data import INPUT_FILE
+from test.data import INPUT_FILE
 from p2k2_converter.core import Parser
 from p2k2_converter.config import DEFAULT_CONFIG
 
