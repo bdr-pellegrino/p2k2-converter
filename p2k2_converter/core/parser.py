@@ -10,6 +10,7 @@ from p2k2_converter.pipeline.source import XlsmSource
 from collections import Counter
 from typing import List
 
+
 class Parser:
     def __init__(self, workbook_path: Path, config_file: str):
 

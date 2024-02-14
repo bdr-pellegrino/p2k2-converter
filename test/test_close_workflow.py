@@ -128,6 +128,9 @@ class TestCloseWorkflow(unittest.TestCase):
 
                     self.assertLessEqual(sum([cut.length for cut in bar.cuts]), bar.length)
 
+                total_cut_length = sum([cut.length for bar in bars for cut in bar.cuts])
+                self.assertEqual(total_cut_length, cut_length * total_cuts)
+
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
 

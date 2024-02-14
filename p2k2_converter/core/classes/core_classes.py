@@ -85,6 +85,10 @@ class Profile:
     code: str = field(
         metadata={"description": "Code of the profile"}
     )
+    length: float = field(
+        default=0.0,
+        metadata={"description": "Length of the profile"}
+    )
     refinement: Optional[float] = field(
         default=0.0,
         metadata={"description": "The refinement to be applied to the profile that is being produced"}

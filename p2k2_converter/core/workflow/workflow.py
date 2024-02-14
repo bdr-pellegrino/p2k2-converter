@@ -76,6 +76,8 @@ class Workflow(WorkflowStrategy):
                 profile["bar-code"]
             )
 
+            target_profile.length = sum(cut.length for bar in target_profile.bars for cut in bar.cuts)
+
         return [workbook, model]
 
     def machining_definition(self, workbook, model) -> [Workbook, Model]:
