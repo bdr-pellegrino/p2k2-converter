@@ -43,16 +43,16 @@ class CutBuilder:
         self.__left_beta_cutting_angle = angle
         return self
 
-    def add_cut_length(self, length: int) -> 'CutBuilder':
+    def add_cut_length(self, length: float) -> 'CutBuilder':
         self.add_superior_cut_length(length)
         self.add_inferior_cut_length(length)
         return self
 
-    def add_superior_cut_length(self, length: int) -> 'CutBuilder':
+    def add_superior_cut_length(self, length: float) -> 'CutBuilder':
         self.__superior_cut_length = length
         return self
 
-    def add_inferior_cut_length(self, length: int) -> 'CutBuilder':
+    def add_inferior_cut_length(self, length: float) -> 'CutBuilder':
         self.__inferior_cut_length = length
         return self
 
@@ -99,7 +99,7 @@ class CutBuilder:
             raise ValueError("Max 4 labels allowed")
         return self
 
-    def add_machining(self, code: str, offset: int, clamp_near: int = None) -> 'CutBuilder':
+    def add_machining(self, code: str, offset: float, clamp_near: int = None) -> 'CutBuilder':
         self.__machinings.append(Machining(code, offset, clamp_near))
         return self
 

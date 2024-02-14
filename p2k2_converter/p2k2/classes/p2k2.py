@@ -43,7 +43,7 @@ class Machining:
             "type": "Attribute",
         }
     )
-    offset: Optional[int] = field(
+    offset: Optional[float] = field(
         default=None,
         metadata={
             "name": "OFFSET",
