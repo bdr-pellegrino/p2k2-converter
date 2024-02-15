@@ -71,7 +71,7 @@ class Bar:
     length: Optional[float] = field(
         metadata={"description": "Length of the bar"}
     )
-    cuts: List[Cut] = field (
+    cuts: List[Cut] = field(
         default_factory=list,
         metadata={"description": "List of cuts being applied to the bar"}
     )
