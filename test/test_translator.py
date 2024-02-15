@@ -1,6 +1,6 @@
 import unittest
 from p2k2_converter.p2k2 import Translator
-from common import define_order
+from test.common import define_order
 from p2k2_converter.p2k2.classes import Version
 
 
