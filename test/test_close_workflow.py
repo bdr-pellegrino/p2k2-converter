@@ -30,7 +30,7 @@ class TestCloseWorkflow(unittest.TestCase):
                 "l_angle": 90,
                 "r_angle": 90,
                 "machinings": {
-                    "FORO ANTA": [115, 138, 920, 943, 520, 543],
+                    "CERNIERA FORO ANTA": [115, 138, 920, 943, 520, 543],
                     "FORO SCASSI TELAIO": [126.25, 931.25, 531.25]
                 }
             },

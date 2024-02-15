@@ -36,9 +36,9 @@ CLOSE:
       bar-length: 6000
       bar-code: "PROFILO DOGA"
       machinings:
-        - code: "FORO ANTA"
+        - code: "CERNIERA FORO ANTA"
           starting-column: "DW"
-          ending-column: "DX"
+          ending-column: "EB"
         - code: "FORO SCASSI TELAIO"
           starting-column: "ED"
           ending-column: "EF"

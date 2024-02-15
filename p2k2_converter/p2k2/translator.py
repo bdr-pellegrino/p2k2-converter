@@ -1,5 +1,5 @@
+import logging
 from typing import List
-
 from p2k2_converter.core.classes import Order, Profile
 from p2k2_converter.p2k2 import BarBuilder, CutBuilder, JobBuilder
 from p2k2_converter.p2k2.classes import Bar, Job
@@ -8,6 +8,7 @@ from p2k2_converter.p2k2.classes import Bar, Job
 class Translator:
 
     def p2k2_translation(self, order: Order) -> Job:
+        logging.info("Translating order to P2K2 format")
         job_builder = JobBuilder()
 
         for model in order.models:
