@@ -30,7 +30,7 @@ class TestCloseWorkflow(unittest.TestCase):
                 "l_angle": 90,
                 "r_angle": 90,
                 "machinings": {
-                    "FORO ANTA": [115, 138, 920, 943, 520, 543],
+                    "CERNIERA FORO ANTA": [115, 138, 920, 943, 520, 543],
                     "FORO SCASSI TELAIO": [126.25, 931.25, 531.25]
                 }
             },
@@ -127,6 +127,9 @@ class TestCloseWorkflow(unittest.TestCase):
                         self.assertEqual(cut.length, cut_length)
 
                     self.assertLessEqual(sum([cut.length for cut in bar.cuts]), bar.length)
+
+                total_cut_length = sum([cut.length for bar in bars for cut in bar.cuts])
+                self.assertEqual(total_cut_length, cut_length * total_cuts)
 
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])

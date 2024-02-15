@@ -3,7 +3,6 @@ from p2k2_converter.core.classes import Model, Profile, Bar, Cut, Machining
 from openpyxl import Workbook
 from typing import List
 import re
-import yaml
 
 
 class Workflow(WorkflowStrategy):
@@ -14,7 +13,9 @@ class Workflow(WorkflowStrategy):
 
     def model_definition(self, workbook, data) -> [Workbook, Model]:
         product_worksheet = workbook[self.__profile_config["worksheet"]]
-        data_row = product_worksheet[f"C{self.__cell_row}:F{self.__cell_row}"]
+        data_row = product_worksheet[
+            f"{self.__profile_config['product-column']}{self.__cell_row}:{self.__profile_config['height-column']}{self.__cell_row}"
+        ]
         cell_data = [cell.value for row in data_row for cell in row]
 
         name = cell_data[0]
@@ -62,7 +63,7 @@ class Workflow(WorkflowStrategy):
         return self.__create_bars(Cut(cut_length, l_angle, r_angle), cuts_quantity, bar_length, bar_code)
 
     def bars_definition(self, workbook, model) -> [Workbook, Model]:
-        product_worksheet = workbook["prod CLOSE"]
+        product_worksheet = workbook[self.__profile_config["worksheet"]]
 
         for profile in self.__profile_config["profiles"]:
             target_profile = model.profiles[profile["code"]]
@@ -75,6 +76,8 @@ class Workflow(WorkflowStrategy):
                 profile["bar-length"],
                 profile["bar-code"]
             )
+
+            target_profile.length = sum(cut.length for bar in target_profile.bars for cut in bar.cuts)
 
         return [workbook, model]
 
@@ -95,7 +98,6 @@ class Workflow(WorkflowStrategy):
                         # Sanitize the value transforming it to a float
                         if type(value) == str:
                             match = re.search(r'\b\d+,\d+\b', value)
-
                             if match:
                                 value = float(match.group().replace(',', '.'))
 

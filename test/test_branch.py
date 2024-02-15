@@ -1,6 +1,6 @@
 import unittest
 from p2k2_converter.pipeline.branch import Branch
-from .common import ArraySource, DummyDataExtractor, DummyDataMapper, DoubleMapper
+from test.common import ArraySource, DummyDataExtractor, DummyDataMapper, DoubleMapper
 
 
 class BranchTest(unittest.TestCase):
