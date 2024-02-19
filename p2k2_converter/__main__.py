@@ -16,7 +16,16 @@ parser.add_argument("-o", "--output", type=str, help="The output file path.")
 args = parser.parse_args()
 config_path = args.config if args.config is not None else DEFAULT_CONFIG
 
-file_parser = Parser(workbook_path=Path(args.file), config_file=config_path)
+if args.file is None:
+    print("Please provide a file to convert.")
+    exit(1)
+
+file_to_convert = Path(args.file)
+if not file_to_convert.exists():
+    print(f"The file {args.file} does not exist.")
+    exit(1)
+
+file_parser = Parser(workbook_path=file_to_convert, config_file=config_path)
 order = file_parser.parse()
 
 job = Translator().p2k2_translation(order)
@@ -24,7 +33,7 @@ job = Translator().p2k2_translation(order)
 config = SerializerConfig(pretty_print=True)
 serializer = XmlSerializer(config=config)
 
-output_path = args.output if args.output is not None else Path(args.file)
+output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"
 with open(output_path, "w") as file:
     file.write(serializer.render(job))
 
