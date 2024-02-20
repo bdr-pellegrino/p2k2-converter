@@ -10,6 +10,12 @@ from p2k2_converter.pipeline.source import XlsmSource
 from collections import Counter
 from typing import List
 
+class LooseDict(dict):
+    def __missing__(self, key):
+        if key.lower() in self:
+            return self[key.lower()]
+        raise KeyError(key)
+
 
 class Parser:
     def __init__(self, workbook_path: Path, config_file: str):
@@ -26,7 +32,7 @@ class Parser:
 
         self.__workflow_pipeline = Pipeline(source=XlsmSource(str(self.__workbook_path)))
         with open(config_file, "r") as file:
-            self.__config_file = yaml.safe_load(file)
+            self.__config_file = LooseDict(yaml.safe_load(file))
 
     def __create_workflow_for(self, product: str, row_number: int) -> Branch:
         strategy = Workflow(row_number, self.__config_file, product)
