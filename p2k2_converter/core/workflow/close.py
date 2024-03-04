@@ -5,11 +5,11 @@ from typing import List
 import re
 
 
-class Workflow(WorkflowStrategy):
+class Close(WorkflowStrategy):
 
-    def __init__(self, row: int, config_file: dict, workflow_name: str):
+    def __init__(self, row: int, config_file: dict):
         self.__cell_row = row
-        self.__profile_config = config_file[workflow_name]
+        self.__profile_config = config_file["CLOSE"]
 
     def model_definition(self, workbook, data) -> [Workbook, Model]:
         product_worksheet = workbook[self.__profile_config["worksheet"]]

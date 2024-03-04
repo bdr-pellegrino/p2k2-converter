@@ -1,5 +1,5 @@
 import unittest
-from p2k2_converter.core.workflow.workflow import Workflow
+from p2k2_converter.core.workflow.close import Close
 from p2k2_converter.pipeline.source import XlsmSource
 from p2k2_converter.config import DEFAULT_CONFIG
 from test.data.close import WORKSHEET
@@ -18,10 +18,9 @@ class TestCloseWorkflow(unittest.TestCase):
         with open(self.__test_files["config_file"], "r") as file:
             self.__profile_config = yaml.safe_load(file)
 
-        self.__close_workflow = Workflow(
+        self.__close_workflow = Close(
             row=8,
-            config_file=self.__profile_config,
-            workflow_name="CLOSE"
+            config_file=self.__profile_config
         )
         self.__profile_config = {
             "PROFILO DOGA": {

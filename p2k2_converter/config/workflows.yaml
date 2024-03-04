@@ -1,0 +1,3 @@
+WORKFLOWS:
+  - name: "CLOSE"
+    class name: "Close"

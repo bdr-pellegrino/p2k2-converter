@@ -2,8 +2,10 @@ import yaml
 import logging
 from openpyxl import load_workbook
 from pathlib import Path
+
+from p2k2_converter.config import WORKFLOW_CLASS_CONFIG
 from p2k2_converter.core.classes import Order, Buyer
-from p2k2_converter.core.workflow.workflow import Workflow
+from p2k2_converter.core.workflow.close import Close
 from p2k2_converter.pipeline import Pipeline
 from p2k2_converter.pipeline.branch import Branch, BranchBuilder
 from p2k2_converter.pipeline.source import XlsmSource
@@ -17,9 +19,18 @@ class LooseDict(dict):
         raise KeyError(key)
 
 
+def get_workflow_class(product_name: str) -> str:
+    with open(str(WORKFLOW_CLASS_CONFIG), "r") as file:
+        config = yaml.safe_load(file)
+        for product in config["WORKFLOWS"]:
+            if product_name in product["name"]:
+                return product["class name"]
+
+        raise ValueError(f"Product {product_name} not found in the configuration file.")
+
+
 class Parser:
     def __init__(self, workbook_path: Path, config_file: str):
-
         self.__workbook_path = workbook_path
         try:
             self.__workbook = load_workbook(workbook_path, data_only=True)
@@ -35,7 +46,9 @@ class Parser:
             self.__config_file = LooseDict(yaml.safe_load(file))
 
     def __create_workflow_for(self, product: str, row_number: int) -> Branch:
-        strategy = Workflow(row_number, self.__config_file, product)
+        class_name = get_workflow_class(product)
+        dynamic_class = globals()[class_name]
+        strategy = dynamic_class(row_number, self.__config_file)
         builder = BranchBuilder(f"{product}_WORKFLOW_{row_number}")
 
         builder.add_from_lambda("ModelDefinition", strategy.model_definition) \
