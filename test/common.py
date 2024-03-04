@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from p2k2_converter.pipeline.source import BaseSource
 from p2k2_converter.pipeline.step import BaseStep
-from p2k2_converter.core.classes import Buyer, Order, Profile, Bar, Cut, Model
+from p2k2_converter.core.classes import Buyer, Order, Profile, Cut, Model
 
 
 class ArraySource(BaseSource):
@@ -41,19 +41,14 @@ def define_order(number_of_models: int, number_of_profiles: int, number_of_bars:
         model = Model(name=f"Model_{i}", width=1000, height=1000)
 
         profiles = dict()
-        for l in range(number_of_profiles):
-            profile = Profile(brand="Brand", system="System", code=f"PELLEGRINO_PROF_{l}")
+        for p_idx in range(number_of_profiles):
+            profile = Profile(brand="Brand", system="System", code=f"PELLEGRINO_PROF_{p_idx}")
 
-            for j in range(number_of_bars):
-                bar = Bar(serial_code=f"BAR_{j}", length=6000)
+            for k in range(number_of_cuts):
+                cut = Cut(length=1000, angleL=90, angleR=90)
+                profile.cuts.append(cut)
 
-                for k in range(number_of_cuts):
-                    cut = Cut(length=1000, angleL=90, angleR=90)
-                    bar.cuts.append(cut)
-
-                profile.bars.append(bar)
-
-            profiles[f"PELLEGRINO_PROF_{l}"] = profile
+            profiles[f"PELLEGRINO_PROF_{p_idx}"] = profile
 
         model.profiles = profiles
         models.append(model)

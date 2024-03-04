@@ -64,20 +64,6 @@ class Cut:
 
 
 @dataclass
-class Bar:
-    serial_code: Optional[str] = field(
-        metadata={"description": "Serial code of the bar"}
-    )
-    length: Optional[float] = field(
-        metadata={"description": "Length of the bar"}
-    )
-    cuts: List[Cut] = field(
-        default_factory=list,
-        metadata={"description": "List of cuts being applied to the bar"}
-    )
-
-
-@dataclass
 class Profile:
     system: str = field(
         metadata={"description": "System of the profile"}
@@ -97,9 +83,9 @@ class Profile:
         default_factory=list,
         metadata={"description": "Machining to be applied to the profile"}
     )
-    bars: List[Bar] = field(
+    cuts: List[Cut] = field(
         default_factory=list,
-        metadata={"description": "List of bars being used for producing this profile"}
+        metadata={"description": "List of cuts being applied to the profile"}
     )
     brand: str = field(
         default="PELLEGRINO",

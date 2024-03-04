@@ -38,46 +38,21 @@ class Close(WorkflowStrategy):
 
         return [workbook, model]
 
-    def __create_bars(self, cut: Cut, cut_quantity: int, bar_length: float, bar_code: str) -> List[Bar]:
-        bars = []
-        current_bar = Bar(bar_code, bar_length)
-
-        for _ in range(cut_quantity):
-            remaining_length = bar_length - sum(c.length for c in current_bar.cuts)
-
-            if remaining_length < cut.length:
-                bars.append(current_bar)
-                current_bar = Bar(bar_code, bar_length)
-
-            current_bar.cuts.append(cut)
-
-        if current_bar.cuts:
-            bars.append(current_bar)
-
-        return bars
-
-    def __define_bar_cuts(self, worksheet, quantity_position, length_position, l_angle, r_angle, bar_length, bar_code):
-        cuts_quantity = worksheet[quantity_position].value
-        cut_length = worksheet[length_position].value
-
-        return self.__create_bars(Cut(cut_length, l_angle, r_angle), cuts_quantity, bar_length, bar_code)
-
-    def bars_definition(self, workbook, model) -> [Workbook, Model]:
+    def cuts_definition(self, workbook, model) -> [Workbook, Model]:
         product_worksheet = workbook[self.__profile_config["worksheet"]]
 
         for profile in self.__profile_config["profiles"]:
             target_profile = model.profiles[profile["code"]]
-            target_profile.bars = self.__define_bar_cuts(
-                product_worksheet,
-                f"{profile['quantity-column']}{self.__cell_row}",
-                f"{profile['length-column']}{self.__cell_row}",
-                profile["left-angle-cut"],
-                profile["right-angle-cut"],
-                profile["bar-length"],
-                profile["bar-code"]
-            )
+            quantity_position = f"{profile['quantity-column']}{self.__cell_row}"
+            length_position = f"{profile['length-column']}{self.__cell_row}"
 
-            target_profile.length = sum(cut.length for bar in target_profile.bars for cut in bar.cuts)
+            cut_quantity = product_worksheet[quantity_position].value
+            cut_length = product_worksheet[length_position].value
+
+            for _ in range(cut_quantity):
+                target_profile.cuts.append(Cut(cut_length, profile["left-angle-cut"], profile["right-angle-cut"]))
+
+            target_profile.length = sum(cut.length for cut in target_profile.cuts)
 
         return [workbook, model]
 

@@ -5,12 +5,12 @@ from pathlib import Path
 
 from p2k2_converter.config import WORKFLOW_CLASS_CONFIG
 from p2k2_converter.core.classes import Order, Buyer
-from p2k2_converter.core.workflow.close import Close
 from p2k2_converter.pipeline import Pipeline
 from p2k2_converter.pipeline.branch import Branch, BranchBuilder
 from p2k2_converter.pipeline.source import XlsmSource
 from collections import Counter
 from typing import List
+
 
 class LooseDict(dict):
     def __missing__(self, key):
@@ -53,7 +53,7 @@ class Parser:
 
         builder.add_from_lambda("ModelDefinition", strategy.model_definition) \
             .add_from_lambda("ProfileDefinition", strategy.profiles_definition) \
-            .add_from_lambda("BarsDefinition", strategy.bars_definition) \
+            .add_from_lambda("BarsDefinition", strategy.cuts_definition) \
             .add_from_lambda("MachiningDefinition", strategy.machining_definition)
 
         return builder.build()

@@ -103,11 +103,11 @@ class TestCloseWorkflow(unittest.TestCase):
 
             self.assertEqual(checked_profiles, profiles)
 
-    def test_bars_definition(self):
+    def test_cuts_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
 
         with source.open() as src:
-            _, model = self.__close_workflow.bars_definition(
+            _, model = self.__close_workflow.cuts_definition(
                 *self.__close_workflow.profiles_definition(
                     *self.__close_workflow.model_definition(src, None)
                 )
@@ -115,27 +115,21 @@ class TestCloseWorkflow(unittest.TestCase):
 
             for profile_name in self.__profile_config:
                 profile_configuration = self.__profile_config[profile_name]
-                bars = model.profiles[profile_name].bars
+                cuts = model.profiles[profile_name].cuts
 
-                total_cuts = sum([len(bar.cuts) for bar in bars])
-                self.assertEqual(total_cuts, profile_configuration["cuts_quantity"])
+                self.assertEqual(len(cuts), profile_configuration["cuts_quantity"])
 
                 cut_length = profile_configuration["cuts_length"]
-                for bar in bars:
-                    for cut in bar.cuts:
-                        self.assertEqual(cut.length, cut_length)
+                for cut in cuts:
+                    self.assertEqual(cut.length, cut_length)
 
-                    self.assertLessEqual(sum([cut.length for cut in bar.cuts]), bar.length)
-
-                total_cut_length = sum([cut.length for bar in bars for cut in bar.cuts])
-                self.assertEqual(total_cut_length, cut_length * total_cuts)
 
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
 
         with source.open() as src:
             _, model = self.__close_workflow.machining_definition(
-                *self.__close_workflow.bars_definition(
+                *self.__close_workflow.cuts_definition(
                     *self.__close_workflow.profiles_definition(
                         *self.__close_workflow.model_definition(src, None)
                     )
