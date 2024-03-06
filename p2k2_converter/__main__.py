@@ -28,7 +28,7 @@ if not file_to_convert.exists():
 file_parser = Parser(workbook_path=file_to_convert, config_file=config_path)
 order = file_parser.parse()
 
-job = Translator().p2k2_translation(order)
+job = Translator(config_file=config_path).p2k2_translation(order)
 
 config = SerializerConfig(pretty_print=True)
 serializer = XmlSerializer(config=config)

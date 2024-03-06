@@ -24,3 +24,7 @@ class JobBuilder:
         head = Head(self.__pdat) if len(self.__pdat) > 0 else None
         body = Body(self.__bars)
         return Job(version, head, body)
+
+    def add_bars(self, bars: list[Bar]):
+        for bar in bars:
+            self.add_bar(bar)

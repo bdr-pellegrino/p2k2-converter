@@ -41,9 +41,14 @@ class Machining:
     code: Optional[str] = field(
         metadata={"description": "Code of the machining"}
     )
-
     offset: Optional[float] = field(
         metadata={"description": "Offset of the machining"}
+    )
+    verse: Optional[str] = field(
+        metadata={
+            "description": "Verse of the machining",
+            "validator": lambda value: value if value in {"width", "height"} else None
+        }
     )
 
 
@@ -52,11 +57,13 @@ class Cut:
     length: Optional[float] = field(
         metadata={"description": "Length of the cut"}
     )
+    height: Optional[float] = field(
+        metadata={"description": "Height of the cut"}
+    )
     angleL: Optional[int] = field(
         default=90,
         metadata={"description": "Left cut angle"}
     )
-
     angleR: Optional[int] = field(
         default=90,
         metadata={"description": "Right cut angle"}

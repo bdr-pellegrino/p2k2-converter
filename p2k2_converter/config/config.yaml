@@ -24,7 +24,6 @@ CLOSE:
   ending-row: 23
 
   profiles:
-
     - code: "PROFILO DOGA"
       brand: "PELLEGRINO"
       system: "CLOSE"
@@ -34,6 +33,7 @@ CLOSE:
       left-angle-cut: 90
       right-angle-cut: 90
       bar-length: 6000
+      profile-height: 200
       bar-code: "PROFILO DOGA"
       machinings:
         - code: "CERNIERA FORO ANTA"
@@ -51,6 +51,7 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 45
       bar-length: 6000
+      profile-height: 200
       bar-code: "CANALINO VERTICALE"
 
     - code: "CANALINO ORIZZONTALE"
@@ -61,6 +62,7 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 45
       bar-length: 6000
+      profile-height: 200
       bar-code: "CANALINO ORIZZONTALE"
 
     - code: "MONTANTE SX"
@@ -71,6 +73,7 @@ CLOSE:
       left-angle-cut: 90
       right-angle-cut: 45
       bar-length: 6000
+      profile-height: 200
       bar-code: "MONTANTE SX"
 
     - code: "TRAVERSO SUPERIORE"
@@ -81,6 +84,7 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 90
       bar-length: 6000
+      profile-height: 200
       bar-code: "TRAVERSO SUPERIORE"
 
     - code: "MONTANTE DX"
@@ -91,6 +95,7 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 45
       bar-length: 6000
+      profile-height: 200
       bar-code: "MONTANTE DX"
 
     - code: "PROFILO SOGLIA"
@@ -101,5 +106,6 @@ CLOSE:
       left-angle-cut: 90
       right-angle-cut: 90
       bar-length: 6000
+      profile-height: 200
       bar-code: "PROFILO SOGLIA"
 

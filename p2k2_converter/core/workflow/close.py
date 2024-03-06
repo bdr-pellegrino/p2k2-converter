@@ -1,7 +1,6 @@
 from p2k2_converter.core.workflow import WorkflowStrategy
-from p2k2_converter.core.classes import Model, Profile, Bar, Cut, Machining
+from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from openpyxl import Workbook
-from typing import List
 import re
 
 
@@ -70,7 +69,6 @@ class Close(WorkflowStrategy):
 
                     cell_values = [cell.value for hole_position in cell_data for cell in hole_position]
                     for value in cell_values:
-                        # Sanitize the value transforming it to a float
                         if type(value) == str:
                             match = re.search(r'\b\d+,\d+\b', value)
                             if match:
