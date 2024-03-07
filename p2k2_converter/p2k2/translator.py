@@ -29,8 +29,6 @@ class Translator:
             return job_builder.build()
 
     def __define_bars(self, profile_name: str, profile: Profile, default_bar_length: int) -> List[Bar]:
-
-        machinings = profile.machinings
         cuts = profile.cuts
 
         bars = []

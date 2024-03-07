@@ -32,16 +32,18 @@ CLOSE:
       length-column: "CJ"
       left-angle-cut: 90
       right-angle-cut: 90
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "PROFILO DOGA"
       machinings:
         - code: "CERNIERA FORO ANTA"
           starting-column: "DW"
           ending-column: "EB"
+          verse: "height"
         - code: "FORO SCASSI TELAIO"
           starting-column: "ED"
           ending-column: "EF"
+          verse: "height"
 
     - code: "CANALINO VERTICALE"
       brand: "PELLEGRINO"
@@ -50,8 +52,8 @@ CLOSE:
       length-column: "CS"
       left-angle-cut: 45
       right-angle-cut: 45
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "CANALINO VERTICALE"
 
     - code: "CANALINO ORIZZONTALE"
@@ -61,8 +63,8 @@ CLOSE:
       length-column: "CW"
       left-angle-cut: 45
       right-angle-cut: 45
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "CANALINO ORIZZONTALE"
 
     - code: "MONTANTE SX"
@@ -72,8 +74,8 @@ CLOSE:
       length-column: "DB"
       left-angle-cut: 90
       right-angle-cut: 45
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "MONTANTE SX"
 
     - code: "TRAVERSO SUPERIORE"
@@ -83,8 +85,8 @@ CLOSE:
       length-column: "DF"
       left-angle-cut: 45
       right-angle-cut: 90
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "TRAVERSO SUPERIORE"
 
     - code: "MONTANTE DX"
@@ -94,8 +96,8 @@ CLOSE:
       length-column: "DJ"
       left-angle-cut: 45
       right-angle-cut: 45
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "MONTANTE DX"
 
     - code: "PROFILO SOGLIA"
@@ -105,7 +107,7 @@ CLOSE:
       length-column: "DN"
       left-angle-cut: 90
       right-angle-cut: 90
+      height: 200
       bar-length: 6000
-      profile-height: 200
       bar-code: "PROFILO SOGLIA"
 

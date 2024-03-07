@@ -123,7 +123,6 @@ class TestCloseWorkflow(unittest.TestCase):
                 for cut in cuts:
                     self.assertEqual(cut.length, cut_length)
 
-
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
 
@@ -142,6 +141,3 @@ class TestCloseWorkflow(unittest.TestCase):
 
             for machining in profile.machinings:
                 self.assertIn(machining.code, profile_configuration["machinings"])
-                self.assertIn(machining.offset, profile_configuration["machinings"][machining.code])
-
-

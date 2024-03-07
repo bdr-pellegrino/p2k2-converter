@@ -45,6 +45,7 @@ class Machining:
         metadata={"description": "Offset of the machining"}
     )
     verse: Optional[str] = field(
+        default="width",
         metadata={
             "description": "Verse of the machining",
             "validator": lambda value: value if value in {"width", "height"} else None
