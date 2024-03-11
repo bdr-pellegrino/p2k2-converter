@@ -5,7 +5,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from p2k2_converter.core import Parser
 from p2k2_converter.config import DEFAULT_CONFIG
-from p2k2_converter.p2k2.translator import Translator
+from p2k2_converter.p2k2.translation.translator import Translator
 from xsdata.formats.dataclass.serializers import XmlSerializer
 
 parser = argparse.ArgumentParser(description='Converts a cut sheet file into a P2K2 file.')

@@ -5,6 +5,7 @@ from p2k2_converter.p2k2 import BarBuilder, CutBuilder, JobBuilder
 from p2k2_converter.p2k2.classes import Bar, Job
 import yaml
 
+
 class Translator:
 
     def __init__(self, config_file: str):
