@@ -10,6 +10,17 @@ class Close(WorkflowStrategy):
         self.__model_config = config_file["CLOSE"]
 
     def model_definition(self, workbook, data) -> [Workbook, Model]:
+        """
+        Configure a Close model.
+        Information relative to name, width and height are extracted and a Model class is created.
+
+        Args:
+            workbook: An open Workbook instance use for extracting the data.
+            data: An initial preconfigured data used for adding more information.
+
+        Returns:
+            A tuple containing the Workbook and the created model. These object will be used in the next steps
+        """
         product_worksheet = workbook[self.__model_config["worksheet"]]
 
         data_row = product_worksheet[
@@ -23,6 +34,16 @@ class Close(WorkflowStrategy):
         return [workbook, Model(name, width, height)]
 
     def profiles_definition(self, workbook, model) -> [Workbook, Model]:
+        """
+        Configure and add the profiles to the Close model.
+
+        Args:
+            workbook: An open Workbook instance use for extracting the data.
+            model: The model created in the model_definition step.
+
+        Returns:
+            A tuple containing the Workbook and the created model. These object will be used in the next steps
+        """
         product_worksheet = workbook[self.__model_config["worksheet"]]
 
         for profile in self.__model_config["profiles"]:
@@ -38,6 +59,16 @@ class Close(WorkflowStrategy):
         return [workbook, model]
 
     def cuts_definition(self, workbook, model) -> [Workbook, Model]:
+        """
+        Configure and add the cuts to be applied to the Close product.
+
+        Args:
+            workbook: An open Workbook instance use for extracting the data.
+            model: The model created in the model_definition step
+
+        Returns:
+            A tuple containing the Workbook and the created model. These object will be used in the next steps
+        """
         product_worksheet = workbook[self.__model_config["worksheet"]]
 
         for profile in self.__model_config["profiles"]:
@@ -58,10 +89,22 @@ class Close(WorkflowStrategy):
         return [workbook, model]
 
     def machining_definition(self, workbook, model) -> [Workbook, Model]:
+        """
+        Configure and add the cuts to be applied to the Close product.
+
+        Args:
+            workbook: An open Workbook instance use for extracting the data.
+            model: The model created in the model_definition step
+
+        Returns:
+            A tuple containing the Workbook and the created model. These object will be used in the next steps
+        """
         for profile in self.__model_config["profiles"]:
             if "machinings" in profile:
                 for machining in profile["machinings"]:
                     offset = 1  # TODO: define the correct offset
-                    model.profiles[profile["code"]].machinings.append(Machining(machining["code"], offset, machining["verse"]))
+                    model.profiles[profile["code"]] \
+                        .machinings \
+                        .append(Machining(machining["code"], offset, machining["verse"]))
 
         return [workbook, model]
