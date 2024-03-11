@@ -13,6 +13,15 @@ from p2k2_converter.core.workflow import Close
 
 
 def get_workflow_class(product_name: str) -> str:
+    """
+    Dynamically instantiate the workflow class for the given product name.
+    Is possible to bind a specific workflow class to a product using the work
+    Args:
+        product_name: The name of the product
+
+    Returns:
+        String containing the name of the class to instantiate
+    """
     with open(str(WORKFLOW_CLASS_CONFIG), "r") as file:
         config = yaml.safe_load(file)
         for product in config["WORKFLOWS"]:
@@ -39,6 +48,16 @@ class Parser:
             self.__config_file = yaml.safe_load(file)
 
     def __create_workflow_for(self, product: str, row_number: int) -> Branch:
+        """
+        Create a workflow branch for the given product.
+        Args:
+            product: The string containing the name of the product
+            row_number: The number of the row inside the excell file
+
+        Returns:
+            Return a branch containing a preconfigured workflow for the product in input.
+
+        """
         class_name = get_workflow_class(product)
         dynamic_class = globals()[class_name]
         strategy = dynamic_class(row_number, self.__config_file)
@@ -52,6 +71,13 @@ class Parser:
         return builder.build()
 
     def __define_workflows(self, cell_values: List) -> None:
+        """
+        Populate the workflow pipeline with the products found in the excell file. The workflow for each product should
+        be described inside the configuration file.
+        Args:
+            cell_values: A list containing the name of the products that should be produced. This should be extracted
+                         from the excell file in input.
+        """
         product_counter = Counter(cell_values)
         for product, occurrences in product_counter.items():
 
@@ -79,6 +105,12 @@ class Parser:
                         remaining_occurrences -= 1
 
     def __get_buyer_information(self) -> Buyer:
+        """
+        Retrieve the Buyer's information from the input excell file.
+
+        Returns:
+            An instance of  Buyer class containing the information of the buyer of the order
+        """
         global_config = self.__config_file["GLOBALS"]
         buyer_config = global_config["buyer"]
         worksheet = self.__workbook[global_config["input-worksheet"]]
@@ -95,6 +127,13 @@ class Parser:
         return Buyer(full_name=full_name, email=email, phone=phone, cell_phone=cell_phone, address=address, city=city)
 
     def parse(self) -> Order:
+        """
+        Executes the parse of the given excell file in input. This will extract the products from the configured
+        input worksheet, build the workflow pipeline and executes it returning the order.
+
+        Returns:
+            The order to be translated in the p2k2 format.
+        """
         global_config = self.__config_file["GLOBALS"]
         input_worksheet = self.__workbook[global_config["input-worksheet"]]
         product_range = f"{global_config['product-column']}{global_config['starting-row']}:" \
