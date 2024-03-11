@@ -66,7 +66,8 @@ class Parser:
         builder.add_from_lambda("ModelDefinition", strategy.model_definition) \
             .add_from_lambda("ProfileDefinition", strategy.profiles_definition) \
             .add_from_lambda("BarsDefinition", strategy.cuts_definition) \
-            .add_from_lambda("MachiningDefinition", strategy.machining_definition)
+            .add_from_lambda("MachiningDefinition", strategy.machining_definition) \
+            .add_from_lambda("TranslationDefinition", strategy.translation_definition)
 
         return builder.build()
 

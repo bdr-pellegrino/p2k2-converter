@@ -12,7 +12,6 @@ class WorkflowStrategy(ABC):
         Args:
             source: The source where the information is extracted
             data: The initial data
-
         """
         pass
 
@@ -43,6 +42,17 @@ class WorkflowStrategy(ABC):
     def machining_definition(self, source, model):
         """
         Define the machining to be applied to the profiles
+
+        Args:
+            source: The source where the information is extracted
+            model: The target model
+        """
+        pass
+
+    @abstractmethod
+    def translation_definition(self, source, model):
+        """
+        Define the translation unit class for the following model.
 
         Args:
             source: The source where the information is extracted

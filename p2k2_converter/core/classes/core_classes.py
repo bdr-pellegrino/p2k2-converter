@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict
 
+from p2k2_converter.p2k2.translation.unit import TranslationUnit
+
 
 @dataclass
 class Buyer:
@@ -111,6 +113,9 @@ class Model:
     )
     height: float = field(
         metadata={"description": "Height of the model"}
+    )
+    translator: Optional[TranslationUnit] = field(
+        metadata={"description": "Translation class from core to p2k2 format"}
     )
     optionals: List[ModelOptional] = field(
         default_factory=list,

@@ -1,5 +1,6 @@
 from p2k2_converter.core.workflow import WorkflowStrategy
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
+from p2k2_converter.p2k2.translation.unit import TranslationUnit
 from openpyxl import Workbook
 
 
@@ -107,4 +108,14 @@ class Close(WorkflowStrategy):
                         .machinings \
                         .append(Machining(machining["code"], offset, machining["verse"]))
 
+        return [workbook, model]
+
+    def translation_definition(self, workbook, model) -> [Workbook, Model]:
+
+        class CloseInternalTranslation(TranslationUnit):
+
+            def translate(self_int):
+                pass
+
+        model.translator = CloseInternalTranslation()
         return [workbook, model]
