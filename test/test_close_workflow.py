@@ -24,13 +24,13 @@ class TestCloseWorkflow(unittest.TestCase):
         )
         self.__profile_config = {
             "PROFILO DOGA": {
-                "cuts_quantity": 10,
+                "cuts_quantity": 5,
                 "cuts_length": 741,
                 "l_angle": 90,
                 "r_angle": 90,
                 "machinings": {
-                    "CERNIERA FORO ANTA": [115, 138, 920, 943, 520, 543],
-                    "FORO SCASSI TELAIO": [126.25, 931.25, 531.25]
+                    "CERNIERA FORI ANTA": [(115, 520, 920), (0, 3, 4)],
+                    "FORO SCASSI TELAIO": [(126.25, 531.25, 931.25), (0, 3, 4)]
                 }
             },
 
@@ -99,6 +99,7 @@ class TestCloseWorkflow(unittest.TestCase):
             profiles = list(self.__profile_config.keys())
             for code in model.profiles:
                 self.assertIn(code, profiles)
+                del self.__profile_config[code]
                 checked_profiles.append(code)
 
             self.assertEqual(checked_profiles, profiles)
@@ -141,3 +142,21 @@ class TestCloseWorkflow(unittest.TestCase):
 
             for machining in profile.machinings:
                 self.assertIn(machining.code, profile_configuration["machinings"])
+
+    def test_translation_definition(self):
+        source = XlsmSource(self.__test_files["product_worksheet"])
+
+        with source.open() as src:
+            _, model = self.__close_workflow.translation_definition(
+                *self.__close_workflow.machining_definition(
+                    *self.__close_workflow.cuts_definition(
+                        *self.__close_workflow.profiles_definition(
+                            *self.__close_workflow.model_definition(src, None)
+                        )
+                    )
+                )
+            )
+
+        translation_output = model.translate()
+        print(translation_output)
+

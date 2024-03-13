@@ -1,7 +1,46 @@
+from typing import List, Dict
+from types import MethodType
+
 from p2k2_converter.core.workflow import WorkflowStrategy
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
-from p2k2_converter.p2k2.translation.unit import TranslationUnit
+from p2k2_converter.p2k2.classes import Machining as P2k2Machining
 from openpyxl import Workbook
+import re
+
+from p2k2_converter.p2k2 import CutBuilder
+
+
+def machining_application_index(dim: int, machinings: List[Machining], offset: int) -> Dict[int, List[Machining]]:
+    """
+    Calculate how distribute the profile Machinings to the cuts
+
+    Args:
+        dim: The dimension (width or height) of the cut
+        machinings: List of machinings to apply
+        offset: The offset
+
+    Returns:
+        A dictionary in which the index is referred to the cut index and the value is a List of Machining to apply
+        to the specific cut
+    """
+    base = 0
+    top = dim
+    cut_index = 0
+
+    output = dict()
+    print(machinings)
+    for machining in sorted(machinings, key=lambda mach: mach.offset):
+
+        while not (base <= machining.offset <= top):
+            base = top
+            top = top + dim
+            cut_index += 1
+
+        if cut_index not in output:
+            output[cut_index] = []
+        output[cut_index].append(P2k2Machining(machining.code, offset))
+
+    return output
 
 
 class Close(WorkflowStrategy):
@@ -83,10 +122,11 @@ class Close(WorkflowStrategy):
 
             for _ in range(cut_quantity):
                 target_profile.cuts.append(
-                    Cut(cut_length, cut_height, profile["left-angle-cut"], profile["right-angle-cut"]))
+                    Cut(cut_length, cut_height, profile["left-angle-cut"], profile["right-angle-cut"])
+                )
 
             target_profile.length = sum(cut.length for cut in target_profile.cuts)
-
+        print(model.profiles)
         return [workbook, model]
 
     def machining_definition(self, workbook, model) -> [Workbook, Model]:
@@ -100,22 +140,58 @@ class Close(WorkflowStrategy):
         Returns:
             A tuple containing the Workbook and the created model. These object will be used in the next steps
         """
+        product_worksheet = workbook[self.__model_config["worksheet"]]
+
         for profile in self.__model_config["profiles"]:
             if "machinings" in profile:
                 for machining in profile["machinings"]:
-                    offset = 1  # TODO: define the correct offset
-                    model.profiles[profile["code"]] \
-                        .machinings \
-                        .append(Machining(machining["code"], offset, machining["verse"]))
+                    code = machining["code"]
+                    starting_position = f"{machining['starting-column']}{self.__cell_row}"
+                    ending_position = f"{machining['ending-column']}{self.__cell_row}"
+                    cell_data = product_worksheet[f"{starting_position}:{ending_position}"]
+
+                    index_condition = lambda index: index % 2 == 0 if code == "CERNIERA FORI ANTA" else True
+                    cell_values = [cell.value for hole_position in cell_data
+                                   for index, cell in enumerate(hole_position) if index_condition(index)]
+
+                    for value in sorted(cell_values):
+                        if type(value) == str:
+                            match = re.search(r'\b\d+,\d+\b', value)
+                            if match:
+                                value = float(match.group().replace(',', '.'))
+
+                        model.profiles[profile["code"]].machinings.append(Machining(machining["code"], value))
 
         return [workbook, model]
 
     def translation_definition(self, workbook, model) -> [Workbook, Model]:
+        def translation(inner_self):
+            cut_list = []
 
-        class CloseInternalTranslation(TranslationUnit):
+            for profile_code in model.profiles:
+                profile = model.profiles[profile_code]
+                cuts = profile.cuts
 
-            def translate(self_int):
-                pass
+                height = int(
+                    next((profile["height"] for profile in self.__model_config["profiles"] if
+                          profile["code"] == profile_code), 0)
+                )
 
-        model.translator = CloseInternalTranslation()
+                machining_distribution = machining_application_index(height, profile.machinings, 1)
+
+                for idx, cut in enumerate(cuts):
+                    cut_builder = CutBuilder()
+                    cut_builder.add_cut_length(cut.length)
+                    cut_builder.add_left_cutting_angle(cut.angleL)
+                    cut_builder.add_right_cutting_angle(cut.angleR)
+
+                    if idx in machining_distribution:
+                        for machining in machining_distribution[idx]:
+                            cut_builder.add_machining_item(machining)
+
+                    cut_list.append(cut_builder.build())
+
+                return cut_list
+
+        model.translate = MethodType(translation, model)
         return [workbook, model]

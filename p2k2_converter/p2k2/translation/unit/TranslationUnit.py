@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class TranslationUnit(ABC):
-
     @abstractmethod
     def translate(self):
         """

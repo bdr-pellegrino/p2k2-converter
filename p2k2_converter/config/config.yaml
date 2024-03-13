@@ -36,14 +36,12 @@ CLOSE:
       bar-length: 6000
       bar-code: "PROFILO DOGA"
       machinings:
-        - code: "CERNIERA FORO ANTA"
+        - code: "CERNIERA FORI ANTA"
           starting-column: "DW"
           ending-column: "EB"
-          verse: "height"
         - code: "FORO SCASSI TELAIO"
           starting-column: "ED"
           ending-column: "EF"
-          verse: "height"
 
     - code: "CANALINO VERTICALE"
       brand: "PELLEGRINO"

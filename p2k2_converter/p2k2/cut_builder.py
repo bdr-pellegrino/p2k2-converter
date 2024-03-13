@@ -268,6 +268,18 @@ class CutBuilder:
         self.__machinings.append(Machining(code, offset, clamp_near))
         return self
 
+    def add_machining_item(self, machining: Machining):
+        """
+        Specify a machining item for this piece.
+
+        Args:
+            machining: The machining to add
+
+        Returns:
+            The instance of the builder
+        """
+        self.__machinings.append(machining)
+
     def add_exit(self, exit_number: int) -> 'CutBuilder':
         """
         Specify the exit for this piece

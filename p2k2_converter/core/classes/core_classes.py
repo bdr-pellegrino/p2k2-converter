@@ -46,13 +46,6 @@ class Machining:
     offset: Optional[float] = field(
         metadata={"description": "Offset of the machining"}
     )
-    verse: Optional[str] = field(
-        default="width",
-        metadata={
-            "description": "Verse of the machining",
-            "validator": lambda value: value if value in {"width", "height"} else None
-        }
-    )
 
 
 @dataclass
@@ -104,7 +97,7 @@ class Profile:
 
 
 @dataclass
-class Model:
+class Model(TranslationUnit):
     name: str = field(
         metadata={"description": "Name of the model"}
     )
@@ -114,9 +107,6 @@ class Model:
     height: float = field(
         metadata={"description": "Height of the model"}
     )
-    translator: Optional[TranslationUnit] = field(
-        metadata={"description": "Translation class from core to p2k2 format"}
-    )
     optionals: List[ModelOptional] = field(
         default_factory=list,
         metadata={"description": "List of optionals to be applied to the model"}
@@ -125,6 +115,9 @@ class Model:
         default_factory=dict,
         metadata={"description": "List of profiles being used for producing this model"}
     )
+
+    def translate(self):
+        pass
 
 
 @dataclass
