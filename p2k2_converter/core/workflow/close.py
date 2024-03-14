@@ -28,7 +28,7 @@ def machining_application_index(dim: int, machinings: List[Machining], offset: i
     cut_index = 0
 
     output = dict()
-    print(machinings)
+
     for machining in sorted(machinings, key=lambda mach: mach.offset):
 
         while not (base <= machining.offset <= top):
@@ -126,7 +126,6 @@ class Close(WorkflowStrategy):
                 )
 
             target_profile.length = sum(cut.length for cut in target_profile.cuts)
-        print(model.profiles)
         return [workbook, model]
 
     def machining_definition(self, workbook, model) -> [Workbook, Model]:
@@ -159,8 +158,7 @@ class Close(WorkflowStrategy):
                             match = re.search(r'\b\d+,\d+\b', value)
                             if match:
                                 value = float(match.group().replace(',', '.'))
-
-                        model.profiles[profile["code"]].machinings.append(Machining(machining["code"], value))
+                        model.profiles[profile["code"]].machinings.append(Machining(code, value))
 
         return [workbook, model]
 

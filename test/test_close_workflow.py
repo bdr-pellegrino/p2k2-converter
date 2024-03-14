@@ -139,9 +139,18 @@ class TestCloseWorkflow(unittest.TestCase):
         for profile_name in self.__profile_config:
             profile_configuration = self.__profile_config[profile_name]
             profile = model.profiles[profile_name]
+            machinings = profile.machinings
+            if "machinings" in profile_configuration:
 
-            for machining in profile.machinings:
-                self.assertIn(machining.code, profile_configuration["machinings"])
+                codes = list(profile_configuration["machinings"].keys())
+                current_codes = sorted(set(machining.code for machining in machinings))
+
+                self.assertEqual(current_codes, codes)
+
+                for code, machining_configuration in profile_configuration["machinings"].items():
+                    offsets = list(machining_configuration[0])
+                    current_offsets = [machining.offset for machining in machinings if machining.code == code]
+                    self.assertEqual(current_offsets, offsets)
 
     def test_translation_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
@@ -158,5 +167,3 @@ class TestCloseWorkflow(unittest.TestCase):
             )
 
         translation_output = model.translate()
-        print(translation_output)
-
