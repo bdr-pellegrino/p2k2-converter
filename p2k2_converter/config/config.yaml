@@ -75,6 +75,10 @@ CLOSE:
       height: 200
       bar-length: 6000
       bar-code: "MONTANTE SX"
+      machinings:
+        - code: "FORO FISSAGGIO"
+          starting-column: "DQ"
+          ending-column: "DU"
 
     - code: "TRAVERSO SUPERIORE"
       brand: "PELLEGRINO"
@@ -97,6 +101,10 @@ CLOSE:
       height: 200
       bar-length: 6000
       bar-code: "MONTANTE DX"
+      machinings:
+        - code: "FORO FISSAGGIO"
+          starting-column: "DQ"
+          ending-column: "DU"
 
     - code: "PROFILO SOGLIA"
       brand: "PELLEGRINO"

@@ -53,6 +53,9 @@ class TestCloseWorkflow(unittest.TestCase):
                 "cuts_length": 2000,
                 "l_angle": 90,
                 "r_angle": 45,
+                "machinings": {
+                    "FORO FISSAGGIO": [(75, 538)]
+                }
             },
 
             "TRAVERSO SUPERIORE": {
@@ -67,6 +70,9 @@ class TestCloseWorkflow(unittest.TestCase):
                 "cuts_length": 2000,
                 "l_angle": 45,
                 "r_angle": 45,
+                "machinings": {
+                    "FORO FISSAGGIO": [(75, 538)]
+                }
             },
 
             "PROFILO SOGLIA": {
@@ -167,3 +173,4 @@ class TestCloseWorkflow(unittest.TestCase):
             )
 
         translation_output = model.translate()
+        #print(translation_output)
