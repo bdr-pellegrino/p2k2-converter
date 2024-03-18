@@ -98,6 +98,9 @@ class Profile:
 
 @dataclass
 class Model(TranslationUnit):
+    def __post_init__(self):
+        super().__init__()
+
     name: str = field(
         metadata={"description": "Name of the model"}
     )
@@ -115,9 +118,6 @@ class Model(TranslationUnit):
         default_factory=dict,
         metadata={"description": "List of profiles being used for producing this model"}
     )
-
-    def translate(self):
-        pass
 
 
 @dataclass

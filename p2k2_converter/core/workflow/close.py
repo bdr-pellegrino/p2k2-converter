@@ -4,7 +4,6 @@ from types import MethodType
 from p2k2_converter.core.workflow import WorkflowStrategy
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from p2k2_converter.p2k2.classes import Machining as P2k2Machining
-from p2k2_converter.p2k2.classes import Cut as P2k2Cut
 from openpyxl import Workbook
 import re
 
@@ -13,45 +12,44 @@ from p2k2_converter.p2k2 import CutBuilder
 
 def __machining_application_index(dim: int, machinings: List[Machining], offset: int) -> Dict[int, List[Machining]]:
     """
-    Calculate how distribute the profile Machinings to the cuts
+    Calculate how to distribute the profile machinings to the cuts.
 
     Args:
-        dim: The dimension (width or height) of the cut
-        machinings: List of machinings to apply
-        offset: The offset
+        dim: The dimension (width or height) of the cut.
+        machinings: List of machinings to apply.
+        offset: The offset.
 
     Returns:
-        A dictionary in which the index is referred to the cut index and the value is a List of Machining to apply
-        to the specific cut
+        A dictionary where the index refers to the cut index, and the value is a list of machinings
+        to apply to the specific cut.
     """
     base = 0
     top = dim
     cut_index = 0
 
-    output = dict()
+    output = {}
     for machining in sorted(machinings, key=lambda mach: mach.offset):
-
         while not (base <= machining.offset <= top):
             base = top
-            top = top + dim
+            top += dim
             cut_index += 1
 
-        if cut_index not in output:
-            output[cut_index] = []
-        output[cut_index].append(P2k2Machining(machining.code, offset))
+        output.setdefault(cut_index, []).append(P2k2Machining(machining.code, offset))
 
     return output
 
 
-def configure_cuts_for_profile(cuts: List[Cut], machinings: List[Machining], dim: int, offset: int) -> List[P2k2Cut]:
+def configure_cuts_for_profile(builders: List[CutBuilder], machinings: List[Machining], dim: int, offset: int,
+                               refinement: int = 0) -> List[CutBuilder]:
     """
     Configure the cuts to add in the profile.
 
     Args:
-        cuts: The list of cuts that should be produced for the following profile
+        builders: The list of cut builders used to create the cuts
         machinings: The list of machinings to be distributed
         dim: Working dimension
         offset: Offset of the machining
+        refinement: The left trim of the bar.
 
     Returns:
         A list of configured P2k2 cuts
@@ -59,17 +57,16 @@ def configure_cuts_for_profile(cuts: List[Cut], machinings: List[Machining], dim
     cut_list = []
     machining_distribution = __machining_application_index(dim, machinings, offset)
 
-    for idx, cut in enumerate(cuts):
-        cut_builder = CutBuilder()
-        cut_builder.add_cut_length(cut.length)
-        cut_builder.add_left_cutting_angle(cut.angleL)
-        cut_builder.add_right_cutting_angle(cut.angleR)
-
+    for idx, cut in enumerate(builders):
         if idx in machining_distribution:
             for machining in machining_distribution[idx]:
-                cut_builder.add_machining_item(machining)
+                cut.add_machining_item(machining)
 
-        cut_list.append(cut_builder.build())
+        if idx == len(builders) - 1 and refinement != 0:
+            cut.add_left_trim_cut_length(refinement)
+
+        cut_list.append(cut)
+
     return cut_list
 
 
@@ -196,6 +193,7 @@ class Close(WorkflowStrategy):
 
         return [workbook, model]
 
+    # Return a tuple
     def translation_definition(self, workbook, model) -> [Workbook, Model]:
         """
         Define the conversion of the Model in a P2K2 class.
@@ -208,34 +206,75 @@ class Close(WorkflowStrategy):
         Returns:
             A tuple containing the Workbook and the created model. These object will be used in the next steps
         """
+
         def translation(inner_self):
-            cut_list = []
+            output = {}
 
             # Handling "PROFILO DOGA" profile
             profile_code = "PROFILO DOGA"
             profile = model.profiles[profile_code]
             cuts = profile.cuts
+
+            # Create a list of CutBuilder with the information of the cuts
+            builders = [
+                CutBuilder().add_cut_length(cut.length)
+                .add_left_cutting_angle(cut.angleL)
+                .add_right_cutting_angle(cut.angleR)
+                for cut in cuts
+            ]
             machinings = profile.machinings
 
             height = int(
                 next((profile["height"] for profile in self.__model_config["profiles"] if
                       profile["code"] == profile_code), 0)
             )
+
             door_hole_hinge = [machining for machining in machinings if machining.code == "CERNIERA FORI ANTA"]
+            default_offset = 1
+            command_verse = next(
+                (profile["command-verse"] for profile in self.__model_config["profiles"] if
+                 profile["code"] == profile_code),
+                "DX")
+
+            if command_verse == "DX":
+                default_offset = cuts[0].length - default_offset
+
+            builders = configure_cuts_for_profile(builders, door_hole_hinge, height, default_offset)
             frame_cutouts = [machining for machining in machinings if machining.code == "FORO SCASSI TELAIO"]
+            builders = configure_cuts_for_profile(builders, frame_cutouts, height, 1)
 
-            cut_list.append(configure_cuts_for_profile(cuts, door_hole_hinge, height, 1))
-            cut_list.append(configure_cuts_for_profile(cuts, frame_cutouts, height, 1))
-
-
+            output[profile_code] = [builder.build() for builder in builders]
             # Handling "MONTANTE SX" and MONTANTE DX profile
             profile_codes = ["MONTANTE SX", "MONTANTE DX"]
             for profile_code in profile_codes:
 
                 profile = model.profiles[profile_code]
-                cut_list.append(configure_cuts_for_profile(profile.cuts, profile.machinings, profile.length, 1))
+                cuts = profile.cuts
+                default_offset = 1
+                builders = [
+                    CutBuilder().add_cut_length(cut.length)
+                    .add_left_cutting_angle(cut.angleL)
+                    .add_right_cutting_angle(cut.angleR)
+                    for cut in cuts
+                ]
 
-            return cut_list
+                builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
+                output[profile_code] = [builder.build() for builder in builders]
 
-        model.translate = MethodType(translation, model)
+            # Handling profiles without machinings
+            profile_codes = ["CANALINO VERTICALE", "CANALINO ORIZZONTALE", "TRAVERSO SUPERIORE", "PROFILO SOGLIA"]
+            for profile_code in profile_codes:
+                profile = model.profiles[profile_code]
+                cuts = profile.cuts
+                output[profile_code] = [
+                    CutBuilder().add_cut_length(cut.length)
+                    .add_left_cutting_angle(cut.angleL)
+                    .add_right_cutting_angle(cut.angleR)
+                    .build()
+                    for cut in cuts
+                ]
+
+            return output
+
+        model.set_translation_strategy(translation)
         return [workbook, model]

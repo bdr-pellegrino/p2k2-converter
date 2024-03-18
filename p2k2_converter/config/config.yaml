@@ -30,6 +30,7 @@ CLOSE:
       refinement-column: "CM"
       quantity-column: "CI"
       length-column: "CJ"
+      command-verse: "CP"
       left-angle-cut: 90
       right-angle-cut: 90
       height: 200

@@ -376,6 +376,8 @@ class CutBuilder:
 
         if len(self.__machinings) > 0:
             self.__machinings = Machinings(self.__machinings)
+        else:
+            self.__machinings = None
 
         return Cut(
             angl=self.__left_cutting_angle,

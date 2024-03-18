@@ -28,12 +28,12 @@ if not file_to_convert.exists():
 file_parser = Parser(workbook_path=file_to_convert, config_file=config_path)
 order = file_parser.parse()
 
-job = Translator(config_file=config_path).p2k2_translation(order)
-
-config = SerializerConfig(pretty_print=True)
-serializer = XmlSerializer(config=config)
-
-output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"
-with open(output_path, "w") as file:
-    file.write(serializer.render(job))
+# job = Translator(config_file=config_path).p2k2_translation(order)
+#
+# config = SerializerConfig(pretty_print=True)
+# serializer = XmlSerializer(config=config)
+#
+# output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"
+# with open(output_path, "w") as file:
+#     file.write(serializer.render(job))
 

@@ -4,31 +4,11 @@ from openpyxl import load_workbook
 from pathlib import Path
 from collections import Counter
 from typing import List
-from p2k2_converter.config import WORKFLOW_CLASS_CONFIG
 from p2k2_converter.core.classes import Order, Buyer
+from p2k2_converter.core.workflow import workflow_for_product
 from p2k2_converter.pipeline import Pipeline
 from p2k2_converter.pipeline.branch import Branch, BranchBuilder
 from p2k2_converter.pipeline.source import XlsmSource
-from p2k2_converter.core.workflow import Close
-
-
-def get_workflow_class(product_name: str) -> str:
-    """
-    Dynamically instantiate the workflow class for the given product name.
-    Is possible to bind a specific workflow class to a product using the work
-    Args:
-        product_name: The name of the product
-
-    Returns:
-        String containing the name of the class to instantiate
-    """
-    with open(str(WORKFLOW_CLASS_CONFIG), "r") as file:
-        config = yaml.safe_load(file)
-        for product in config["WORKFLOWS"]:
-            if product_name in product["name"]:
-                return product["class name"]
-
-        raise ValueError(f"Product {product_name} not found in the configuration file.")
 
 
 class Parser:
@@ -58,16 +38,15 @@ class Parser:
             Return a branch containing a preconfigured workflow for the product in input.
 
         """
-        class_name = get_workflow_class(product)
-        dynamic_class = globals()[class_name]
-        strategy = dynamic_class(row_number, self.__config_file)
+        args = (row_number, self.__config_file)
+        strategy = workflow_for_product(product, *args)
         builder = BranchBuilder(f"{product}_WORKFLOW_{row_number}")
 
-        builder.add_from_lambda("ModelDefinition", strategy.model_definition) \
-            .add_from_lambda("ProfileDefinition", strategy.profiles_definition) \
-            .add_from_lambda("BarsDefinition", strategy.cuts_definition) \
-            .add_from_lambda("MachiningDefinition", strategy.machining_definition) \
-            .add_from_lambda("TranslationDefinition", strategy.translation_definition)
+        builder.add_from_function(strategy.model_definition) \
+            .add_from_function(strategy.profiles_definition) \
+            .add_from_function(strategy.cuts_definition) \
+            .add_from_function(strategy.machining_definition) \
+            .add_from_function(strategy.translation_definition)
 
         return builder.build()
 

@@ -29,8 +29,8 @@ class TestCloseWorkflow(unittest.TestCase):
                 "l_angle": 90,
                 "r_angle": 90,
                 "machinings": {
-                    "CERNIERA FORI ANTA": [(115, 520, 920), (0, 3, 4)],
-                    "FORO SCASSI TELAIO": [(126.25, 531.25, 931.25), (0, 3, 4)]
+                    "CERNIERA FORI ANTA": [(115, 520, 920), (0, 2, 4)],
+                    "FORO SCASSI TELAIO": [(126.25, 531.25, 931.25), (0, 2, 4)]
                 }
             },
 
@@ -54,7 +54,7 @@ class TestCloseWorkflow(unittest.TestCase):
                 "l_angle": 90,
                 "r_angle": 45,
                 "machinings": {
-                    "FORO FISSAGGIO": [(75, 538)]
+                    "FORO FISSAGGIO": [(75, 538), tuple([0])]
                 }
             },
 
@@ -71,7 +71,7 @@ class TestCloseWorkflow(unittest.TestCase):
                 "l_angle": 45,
                 "r_angle": 45,
                 "machinings": {
-                    "FORO FISSAGGIO": [(75, 538)]
+                    "FORO FISSAGGIO": [(75, 538), tuple([0])]
                 }
             },
 
@@ -171,6 +171,10 @@ class TestCloseWorkflow(unittest.TestCase):
                     )
                 )
             )
+        for name, cuts in model.translate().items():
+            self.assertEqual(len(cuts), self.__profile_config[name]["cuts_quantity"])
 
-        translation_output = model.translate()
-        #print(translation_output)
+            for i, cut in enumerate(cuts):
+                if cut.machinings:
+                    for machining in cut.machinings.machining:
+                        self.assertIn(i, self.__profile_config[name]["machinings"][machining.wcode][1])
