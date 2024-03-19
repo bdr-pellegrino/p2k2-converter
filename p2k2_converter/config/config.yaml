@@ -13,6 +13,12 @@ GLOBALS:
     telephone-row: 15
     cellphone-row: 16
     email-row: 18
+  available-bar-worksheet: "Barre"
+  pieces-column: "C"
+  width-column: "B"
+  starting-row-bar: 7
+  ending-row-bar: 74
+  default-bar-length: 6000
 
 CLOSE:
   worksheet: "prod CLOSE"
@@ -34,7 +40,6 @@ CLOSE:
       left-angle-cut: 90
       right-angle-cut: 90
       height: 200
-      bar-length: 6000
       bar-code: "PROFILO DOGA"
       machinings:
         - code: "CERNIERA FORI ANTA"
@@ -52,7 +57,6 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 45
       height: 200
-      bar-length: 6000
       bar-code: "CANALINO VERTICALE"
 
     - code: "CANALINO ORIZZONTALE"
@@ -63,7 +67,6 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 45
       height: 200
-      bar-length: 6000
       bar-code: "CANALINO ORIZZONTALE"
 
     - code: "MONTANTE SX"
@@ -74,7 +77,6 @@ CLOSE:
       left-angle-cut: 90
       right-angle-cut: 45
       height: 200
-      bar-length: 6000
       bar-code: "MONTANTE SX"
       machinings:
         - code: "FORO FISSAGGIO"
@@ -89,7 +91,6 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 90
       height: 200
-      bar-length: 6000
       bar-code: "TRAVERSO SUPERIORE"
 
     - code: "MONTANTE DX"
@@ -100,7 +101,6 @@ CLOSE:
       left-angle-cut: 45
       right-angle-cut: 45
       height: 200
-      bar-length: 6000
       bar-code: "MONTANTE DX"
       machinings:
         - code: "FORO FISSAGGIO"
@@ -115,6 +115,5 @@ CLOSE:
       left-angle-cut: 90
       right-angle-cut: 90
       height: 200
-      bar-length: 6000
       bar-code: "PROFILO SOGLIA"
 

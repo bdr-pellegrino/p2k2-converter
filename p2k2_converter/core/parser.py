@@ -3,7 +3,7 @@ import logging
 from openpyxl import load_workbook
 from pathlib import Path
 from collections import Counter
-from typing import List
+from typing import List, Tuple
 from p2k2_converter.core.classes import Order, Buyer
 from p2k2_converter.core.workflow import workflow_for_product
 from p2k2_converter.pipeline import Pipeline
@@ -106,7 +106,46 @@ class Parser:
 
         return Buyer(full_name=full_name, email=email, phone=phone, cell_phone=cell_phone, address=address, city=city)
 
-    def parse(self) -> Order:
+    def __calculate_bars_for_order(self, order: Order) -> Tuple[Tuple[int, int], ...]:
+        """
+        Calculate the number of bars needed for the order in input.
+        The function will read the values from the table in the "available-bar-worksheet" worksheet inside the excell
+        file and will calculate the number of bars needed for each model depending on the total length of the pieces to produce.
+        Args:
+            order: The order to be produced.
+
+        Returns:
+            A tuple of tuples in which each one contains the length of the bar and the number of bars needed.
+        """
+        total_length = 0
+        for model in order.models:
+            total_length = sum(sum(cut.length for cut in profile.cuts) for profile in model.profiles.values())
+
+        global_config = self.__config_file["GLOBALS"]
+        bars_worksheet = self.__workbook[self.__config_file["GLOBALS"]["available-bar-worksheet"]]
+        configuration_range = f"{global_config['width-column']}{global_config['starting-row-bar']}:" \
+                              f"{global_config['pieces-column']}{global_config['ending-row-bar']}"
+
+        bars = []
+        for row in bars_worksheet[configuration_range]:
+            bar_length, available_bars = row[0].value, row[1].value
+            if bar_length is None or available_bars is None:
+                continue
+            pieces_used = min((total_length // bar_length) + 1, available_bars)
+            total_length -= pieces_used * bar_length
+            bars.append((bar_length, pieces_used))
+
+            if total_length <= 0:
+                break
+
+        if total_length > 0:
+            default_bar_length = global_config["default-bar-length"]
+            pieces_used = (total_length // default_bar_length) + 1
+            bars.append((default_bar_length, pieces_used))
+
+        return tuple(bars)
+
+    def parse(self) -> Tuple[Tuple[Tuple[int, int], ...], Order]:
         """
         Executes the parse of the given excell file in input. This will extract the products from the configured
         input worksheet, build the workflow pipeline and executes it returning the order.
@@ -127,5 +166,7 @@ class Parser:
         for model in self.__workflow_pipeline.get_branches_result():
             order.models.append(model)
 
-        return order
+        self.__calculate_bars_for_order(order)
+
+        return self.__calculate_bars_for_order(order), order
 

@@ -30,7 +30,7 @@ class ParserTest(unittest.TestCase):
             ]
         }
         parser = Parser(workbook_path=INPUT_FILE, config_file=DEFAULT_CONFIG)
-        self.__order = parser.parse()
+        self.__bars, self.__order = parser.parse()
 
     def test_check_user_information(self):
         self.assertEqual(self.__order.buyer.full_name, self.__expected_order_data["buyer"]["full_name"])
@@ -46,6 +46,14 @@ class ParserTest(unittest.TestCase):
             self.assertEqual(model.name, self.__expected_order_data["models"][i]["name"])
             self.assertEqual(model.width, self.__expected_order_data["models"][i]["width"])
             self.assertEqual(model.height, self.__expected_order_data["models"][i]["height"])
+
+    def test_bars(self):
+        total_cut_length = 0
+        for model in self.__order.models:
+            total_cut_length = sum(sum(cut.length for cut in profile.cuts) for profile in model.profiles.values())
+
+        total_bars_length = sum(bar[0] * bar[1] for bar in self.__bars)
+        self.assertGreaterEqual(total_bars_length, total_cut_length)
 
 
 
