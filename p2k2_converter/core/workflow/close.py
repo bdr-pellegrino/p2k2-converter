@@ -1,6 +1,4 @@
 from typing import List, Dict
-from types import MethodType
-
 from p2k2_converter.core.workflow import WorkflowStrategy
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from p2k2_converter.p2k2.classes import Machining as P2k2Machining
