@@ -117,9 +117,11 @@ class Parser:
         Returns:
             A tuple of tuples in which each one contains the length of the bar and the number of bars needed.
         """
-        total_length = 0
+        cuts = []
         for model in order.models:
-            total_length = sum(sum(cut.length for cut in profile.cuts) for profile in model.profiles.values())
+            cuts += [cut.length for profile in model.profiles.values() for cut in profile.cuts]
+
+        total_length = sum(cuts)
 
         global_config = self.__config_file["GLOBALS"]
         bars_worksheet = self.__workbook[self.__config_file["GLOBALS"]["available-bar-worksheet"]]

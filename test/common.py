@@ -45,7 +45,7 @@ def define_order(number_of_models: int, number_of_profiles: int, number_of_bars:
             profile = Profile(brand="Brand", system="System", code=f"PELLEGRINO_PROF_{p_idx}")
 
             for k in range(number_of_cuts):
-                cut = Cut(length=1000, angleL=90, angleR=90)
+                cut = Cut(length=1000, angleL=90, angleR=90, height=1)
                 profile.cuts.append(cut)
 
             profiles[f"PELLEGRINO_PROF_{p_idx}"] = profile

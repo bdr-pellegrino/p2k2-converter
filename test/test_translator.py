@@ -1,5 +1,5 @@
 import unittest
-from p2k2_converter.p2k2 import Translator
+from p2k2_converter.p2k2.translation import Translator
 from test.common import define_order
 from p2k2_converter.p2k2.classes import Version
 
@@ -11,7 +11,7 @@ class TranslatorTest(unittest.TestCase):
 
     def test_check_output_version(self):
         order = define_order(number_of_models=1, number_of_profiles=2, number_of_bars=2, number_of_cuts=2)
-        translated_order = self.__translator.p2k2_translation(order)
+        translated_order = self.__translator.p2k2_translation(order, ((1000, 10),(2000, 10)))
 
         self.assertEqual(translated_order.ver, Version(mj=1, mn=0))
 
