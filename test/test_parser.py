@@ -48,13 +48,16 @@ class ParserTest(unittest.TestCase):
             self.assertEqual(model.height, self.__expected_order_data["models"][i]["height"])
 
     def test_bars(self):
-        total_cut_length = 0
+        total_bar_length = 0
+        for bars in self.__bars.values():
+            for bar in bars:
+                total_bar_length += bar[0] * bar[1]
+
+        total_bar_length = 0
         for model in self.__order.models:
-            total_cut_length = sum(sum(cut.length for cut in profile.cuts) for profile in model.profiles.values())
+            total_bar_length = sum(sum(cut.length for cut in profile.cuts) for profile in model.profiles.values())
 
-        total_bars_length = sum(bar[0] * bar[1] for bar in self.__bars)
-        self.assertGreaterEqual(total_bars_length, total_cut_length)
-
+        self.assertGreaterEqual(total_bar_length, total_bar_length)
 
 
 

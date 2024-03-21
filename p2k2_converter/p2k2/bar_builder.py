@@ -1,3 +1,5 @@
+from typing import List
+
 from p2k2_converter.p2k2.classes import Cut, Sfrido, Bar
 
 
@@ -107,6 +109,19 @@ class BarBuilder:
             The builder instance
         """
         self.__cuts.append(cut)
+        return self
+
+    def add_cuts(self, cuts: List[Cut]) -> 'BarBuilder':
+        """
+        Add a list of cuts to the bar
+
+        Args:
+            cuts: A list of cuts that should be inserted in the bar
+
+        Returns:
+            The builder instance
+        """
+        self.__cuts += cuts
         return self
 
     def add_off_cut(self, code: str, trolley: int, slot: int) -> 'BarBuilder':
