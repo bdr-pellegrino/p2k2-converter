@@ -5,7 +5,7 @@ from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from p2k2_converter.core import Parser
 from p2k2_converter.config import DEFAULT_CONFIG
-from p2k2_converter.p2k2.translation.translator import Translator
+from p2k2_converter.p2k2.translation import p2k2_translation
 from xsdata.formats.dataclass.serializers import XmlSerializer
 
 parser = argparse.ArgumentParser(description='Converts a cut sheet file into a P2K2 file.')
@@ -28,7 +28,7 @@ if not file_to_convert.exists():
 file_parser = Parser(workbook_path=file_to_convert, config_file=config_path)
 order = file_parser.parse()
 
-job = Translator(config_file=config_path).p2k2_translation(order[1], order[0])
+job = p2k2_translation(*order)
 
 config = SerializerConfig(pretty_print=True)
 serializer = XmlSerializer(config=config)
