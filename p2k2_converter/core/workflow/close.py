@@ -117,7 +117,7 @@ class Close(WorkflowStrategy):
             if "refinement-column" in profile:
                 refinement = product_worksheet[f"{profile['refinement-column']}{self.__cell_row}"].value
                 if refinement is not None:
-                    profile_class.refinement = float(refinement)
+                    profile_class.refinement = abs(float(refinement))
 
             model.profiles[profile["code"]] = profile_class
 
@@ -142,6 +142,7 @@ class Close(WorkflowStrategy):
             length_position = f"{profile['length-column']}{self.__cell_row}"
 
             cut_quantity = product_worksheet[quantity_position].value
+
             cut_length = product_worksheet[length_position].value
             cut_height = profile["height"]
 
@@ -149,6 +150,9 @@ class Close(WorkflowStrategy):
                 target_profile.cuts.append(
                     Cut(cut_length, cut_height, profile["left-angle-cut"], profile["right-angle-cut"])
                 )
+
+            if target_profile.refinement is not None:
+                target_profile.cuts[-1].length -= target_profile.refinement
 
             target_profile.length = sum(cut.length for cut in target_profile.cuts)
         return [workbook, model]

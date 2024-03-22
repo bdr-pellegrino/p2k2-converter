@@ -1,4 +1,5 @@
 import argparse
+import logging
 from pathlib import Path
 
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
@@ -34,8 +35,9 @@ config = SerializerConfig(pretty_print=True)
 serializer = XmlSerializer(config=config)
 print(serializer.render(job))
 
-#
-# output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"
-# with open(output_path, "w") as file:
-#     file.write(serializer.render(job))
 
+output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"
+with open(output_path, "w") as file:
+    file.write(serializer.render(job))
+
+logging.info(f"Conversion completed. The output file is saved at {output_path}")

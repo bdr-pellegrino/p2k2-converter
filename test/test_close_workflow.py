@@ -18,14 +18,12 @@ class TestCloseWorkflow(unittest.TestCase):
         with open(self.__test_files["config_file"], "r") as file:
             self.__profile_config = yaml.safe_load(file)
 
-        self.__close_workflow = Close(
-            row=8,
-            config_file=self.__profile_config
-        )
+        self.__close_workflow = Close(row=8, config_file=self.__profile_config)
         self.__profile_config = {
             "PROFILO DOGA": {
                 "cuts_quantity": 5,
                 "cuts_length": 741,
+                "refinement": 34,
                 "l_angle": 90,
                 "r_angle": 90,
                 "machinings": {
@@ -127,8 +125,13 @@ class TestCloseWorkflow(unittest.TestCase):
                 self.assertEqual(len(cuts), profile_configuration["cuts_quantity"])
 
                 cut_length = profile_configuration["cuts_length"]
-                for cut in cuts:
+                cuts_to_consider = cuts[:-1] if "refinement" in profile_configuration else cuts
+                for cut in cuts_to_consider:
                     self.assertEqual(cut.length, cut_length)
+
+                if "refinement" in profile_configuration:
+                    cut_to_refine = cuts[-1]
+                    self.assertEqual(cut_to_refine.length, cut_length - profile_configuration["refinement"])
 
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
