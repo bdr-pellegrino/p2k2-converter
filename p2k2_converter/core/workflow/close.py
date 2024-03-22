@@ -2,10 +2,9 @@ from typing import List, Dict
 from p2k2_converter.core.workflow import WorkflowStrategy
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from p2k2_converter.p2k2.classes import Machining as P2k2Machining
+from p2k2_converter.p2k2 import CutBuilder
 from openpyxl import Workbook
 import re
-
-from p2k2_converter.p2k2 import CutBuilder
 
 
 def __machining_application_index(dim: int, machinings: List[Machining], offset: int) -> Dict[int, List[Machining]]:
@@ -72,6 +71,7 @@ class Close(WorkflowStrategy):
 
     def __init__(self, row: int, config_file: dict):
         self.__cell_row = row
+        self.__global_config = config_file["GLOBALS"]
         self.__model_config = config_file["CLOSE"]
 
     def model_definition(self, workbook, data) -> [Workbook, Model]:
@@ -151,9 +151,6 @@ class Close(WorkflowStrategy):
                     Cut(cut_length, cut_height, profile["left-angle-cut"], profile["right-angle-cut"])
                 )
 
-            if target_profile.refinement is not None:
-                target_profile.cuts[-1].length -= target_profile.refinement
-
             target_profile.length = sum(cut.length for cut in target_profile.cuts)
         return [workbook, model]
 
@@ -195,7 +192,27 @@ class Close(WorkflowStrategy):
 
         return [workbook, model]
 
-    # Return a tuple
+    def __apply_labels(self, builders: List[CutBuilder], workbook: Workbook):
+        """
+        Apply the labels to the cuts.
+
+        Args:
+            builders: The list of cut builders
+            workbook: The workbook instance
+
+        Returns:
+            The list of cut builders with the labels applied
+        """
+        cut_list = []
+        info_worksheet = workbook[self.__global_config["info-worksheet"]]
+        for builder in builders:
+            builder.add_label(f"CLOSE ORDER ID {info_worksheet[self.__global_config['order-id-position']].value}")
+            builder.add_label(f"CLOSE CLIENT ID {info_worksheet[self.__global_config['client-id-position']].value}")
+            builder.add_label(f"ROW {self.__cell_row}")
+            cut_list.append(builder)
+
+        return cut_list
+
     def translation_definition(self, workbook, model) -> [Workbook, Model]:
         """
         Define the conversion of the Model in a P2K2 class.
@@ -236,12 +253,15 @@ class Close(WorkflowStrategy):
             command_verse = next(
                 (profile["command-verse"] for profile in self.__model_config["profiles"] if
                  profile["code"] == profile_code),
-                "DX")
+                "DX"
+            )
 
             if command_verse == "DX":
                 default_offset = cuts[0].length - default_offset
 
             builders = configure_cuts_for_profile(builders, door_hole_hinge, height, default_offset)
+            builders = self.__apply_labels(builders, workbook)
+
             frame_cutouts = [machining for machining in machinings if machining.code == "FORO SCASSI TELAIO"]
             builders = configure_cuts_for_profile(builders, frame_cutouts, height, 1)
 
@@ -261,6 +281,7 @@ class Close(WorkflowStrategy):
                 ]
 
                 builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
+                builders = self.__apply_labels(builders, workbook)
                 output[profile_code] = [builder.build() for builder in builders]
 
             # Handling profiles without machinings
@@ -268,15 +289,17 @@ class Close(WorkflowStrategy):
             for profile_code in profile_codes:
                 profile = model.profiles[profile_code]
                 cuts = profile.cuts
-                output[profile_code] = [
+                builders = [
                     CutBuilder().add_cut_length(cut.length)
                     .add_left_cutting_angle(cut.angleL)
                     .add_right_cutting_angle(cut.angleR)
-                    .build()
                     for cut in cuts
                 ]
+                builders = self.__apply_labels(builders, workbook)
+                output[profile_code] = [builder.build() for builder in builders]
 
             return output
 
         model.set_translation_strategy(translation)
         return [workbook, model]
+

@@ -125,13 +125,8 @@ class TestCloseWorkflow(unittest.TestCase):
                 self.assertEqual(len(cuts), profile_configuration["cuts_quantity"])
 
                 cut_length = profile_configuration["cuts_length"]
-                cuts_to_consider = cuts[:-1] if "refinement" in profile_configuration else cuts
-                for cut in cuts_to_consider:
+                for cut in cuts:
                     self.assertEqual(cut.length, cut_length)
-
-                if "refinement" in profile_configuration:
-                    cut_to_refine = cuts[-1]
-                    self.assertEqual(cut_to_refine.length, cut_length - profile_configuration["refinement"])
 
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
