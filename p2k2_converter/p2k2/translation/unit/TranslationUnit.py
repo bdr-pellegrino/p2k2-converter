@@ -22,4 +22,4 @@ class TranslationUnit:
         if self.__translation_strategy is None:
             raise NotImplementedError("Translation strategy not defined")
 
-        return self.__translation_strategy(self)
+        return self.__translation_strategy()

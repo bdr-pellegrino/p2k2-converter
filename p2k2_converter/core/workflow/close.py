@@ -226,7 +226,7 @@ class Close(WorkflowStrategy):
             A tuple containing the Workbook and the created model. These object will be used in the next steps
         """
 
-        def translation(inner_self):
+        def translation():
             output = {}
 
             # Handling "PROFILO DOGA" profile

@@ -6,8 +6,9 @@ from p2k2_converter.config import DEFAULT_CONFIG
 
 class ParserTest(unittest.TestCase):
 
-    def setUp(self):
-        self.__expected_order_data = {
+    @classmethod
+    def setUpClass(cls):
+        cls.__expected_order_data = {
             "buyer": {
                 "full_name": "Giovanni Antonioni",
                 "address": "Via D.Prova, 11",
@@ -30,7 +31,7 @@ class ParserTest(unittest.TestCase):
             ]
         }
         parser = Parser(workbook_path=INPUT_FILE, config_file=DEFAULT_CONFIG)
-        self.__bars, self.__order = parser.parse()
+        cls.__bars, cls.__order = parser.parse()
 
     def test_check_user_information(self):
         self.assertEqual(self.__order.buyer.full_name, self.__expected_order_data["buyer"]["full_name"])
@@ -55,7 +56,9 @@ class ParserTest(unittest.TestCase):
 
         total_bar_length = 0
         for model in self.__order.models:
-            total_bar_length = sum(sum(cut.length for cut in profile.cuts) for profile in model.profiles.values())
+            total_bar_length = sum(
+                sum(cut.length for cut in profile.cuts) for profile in model.profiles.values()
+            )
 
         self.assertGreaterEqual(total_bar_length, total_bar_length)
 

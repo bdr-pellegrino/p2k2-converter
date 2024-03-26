@@ -1,40 +1,87 @@
 import unittest
-from p2k2_converter.p2k2.translation import Translator
+
+from p2k2_converter.p2k2.translation import optimize_cut_distribution, p2k2_translation
 from test.common import define_order
-from p2k2_converter.p2k2.classes import Version
 
 
 class TranslatorTest(unittest.TestCase):
 
-    def setUp(self):
-        self.__translator = Translator()
+    @classmethod
+    def setUpClass(cls):
+        order_data = {
+            "bars": {
+                "PROFILE": ((3000, 1), (4000, 1))
+            },
+            "buyer": {
+                "full_name": "Giovanni Antonioni",
+                "address": "Via D.Prova, 11",
+                "email": "giovanni.antonioni3@unibo.it",
+                "phone": "123-4567951",
+                "cell_phone": "333-4445558",
+                "city": "Altrove"
+            },
+            "models": [
+                {
+                    "name": "CLOSE",
+                    "width": 99.9,
+                    "height": 100,
+                    "profiles": [
+                        {
+                            "system": "TEST",
+                            "code": "PROFILE",
+                            "length": 100,
+                            "height": 100,
+                            "cuts": [
+                                {
+                                    "length": 3000,
+                                    "height": 100,
+                                    "angle_left": 90,
+                                    "angle_right": 90
 
-    def test_check_output_version(self):
-        order = define_order(number_of_models=1, number_of_profiles=2, number_of_bars=2, number_of_cuts=2)
-        translated_order = self.__translator.p2k2_translation(order, ((1000, 10),(2000, 10)))
+                                },
+                                {
+                                    "length": 1000,
+                                    "height": 100,
+                                    "angle_left": 45,
+                                    "angle_right": 90
+                                },
+                                {
+                                    "length": 2000,
+                                    "height": 100,
+                                    "angle_left": 90,
+                                    "angle_right": 45
+                                },
+                            ],
+                        }
+                    ]
+                }
+            ]
+        }
+        cls.__available_bars, cls.__order = define_order(order_data)
+        cls.__output = p2k2_translation(cls.__available_bars, cls.__order)
 
-        self.assertEqual(translated_order.ver, Version(mj=1, mn=0))
+    def test_check_cut_distribution(self):
+        bars = self.__available_bars["PROFILE"]
+        cuts = self.__order.models[0].translate()["PROFILE"]
+        allocations = optimize_cut_distribution(bars, cuts)
 
-    def test_check_bars(self):
-        order = define_order(number_of_models=1, number_of_profiles=2, number_of_bars=2, number_of_cuts=2)
-        translated_order = self.__translator.p2k2_translation(order)
+        self.assertEqual([3000, 1000], [max(cut.il, cut.ol) for cut in allocations[4000]])
+        self.assertEqual([2000], [max(cut.il, cut.ol) for cut in allocations[3000]])
 
-        self.assertEqual(len(translated_order.body.bar), 4)
-        bar_codes = ["PELLEGRINO_PROF_0", "PELLEGRINO_PROF_1", "PELLEGRINO_PROF_0", "PELLEGRINO_PROF_1"]
-        for bar in translated_order.body.bar:
-            self.assertIn(bar.code, bar_codes)
-            bar_codes.pop(bar_codes.index(bar.code))
+    def test_check_output_bars(self):
+        bars_created = self.__output.body.bar
+        self.assertEqual(len(bars_created), 2)
+        self.assertEqual(bars_created[0].len, 4000)
+        self.assertEqual(bars_created[1].len, 3000)
 
-        self.assertEqual(bar_codes, [])
+    def test_check_output_cuts(self):
+        bars_created = self.__output.body.bar
+        allocations = optimize_cut_distribution(self.__available_bars["PROFILE"],
+                                                self.__order.models[0].translate()["PROFILE"])
+        for bar in bars_created:
+            bar_cuts = [max(cut.il, cut.ol)for cut in bar.cut]
+            allocation_cuts = [max(cut.il, cut.ol) for cut in allocations[bar.len]]
+            self.assertCountEqual(bar_cuts, allocation_cuts)
 
-    def test_check_cuts(self):
-        order = define_order(number_of_models=1, number_of_profiles=2, number_of_bars=2, number_of_cuts=2)
-        translated_order = self.__translator.p2k2_translation(order)
 
-        for bar in translated_order.body.bar:
-            self.assertEqual(len(bar.cut), 2)
-            for cut in bar.cut:
-                self.assertEqual(cut.il, 1000)
-                self.assertEqual(cut.ol, 1000)
-                self.assertEqual(cut.angl, 90)
-                self.assertEqual(cut.angr, 90)
+

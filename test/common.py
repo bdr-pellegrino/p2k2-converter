@@ -1,6 +1,7 @@
 from contextlib import contextmanager
 from p2k2_converter.pipeline.source import BaseSource
 from p2k2_converter.pipeline.step import BaseStep
+from p2k2_converter.p2k2.classes import Cut as P2K2Cut
 from p2k2_converter.core.classes import Buyer, Order, Profile, Cut, Model
 
 
@@ -26,31 +27,76 @@ class DoubleMapper(BaseStep):
         return [source, doubled_data]
 
 
-def define_order(number_of_models: int, number_of_profiles: int, number_of_bars: int, number_of_cuts: int):
+def __define_translation_from_order(model):
+    def translation():
+        cuts = {}
+        for profile in model.profiles.values():
+            for cut in profile.cuts:
+                if profile.code not in cuts:
+                    cuts[profile.code] = []
+
+                cuts[profile.code].append(P2K2Cut(
+                    il=cut.length,
+                    ol=cut.length,
+                    angl=cut.angleL,
+                    angr=cut.angleR
+                ))
+
+        return cuts
+
+    return translation
+
+
+def define_order(config):
+
+    if "buyer" not in config:
+        raise ValueError("Buyer information is missing from the configuration")
+
     buyer = Buyer(
-        full_name="John Doe",
-        email="jdoe@someemail.it",
-        phone="051 123456",
-        cell_phone="333 123456",
-        address="Via Roma 1",
-        city="Bologna"
+        full_name=config["buyer"]["full_name"],
+        address=config["buyer"]["address"],
+        email=config["buyer"]["email"],
+        phone=config["buyer"]["phone"],
+        cell_phone=config["buyer"]["cell_phone"],
+        city=config["buyer"]["city"],
     )
 
+    if "models" not in config:
+        raise ValueError("Models information is missing from the configuration")
+
     models = []
-    for i in range(number_of_models):
-        model = Model(name=f"Model_{i}", width=1000, height=1000)
+    for i, model_data in enumerate(config["models"]):
 
-        profiles = dict()
-        for p_idx in range(number_of_profiles):
-            profile = Profile(brand="Brand", system="System", code=f"PELLEGRINO_PROF_{p_idx}")
+        name = model_data["name"] if "name" in model_data else f"Model_{i}"
+        model = Model(name=name, width=model_data["width"], height=model_data["height"])
 
-            for k in range(number_of_cuts):
-                cut = Cut(length=1000, angleL=90, angleR=90, height=1)
+        if "profiles" not in model_data:
+            raise ValueError(f"Profiles information is missing from the configuration for model {name}")
+
+        profiles = {}
+        for profile_data in model_data["profiles"]:
+            if "cuts" not in profile_data:
+                raise ValueError(f"Cuts information is missing from the configuration for profile {profile_data['name']}")
+
+            profile = Profile(
+                system=profile_data["system"],
+                code=profile_data["code"],
+                length=profile_data["length"]
+            )
+
+            for cut in profile_data["cuts"]:
+                cut = Cut(
+                    length=cut["length"],
+                    angleL=cut["angle_left"],
+                    angleR=cut["angle_right"],
+                    height=cut["height"]
+                )
                 profile.cuts.append(cut)
 
-            profiles[f"PELLEGRINO_PROF_{p_idx}"] = profile
+            profiles[profile.code] = profile
 
         model.profiles = profiles
+        model.set_translation_strategy(__define_translation_from_order(model))
         models.append(model)
 
-    return Order(buyer=buyer, models=models)
+    return config["bars"], Order(buyer=buyer, models=models)
