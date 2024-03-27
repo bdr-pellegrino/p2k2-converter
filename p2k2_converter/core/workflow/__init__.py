@@ -1,7 +1,8 @@
 from .workflow_strategy import WorkflowStrategy
 from .close import Close
+from .moderna import Moderna
 
-__class_names__ = {Close}
+__class_names__ = {Close, Moderna}
 
 
 def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy:
@@ -20,4 +21,4 @@ def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy
             return workflow(*args, **kwargs)
 
 
-__all__ = ["WorkflowStrategy", "Close", "workflow_for_product"]
+__all__ = ["WorkflowStrategy", "Close", "Moderna", "workflow_for_product"]

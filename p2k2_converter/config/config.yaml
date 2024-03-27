@@ -120,3 +120,15 @@ CLOSE:
       height: 200
       bar-code: "PROFILO SOGLIA"
 
+MODERNA:
+  worksheet: "prod MODERNA"
+  product-column: "C"
+  pieces-column: "D"
+  width-column: "E"
+  height-column: "F"
+  starting-row: 8
+  ending-row: 23
+
+
+
+
