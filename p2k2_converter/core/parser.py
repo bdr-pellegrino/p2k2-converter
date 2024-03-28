@@ -9,6 +9,7 @@ from p2k2_converter.core.workflow import workflow_for_product
 from p2k2_converter.pipeline import Pipeline
 from p2k2_converter.pipeline.branch import Branch, BranchBuilder
 from p2k2_converter.pipeline.source import XlsmSource
+from p2k2_converter.core.utils import profile_name
 
 
 class Parser:
@@ -122,9 +123,10 @@ class Parser:
         profile_cuts = {}
         for model in order.models:
             for profile_code, profile in model.profiles.items():
-                if profile_code not in profile_cuts:
-                    profile_cuts[profile_code] = []
-                profile_cuts[profile_code] += [cut.length for cut in profile.cuts]
+                name = profile_name(model, profile_code)
+                if name not in profile_cuts:
+                    profile_cuts[name] = []
+                profile_cuts[name] += [cut.length for cut in profile.cuts]
 
         global_config = self.__config_file["GLOBALS"]
         bars_worksheet = self.__workbook[self.__config_file["GLOBALS"]["available-bar-worksheet"]]
@@ -132,7 +134,6 @@ class Parser:
                               f"{global_config['pieces-column']}{global_config['ending-row-bar']}"
 
         global_bars_used = Counter()
-
         profile_bars = {}
         for profile_code, cuts in profile_cuts.items():
             total_length = sum(cuts)

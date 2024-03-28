@@ -1,6 +1,7 @@
-from .workflow_strategy import WorkflowStrategy
-from .close import Close
-from .moderna import Moderna
+from p2k2_converter.core.workflow.workflow_strategy import WorkflowStrategy
+from p2k2_converter.core.workflow.workflow import Workflow
+from p2k2_converter.core.workflow.close import Close
+from p2k2_converter.core.workflow.moderna import Moderna
 
 __class_names__ = {Close, Moderna}
 
@@ -21,4 +22,4 @@ def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy
             return workflow(*args, **kwargs)
 
 
-__all__ = ["WorkflowStrategy", "Close", "Moderna", "workflow_for_product"]
+__all__ = ["WorkflowStrategy", "Workflow", "Close", "Moderna", "workflow_for_product"]

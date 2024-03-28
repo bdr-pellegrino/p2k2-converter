@@ -16,10 +16,10 @@ class TestCloseWorkflow(unittest.TestCase):
         }
 
         with open(self.__test_files["config_file"], "r") as file:
-            self.__profile_config = yaml.safe_load(file)
+            self.__profile_configuration = yaml.safe_load(file)
 
-        self.__close_workflow = Close(row=8, config_file=self.__profile_config)
-        self.__profile_config = {
+        self.__close_workflow = Close(row=8, config_file=self.__profile_configuration)
+        self.__expected_configuration = {
             "PROFILO DOGA": {
                 "cuts_quantity": 5,
                 "cuts_length": 741,
@@ -100,10 +100,10 @@ class TestCloseWorkflow(unittest.TestCase):
                 *self.__close_workflow.model_definition(src, None)
             )
 
-            profiles = list(self.__profile_config.keys())
+            profiles = list(self.__expected_configuration.keys())
             for code in model.profiles:
                 self.assertIn(code, profiles)
-                del self.__profile_config[code]
+                del self.__expected_configuration[code]
                 checked_profiles.append(code)
 
             self.assertEqual(checked_profiles, profiles)
@@ -118,15 +118,19 @@ class TestCloseWorkflow(unittest.TestCase):
                 )
             )
 
-            for profile_name in self.__profile_config:
-                profile_configuration = self.__profile_config[profile_name]
+            for profile_name in self.__expected_configuration:
+                profile_configuration = self.__expected_configuration[profile_name]
                 cuts = model.profiles[profile_name].cuts
 
                 self.assertEqual(len(cuts), profile_configuration["cuts_quantity"])
 
                 cut_length = profile_configuration["cuts_length"]
+                angle_left = profile_configuration["l_angle"]
+                angle_right = profile_configuration["r_angle"]
                 for cut in cuts:
                     self.assertEqual(cut.length, cut_length)
+                    self.assertEqual(cut.angleL, angle_left)
+                    self.assertEqual(cut.angleR, angle_right)
 
     def test_machining_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])
@@ -140,8 +144,8 @@ class TestCloseWorkflow(unittest.TestCase):
                 )
             )
 
-        for profile_name in self.__profile_config:
-            profile_configuration = self.__profile_config[profile_name]
+        for profile_name in self.__expected_configuration:
+            profile_configuration = self.__expected_configuration[profile_name]
             profile = model.profiles[profile_name]
             machinings = profile.machinings
             if "machinings" in profile_configuration:
@@ -170,9 +174,10 @@ class TestCloseWorkflow(unittest.TestCase):
                 )
             )
         for name, cuts in model.translate().items():
-            self.assertEqual(len(cuts), self.__profile_config[name]["cuts_quantity"])
+            name = name.replace(f"{model.name}_", "").strip()
+            self.assertEqual(len(cuts), self.__expected_configuration[name]["cuts_quantity"])
 
             for i, cut in enumerate(cuts):
                 if cut.machinings:
                     for machining in cut.machinings.machining:
-                        self.assertIn(i, self.__profile_config[name]["machinings"][machining.wcode][1])
+                        self.assertIn(i, self.__expected_configuration[name]["machinings"][machining.wcode][1])

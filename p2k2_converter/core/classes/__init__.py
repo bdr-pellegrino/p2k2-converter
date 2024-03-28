@@ -1,4 +1,4 @@
-from .core_classes import (
+from p2k2_converter.core.classes.core_classes import (
     Buyer,
     ModelOptional,
     Machining,

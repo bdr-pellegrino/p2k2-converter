@@ -1,7 +1,7 @@
 from typing import Callable, TypeVar
 from p2k2_converter.pipeline.branch import Branch
 from p2k2_converter.pipeline.step import BaseStep
-from p2k2_converter.utils import Sentence
+from p2k2_converter.core.utils import Sentence
 
 T = TypeVar("T")
 Q = TypeVar("Q")

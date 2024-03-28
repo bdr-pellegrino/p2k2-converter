@@ -54,6 +54,28 @@ class TranslatorTest(unittest.TestCase):
                             ],
                         }
                     ]
+                },
+                {
+                    "name": "MOD",
+                    "width": 99.9,
+                    "height": 100,
+                    "profiles": [
+                        {
+                            "system": "TEST",
+                            "code": "PROFILE_2",
+                            "length": 100,
+                            "height": 100,
+                            "cuts": [
+                                {
+                                    "length": 3000,
+                                    "height": 100,
+                                    "angle_left": 90,
+                                    "angle_right": 90
+
+                                },
+                            ],
+                        }
+                    ]
                 }
             ]
         }

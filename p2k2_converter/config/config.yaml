@@ -129,6 +129,67 @@ MODERNA:
   starting-row: 8
   ending-row: 23
 
+  profiles:
+    - code: "PROFILO DOGA"
+      brand: "PELLEGRINO"
+      system: "MODERNA"
+      quantity-column: "CI"
+      length-column: "CJ"
+      command-verse: "CP"
+      left-angle-cut: 0
+      right-angle-cut: 0
+      height: 200
+      bar-code: "PROFILO DOGA"
+
+    - code: "CERNIERA TUBOLARE"
+      brand: "PELLEGRINO"
+      system: "MODERNA"
+      quantity-column: "CR"
+      length-column: "CS"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "CERNIERA TUBOLARE"
+
+    - code: "CERNIERA APERTA"
+      brand: "PELLEGRINO"
+      system: "MODERNA"
+      quantity-column: "EL"
+      length-column: "EM"
+      left-angle-cut: 0
+      right-angle-cut: 0
+      height: 200
+      bar-code: "CERNIERA APERTA"
+
+    - code: "PROFILO GANCIO\\UNCINO"
+      brand: "PELLEGRINO"
+      system: "MODERNA"
+      quantity-column: "EO"
+      length-column: "EM"
+      left-angle-cut: 0
+      right-angle-cut: 0
+      height: 200
+      bar-code: "PROFILO GANCIO\\UNCINO"
+
+    - code: "H"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "ER"
+      length-column: "ES"
+      left-angle-cut: 0
+      right-angle-cut: 0
+      height: 200
+      bar-code: "H"
+
+    - code: "TENUTA LATERALE"
+      brand: "PELLEGRINO"
+      system: "CLOSE"
+      quantity-column: "EU"
+      length-column: "EX"
+      left-angle-cut: 0
+      right-angle-cut: 0
+      height: 200
+      bar-code: "TENUTA LATERALE"
 
 
 
