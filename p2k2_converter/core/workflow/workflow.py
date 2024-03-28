@@ -1,6 +1,8 @@
 from abc import ABC
-from p2k2_converter.core.classes import Model, Profile, Cut
+from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from p2k2_converter.core.workflow import WorkflowStrategy
+import re
+import logging
 
 
 class Workflow(WorkflowStrategy, ABC):
@@ -91,3 +93,63 @@ class Workflow(WorkflowStrategy, ABC):
             target_profile.length = sum(cut.length for cut in target_profile.cuts)
         return [workbook, model]
 
+    def get_machinings_for_profile(self, product_worksheet, profile, filter_index=None):
+        """
+        Return the list of the machining for a profile
+        Args:
+            product_worksheet: The worksheet with the information to gather.
+            profile: The profile associated to the machings.
+            filter_index: a function for filtering the values of the machinings.
+
+        Returns:
+            A list of Machining class
+        """
+
+        output = []
+        if "machinings" in profile:
+            for machining in profile["machinings"]:
+                code = machining["code"]
+                if 'starting-column' and 'ending-column' in machining:
+                    starting_position = f"{machining['starting-column']}{self._cell_row}"
+                    ending_position = f"{machining['ending-column']}{self._cell_row}"
+                    cell_data = product_worksheet[f"{starting_position}:{ending_position}"]
+
+                    cell_values = [
+                       cell.value for hole_position in cell_data
+                       for index, cell in enumerate(hole_position)
+                       if filter_index(index, code) and cell.value
+                    ]
+
+                    for value in sorted(cell_values):
+                        if not value:
+                            continue
+
+                        if type(value) == str:
+                            match = re.search(r'\b\d+,\d+\b', value)
+                            if match:
+                                value = float(match.group().replace(',', '.'))
+                        output.append(Machining(code, value))
+                    else:
+                        message = f"Configuration for {code} machining doesn't comprehend starting and ending position"
+                        logging.warning(message)
+                        output.append(Machining(code, 0))
+
+        return output
+
+    def machining_definition(self, workbook, model):
+        """
+        Configure and add the cuts to be applied to the Close product.
+
+        Args:
+            workbook: An open Workbook instance use for extracting the data.
+            model: The model created in the model_definition step
+
+        Returns:
+            A tuple containing the Workbook and the created model. These object will be used in the next steps
+        """
+        product_worksheet = workbook[self._model_config["worksheet"]]
+        for profile in self._model_config["profiles"]:
+            machining_list = self.get_machinings_for_profile(product_worksheet, profile)
+            for machining in machining_list:
+                model.profiles[profile["code"]].machinings.append(machining)
+        return [workbook, model]

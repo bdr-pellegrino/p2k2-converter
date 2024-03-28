@@ -53,13 +53,6 @@ class TestModernaWorkflow(unittest.TestCase):
                 "cuts_length": 813,
                 "l_angle": 0,
                 "r_angle": 0,
-            },
-
-            "TENUTA LATERALE": {
-                "cuts_quantity": 0,
-                "cuts_length": 823,
-                "l_angle": 0,
-                "r_angle": 0,
             }
         }
 
@@ -114,5 +107,32 @@ class TestModernaWorkflow(unittest.TestCase):
                     self.assertEqual(cut.angleL, angle_left)
                     self.assertEqual(cut.angleR, angle_right)
 
+    def test_machining_definition(self):
+        source = XlsmSource(self.__test_files["product_worksheet"])
+
+        with source.open() as src:
+            _, model = self.__moderna_workflow.machining_definition(
+                *self.__moderna_workflow.cuts_definition(
+                    *self.__moderna_workflow.profiles_definition(
+                        *self.__moderna_workflow.model_definition(src, None)
+                    )
+                )
+            )
+
+        for profile_name in self.__expected_configuration:
+            profile_configuration = self.__expected_configuration[profile_name]
+            profile = model.profiles[profile_name]
+            machinings = profile.machinings
+            if "machinings" in profile_configuration:
+
+                codes = list(profile_configuration["machinings"].keys())
+                current_codes = sorted(set(machining.code for machining in machinings))
+
+                self.assertEqual(current_codes, codes)
+
+                for code, machining_configuration in profile_configuration["machinings"].items():
+                    offsets = list(machining_configuration[0])
+                    current_offsets = [machining.offset for machining in machinings if machining.code == code]
+                    self.assertEqual(current_offsets, offsets)
 
 

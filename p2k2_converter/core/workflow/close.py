@@ -1,6 +1,6 @@
 from typing import List
 from p2k2_converter.core.workflow import Workflow
-from p2k2_converter.core.classes import Model, Cut, Machining
+from p2k2_converter.core.classes import Model, Machining
 from p2k2_converter.p2k2 import CutBuilder
 from p2k2_converter.core.utils import profile_name, configure_cuts_for_profile
 from openpyxl import Workbook
@@ -12,7 +12,7 @@ class Close(Workflow):
     def __init__(self, row: int, config_file: dict):
         super().__init__(row, config_file, "CLOSE")
 
-    def machining_definition(self, workbook, model) -> [Workbook, Model]:
+    def machining_definition(self, workbook, model):
         """
         Configure and add the cuts to be applied to the Close product.
 
@@ -23,31 +23,14 @@ class Close(Workflow):
         Returns:
             A tuple containing the Workbook and the created model. These object will be used in the next steps
         """
+        def filter_function(index, code):
+            return index % 2 == 0 if code == "CERNIERA FORI ANTA" else True
+
         product_worksheet = workbook[self._model_config["worksheet"]]
-
         for profile in self._model_config["profiles"]:
-            if "machinings" in profile:
-                for machining in profile["machinings"]:
-                    code = machining["code"]
-                    starting_position = f"{machining['starting-column']}{self._cell_row}"
-                    ending_position = f"{machining['ending-column']}{self._cell_row}"
-                    cell_data = product_worksheet[f"{starting_position}:{ending_position}"]
-
-                    index_condition = lambda index: index % 2 == 0 if code == "CERNIERA FORI ANTA" else True
-                    cell_values = [cell.value for hole_position in cell_data
-                                   for index, cell in enumerate(hole_position) if index_condition(index) and cell.value]
-
-                    for value in sorted(cell_values):
-                        if not value:
-                            continue
-
-                        if type(value) == str:
-                            match = re.search(r'\b\d+,\d+\b', value)
-                            if match:
-                                value = float(match.group().replace(',', '.'))
-
-                        model.profiles[profile["code"]].machinings.append(Machining(code, value))
-
+            machining_list = self.get_machinings_for_profile(product_worksheet, profile, filter_function)
+            for machining in machining_list:
+                model.profiles[profile["code"]].machinings.append(machining)
         return [workbook, model]
 
     def __apply_labels(self, builders: List[CutBuilder], workbook: Workbook):
@@ -83,6 +66,7 @@ class Close(Workflow):
         Returns:
             A tuple containing the Workbook and the created model. These object will be used in the next steps
         """
+
         def translation():
             output = {}
 
@@ -126,7 +110,6 @@ class Close(Workflow):
             # Handling "MONTANTE SX" and MONTANTE DX profile
             profile_codes = ["MONTANTE SX", "MONTANTE DX"]
             for profile_code in profile_codes:
-
                 profile = model.profiles[profile_code]
                 cuts = profile.cuts
                 default_offset = 1
@@ -159,4 +142,3 @@ class Close(Workflow):
 
         model.set_translation_strategy(translation)
         return [workbook, model]
-
