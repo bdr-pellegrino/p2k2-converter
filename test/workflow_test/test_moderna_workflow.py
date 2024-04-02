@@ -24,7 +24,10 @@ class TestModernaWorkflow(unittest.TestCase):
                 "cuts_quantity": 4,
                 "cuts_length": 806,
                 "l_angle": 0,
-                "r_angle": 0
+                "r_angle": 0,
+                "machinings": {
+                    "FORO DOGA": [tuple(), (0, 3)],
+                }
             },
 
             "CERNIERA TUBOLARE": {
@@ -32,6 +35,9 @@ class TestModernaWorkflow(unittest.TestCase):
                 "cuts_length": 813,
                 "l_angle": 90,
                 "r_angle": 90,
+                "machinings": {
+                    "MACHINING CERNIERA TUBOLARE": [tuple(), tuple([0])],
+                }
             },
 
             "CERNIERA APERTA": {
@@ -39,9 +45,12 @@ class TestModernaWorkflow(unittest.TestCase):
                 "cuts_length": 812.5,
                 "l_angle": 0,
                 "r_angle": 0,
+                "machinings": {
+                    "MACHINING CERNIERA APERTA": [tuple(), tuple([0])],
+                }
             },
 
-            "PROFILO GANCIO\\UNCINO": {
+            "PROFILO GANCIO-UNCINO": {
                 "cuts_quantity": 1,
                 "cuts_length": 812.5,
                 "l_angle": 0,
@@ -53,6 +62,9 @@ class TestModernaWorkflow(unittest.TestCase):
                 "cuts_length": 813,
                 "l_angle": 0,
                 "r_angle": 0,
+                "machinings": {
+                    "MACHINING H": [tuple(), tuple([0])],
+                }
             }
         }
 
@@ -124,15 +136,37 @@ class TestModernaWorkflow(unittest.TestCase):
             profile = model.profiles[profile_name]
             machinings = profile.machinings
             if "machinings" in profile_configuration:
-
                 codes = list(profile_configuration["machinings"].keys())
                 current_codes = sorted(set(machining.code for machining in machinings))
 
                 self.assertEqual(current_codes, codes)
 
                 for code, machining_configuration in profile_configuration["machinings"].items():
-                    offsets = list(machining_configuration[0])
-                    current_offsets = [machining.offset for machining in machinings if machining.code == code]
-                    self.assertEqual(current_offsets, offsets)
+                    if len(machining_configuration) > 0:
+                        offsets = list(machining_configuration[0])
+                        current_offsets = [machining.offset for machining in machinings if machining.code == code]
+                        self.assertEqual(current_offsets, offsets)
 
+    def test_translation_definition(self):
+        source = XlsmSource(self.__test_files["product_worksheet"])
+
+        with source.open() as src:
+            _, model = self.__moderna_workflow.translation_definition(
+                *self.__moderna_workflow.machining_definition(
+                    *self.__moderna_workflow.cuts_definition(
+                        *self.__moderna_workflow.profiles_definition(
+                            *self.__moderna_workflow.model_definition(src, None)
+                        )
+                    )
+                )
+            )
+
+            for name, cuts in model.translate().items():
+                name = name.replace(f"{model.name}_", "").strip()
+                self.assertEqual(len(cuts), self.__expected_configuration[name]["cuts_quantity"])
+
+                for i, cut in enumerate(cuts):
+                    if cut.machinings:
+                        for machining in cut.machinings.machining:
+                            self.assertIn(i, self.__expected_configuration[name]["machinings"][machining.wcode][1])
 

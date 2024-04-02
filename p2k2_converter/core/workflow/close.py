@@ -1,10 +1,9 @@
 from typing import List
 from p2k2_converter.core.workflow import Workflow
-from p2k2_converter.core.classes import Model, Machining
+from p2k2_converter.core.classes import Model
 from p2k2_converter.p2k2 import CutBuilder
 from p2k2_converter.core.utils import profile_name, configure_cuts_for_profile
 from openpyxl import Workbook
-import re
 
 
 class Close(Workflow):
@@ -32,27 +31,6 @@ class Close(Workflow):
             for machining in machining_list:
                 model.profiles[profile["code"]].machinings.append(machining)
         return [workbook, model]
-
-    def __apply_labels(self, builders: List[CutBuilder], workbook: Workbook):
-        """
-        Apply the labels to the cuts.
-
-        Args:
-            builders: The list of cut builders
-            workbook: The workbook instance
-
-        Returns:
-            The list of cut builders with the labels applied
-        """
-        cut_list = []
-        info_worksheet = workbook[self._global_config["info-worksheet"]]
-        for builder in builders:
-            builder.add_label(f"CLOSE ORDER ID {info_worksheet[self._global_config['order-id-position']].value}")
-            builder.add_label(f"CLOSE CLIENT ID {info_worksheet[self._global_config['client-id-position']].value}")
-            builder.add_label(f"ROW {self._cell_row}")
-            cut_list.append(builder)
-
-        return cut_list
 
     def translation_definition(self, workbook, model) -> [Workbook, Model]:
         """
@@ -101,7 +79,7 @@ class Close(Workflow):
                 default_offset = cuts[0].length - default_offset
 
             builders = configure_cuts_for_profile(builders, door_hole_hinge, height, default_offset)
-            builders = self.__apply_labels(builders, workbook)
+            builders = self.apply_labels(builders, workbook)
 
             frame_cutouts = [machining for machining in machinings if machining.code == "FORO SCASSI TELAIO"]
             builders = configure_cuts_for_profile(builders, frame_cutouts, height, 1)
@@ -121,7 +99,7 @@ class Close(Workflow):
                 ]
 
                 builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
-                builders = self.__apply_labels(builders, workbook)
+                builders = self.apply_labels(builders, workbook)
                 output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
 
             # Handling profiles without machinings
@@ -135,7 +113,7 @@ class Close(Workflow):
                     .add_right_cutting_angle(cut.angleR)
                     for cut in cuts
                 ]
-                builders = self.__apply_labels(builders, workbook)
+                builders = self.apply_labels(builders, workbook)
                 output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
 
             return output

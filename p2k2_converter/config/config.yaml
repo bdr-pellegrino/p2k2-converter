@@ -141,10 +141,10 @@ MODERNA:
       height: 200
       bar-code: "PROFILO DOGA"
       machinings:
-        - code: "FORO 1 DOGA SX"
-        - code: "FORO 2 DOGA SX"
-        - code: "FORO 1 DOGA DX"
-        - code: "FORO 2 DOGA DX"
+        - code: "FORO DOGA"
+        - code: "FORO DOGA"
+        - code: "FORO DOGA"
+        - code: "FORO DOGA"
 
     - code: "CERNIERA TUBOLARE"
       brand: "PELLEGRINO"
@@ -156,7 +156,7 @@ MODERNA:
       height: 200
       bar-code: "CERNIERA TUBOLARE"
       machinings:
-        - code: "MACHINING CERNIER TUBOLARE"
+        - code: "MACHINING CERNIERA TUBOLARE"
 
     - code: "CERNIERA APERTA"
       brand: "PELLEGRINO"
@@ -170,7 +170,7 @@ MODERNA:
       machinings:
         - code: "MACHINING CERNIERA APERTA"
 
-    - code: "PROFILO GANCIO\\UNCINO"
+    - code: "PROFILO GANCIO-UNCINO"
       brand: "PELLEGRINO"
       system: "MODERNA"
       quantity-column: "EO"
@@ -178,7 +178,7 @@ MODERNA:
       left-angle-cut: 0
       right-angle-cut: 0
       height: 200
-      bar-code: "PROFILO GANCIO\\UNCINO"
+      bar-code: "PROFILO GANCIO-UNCINO"
 
     - code: "H"
       brand: "PELLEGRINO"

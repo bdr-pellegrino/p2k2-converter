@@ -1,14 +1,21 @@
 from abc import ABC
+from typing import List
+
+from openpyxl.workbook import Workbook
+
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from p2k2_converter.core.workflow import WorkflowStrategy
 import re
 import logging
+
+from p2k2_converter.p2k2 import CutBuilder
 
 
 class Workflow(WorkflowStrategy, ABC):
 
     def __init__(self, row: int, config_file: dict, product_name: str):
         self._cell_row = row
+        self._product_name = product_name
         self._global_config = config_file["GLOBALS"]
         self._model_config = config_file[product_name]
 
@@ -35,7 +42,6 @@ class Workflow(WorkflowStrategy, ABC):
         width = cell_data[2]
         height = cell_data[3]
         return [workbook, Model(name, width, height)]
-        pass
 
     def profiles_definition(self, workbook, model):
         """
@@ -115,8 +121,8 @@ class Workflow(WorkflowStrategy, ABC):
                     cell_data = product_worksheet[f"{starting_position}:{ending_position}"]
 
                     cell_values = [
-                       cell.value for hole_position in cell_data
-                       for index, cell in enumerate(hole_position)
+                       cell.value for position in cell_data
+                       for index, cell in enumerate(position)
                        if filter_index(index, code) and cell.value
                     ]
 
@@ -129,10 +135,10 @@ class Workflow(WorkflowStrategy, ABC):
                             if match:
                                 value = float(match.group().replace(',', '.'))
                         output.append(Machining(code, value))
-                    else:
-                        message = f"Configuration for {code} machining doesn't comprehend starting and ending position"
-                        logging.warning(message)
-                        output.append(Machining(code, 0))
+                else:
+                    message = f"Configuration for {code} machining doesn't comprehend starting and ending position"
+                    logging.warning(message)
+                    output.append(Machining(code, 0))
 
         return output
 
@@ -153,3 +159,24 @@ class Workflow(WorkflowStrategy, ABC):
             for machining in machining_list:
                 model.profiles[profile["code"]].machinings.append(machining)
         return [workbook, model]
+
+    def apply_labels(self, builders: List[CutBuilder], workbook: Workbook):
+        """
+        Apply the labels to the cuts.
+
+        Args:
+            builders: The list of cut builders
+            workbook: The workbook instance
+
+        Returns:
+            The list of cut builders with the labels applied
+        """
+        cut_list = []
+        info_worksheet = workbook[self._global_config["info-worksheet"]]
+        for builder in builders:
+            builder.add_label(f"{self._product_name} ORDER ID {info_worksheet[self._global_config['order-id-position']].value}")
+            builder.add_label(f"{self._product_name} CLIENT ID {info_worksheet[self._global_config['client-id-position']].value}")
+            builder.add_label(f"ROW {self._cell_row}")
+            cut_list.append(builder)
+
+        return cut_list
