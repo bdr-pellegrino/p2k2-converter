@@ -1,8 +1,7 @@
-from typing import List
 from p2k2_converter.core.workflow import Workflow
 from p2k2_converter.core.classes import Model
 from p2k2_converter.p2k2 import CutBuilder
-from p2k2_converter.core.utils import profile_name, configure_cuts_for_profile
+from p2k2_converter.core.utils import configure_cuts_for_profile
 from openpyxl import Workbook
 
 
@@ -84,7 +83,8 @@ class Close(Workflow):
             frame_cutouts = [machining for machining in machinings if machining.code == "FORO SCASSI TELAIO"]
             builders = configure_cuts_for_profile(builders, frame_cutouts, height, 1)
 
-            output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
+            output[profile_code] = [builder.build() for builder in builders]
+
             # Handling "MONTANTE SX" and MONTANTE DX profile
             profile_codes = ["MONTANTE SX", "MONTANTE DX"]
             for profile_code in profile_codes:
@@ -100,7 +100,7 @@ class Close(Workflow):
 
                 builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
                 builders = self.apply_labels(builders, workbook)
-                output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
+                output[profile_code] = [builder.build() for builder in builders]
 
             # Handling profiles without machinings
             profile_codes = ["CANALINO VERTICALE", "CANALINO ORIZZONTALE", "TRAVERSO SUPERIORE", "PROFILO SOGLIA"]
@@ -114,7 +114,7 @@ class Close(Workflow):
                     for cut in cuts
                 ]
                 builders = self.apply_labels(builders, workbook)
-                output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
+                output[profile_code] = [builder.build() for builder in builders]
 
             return output
 

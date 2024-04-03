@@ -6,6 +6,7 @@ from p2k2_converter.p2k2 import CutBuilder
 from p2k2_converter.core.utils.sentence import Sentence
 import re
 
+
 def __machining_application_index(dim: int, machinings: List[Machining], offset: int) -> Dict[int, List[Machining]]:
     """
     Calculate how to distribute the profile machinings to the cuts.
@@ -66,18 +67,4 @@ def configure_cuts_for_profile(builders: List[CutBuilder], machinings: List[Mach
     return cut_list
 
 
-def profile_name(model: Model, profile_code: str) -> str:
-    """
-    Create a string containing the profile name
-
-    Args:
-        model: Model of the profile
-        profile_code: The profile code
-
-    Returns:
-
-    """
-    return f"{model.name}_{profile_code}"
-
-
-__all__ = ["Sentence", "profile_name", "configure_cuts_for_profile"]
+__all__ = ["Sentence", "configure_cuts_for_profile"]

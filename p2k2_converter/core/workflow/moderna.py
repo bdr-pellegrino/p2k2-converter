@@ -1,4 +1,3 @@
-from p2k2_converter.core.utils import profile_name
 from p2k2_converter.core.workflow import Workflow
 from p2k2_converter.p2k2 import CutBuilder
 
@@ -34,7 +33,7 @@ class Moderna(Workflow):
                 .add_machining(working_code, cut_len - machinings[3].offset)
 
             builders = self.apply_labels(builders, workbook)
-            output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
+            output[profile_code] = [builder.build() for builder in builders]
 
             # Handling "PROFILO GANCIO-UNCINO" profile
             profile_code = "PROFILO GANCIO-UNCINO"
@@ -48,7 +47,7 @@ class Moderna(Workflow):
                 for cut in cuts
             ]
             builders = self.apply_labels(builders, workbook)
-            output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
+            output[profile_code] = [builder.build() for builder in builders]
 
             # Handling "CERNIERA TUBOLARE", "CERNIERA APERTA" and "H" profiles
             profile_codes = ["CERNIERA TUBOLARE", "CERNIERA APERTA", "H"]
@@ -62,7 +61,7 @@ class Moderna(Workflow):
                     for cut in cuts
                 ]
                 builders = self.apply_labels(builders, workbook)
-                output[profile_name(model, profile_code)] = [builder.build() for builder in builders]
+                output[profile_code] = [builder.build() for builder in builders]
 
             return output
 

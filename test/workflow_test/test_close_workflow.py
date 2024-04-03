@@ -174,9 +174,7 @@ class TestCloseWorkflow(unittest.TestCase):
                 )
             )
         for name, cuts in model.translate().items():
-            name = name.replace(f"{model.name}_", "").strip()
             self.assertEqual(len(cuts), self.__expected_configuration[name]["cuts_quantity"])
-
             for i, cut in enumerate(cuts):
                 if cut.machinings:
                     for machining in cut.machinings.machining:

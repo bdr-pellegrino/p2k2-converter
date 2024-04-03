@@ -26,7 +26,7 @@ class TestModernaWorkflow(unittest.TestCase):
                 "l_angle": 0,
                 "r_angle": 0,
                 "machinings": {
-                    "FORO DOGA": [tuple(), (0, 3)],
+                    "FORO DOGA": [(0, 0, 0, 0), (0, 3)],
                 }
             },
 
@@ -36,7 +36,7 @@ class TestModernaWorkflow(unittest.TestCase):
                 "l_angle": 90,
                 "r_angle": 90,
                 "machinings": {
-                    "MACHINING CERNIERA TUBOLARE": [tuple(), tuple([0])],
+                    "MACHINING CERNIERA TUBOLARE": [tuple([0]), tuple([0])],
                 }
             },
 
@@ -46,7 +46,7 @@ class TestModernaWorkflow(unittest.TestCase):
                 "l_angle": 0,
                 "r_angle": 0,
                 "machinings": {
-                    "MACHINING CERNIERA APERTA": [tuple(), tuple([0])],
+                    "MACHINING CERNIERA APERTA": [tuple([0]), tuple([0])],
                 }
             },
 
@@ -63,7 +63,7 @@ class TestModernaWorkflow(unittest.TestCase):
                 "l_angle": 0,
                 "r_angle": 0,
                 "machinings": {
-                    "MACHINING H": [tuple(), tuple([0])],
+                    "MACHINING H": [tuple([0]), tuple([0])],
                 }
             }
         }
@@ -162,9 +162,7 @@ class TestModernaWorkflow(unittest.TestCase):
             )
 
             for name, cuts in model.translate().items():
-                name = name.replace(f"{model.name}_", "").strip()
                 self.assertEqual(len(cuts), self.__expected_configuration[name]["cuts_quantity"])
-
                 for i, cut in enumerate(cuts):
                     if cut.machinings:
                         for machining in cut.machinings.machining:

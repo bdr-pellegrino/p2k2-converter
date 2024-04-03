@@ -9,7 +9,6 @@ from p2k2_converter.core.workflow import workflow_for_product
 from p2k2_converter.pipeline import Pipeline
 from p2k2_converter.pipeline.branch import Branch, BranchBuilder
 from p2k2_converter.pipeline.source import XlsmSource
-from p2k2_converter.core.utils import profile_name
 
 
 class Parser:
@@ -107,7 +106,7 @@ class Parser:
 
         return Buyer(full_name=full_name, email=email, phone=phone, cell_phone=cell_phone, address=address, city=city)
 
-    def __calculate_bars_for_order(self, order: Order) -> Dict[str, Tuple[Tuple[int, int], ...]]:
+    def __calculate_bars_for_order(self, order: Order) -> Dict[str, Dict[str, Tuple[Tuple[int, int], ...]]]:
         """
         Calculate the number of bars needed for the order in input.
         The function will read the values from the table in the "available-bar-worksheet" worksheet inside the excell
@@ -120,13 +119,15 @@ class Parser:
             A dictionary where each key is a profile code and each value is a tuple of tuples in which each one contains
             the length of the bar and the number of bars needed.
         """
-        profile_cuts = {}
+
+        model_profile_cuts = {}
         for model in order.models:
+            profile_cuts = {}
             for profile_code, profile in model.profiles.items():
-                name = profile_name(model, profile_code)
-                if name not in profile_cuts:
-                    profile_cuts[name] = []
-                profile_cuts[name] += [cut.length for cut in profile.cuts]
+                if profile_code not in profile_cuts:
+                    profile_cuts[profile_code] = []
+                profile_cuts[profile_code] += [cut.length for cut in profile.cuts]
+            model_profile_cuts[model.name] = profile_cuts
 
         global_config = self.__config_file["GLOBALS"]
         bars_worksheet = self.__workbook[self.__config_file["GLOBALS"]["available-bar-worksheet"]]
@@ -134,33 +135,38 @@ class Parser:
                               f"{global_config['pieces-column']}{global_config['ending-row-bar']}"
 
         global_bars_used = Counter()
-        profile_bars = {}
-        for profile_code, cuts in profile_cuts.items():
-            total_length = sum(cuts)
-            bars = []
-            for row in bars_worksheet[configuration_range]:
-                bar_length, available_bars = row[0].value, row[1].value
-                if bar_length is None or available_bars is None or available_bars == 0:
-                    continue
-                while total_length > 0 and available_bars > global_bars_used[bar_length]:
-                    pieces_used = min((total_length // bar_length) + 1, available_bars - global_bars_used[bar_length])
-                    total_length -= pieces_used * bar_length
-                    bars.append((bar_length, pieces_used))
-                    global_bars_used[bar_length] += pieces_used  # increase the global count of bars used
+        model_profile_bars = {}
 
-                if total_length <= 0:
-                    break
+        for model_name, profile_cuts in model_profile_cuts.items():
+            profile_bars = {}
+            for profile_code, cuts in profile_cuts.items():
+                total_length = sum(cuts)
+                bars = []
+                for row in bars_worksheet[configuration_range]:
+                    bar_length, available_bars = row[0].value, row[1].value
+                    if bar_length is None or available_bars is None or available_bars == 0:
+                        continue
+                    while total_length > 0 and available_bars > global_bars_used[bar_length]:
+                        pieces_used = min((total_length // bar_length) + 1, available_bars - global_bars_used[bar_length])
+                        total_length -= pieces_used * bar_length
+                        bars.append((bar_length, int(pieces_used)))
+                        global_bars_used[bar_length] += pieces_used  # increase the global count of bars used
 
-            if total_length > 0:
-                default_bar_length = global_config["default-bar-length"]
-                pieces_used = (total_length // default_bar_length) + 1
-                bars.append((default_bar_length, pieces_used))
+                    if total_length <= 0:
+                        break
 
-            profile_bars[profile_code] = tuple(bars)
+                if total_length > 0:
+                    default_bar_length = global_config["default-bar-length"]
+                    pieces_used = (total_length // default_bar_length) + 1
+                    bars.append((default_bar_length, pieces_used))
 
-        return profile_bars
+                profile_bars[profile_code] = tuple(bars)
 
-    def parse(self) -> Tuple[Dict[str, Tuple[Tuple[int, int], ...]], Order]:
+            model_profile_bars[model_name] = profile_bars
+
+        return model_profile_bars
+
+    def parse(self) -> Tuple[Dict[str, Dict[str, Tuple[Tuple[int, int], ...]]], Order]:
         """
         Executes the parse of the given excell file in input. This will extract the products from the configured
         input worksheet, build the workflow pipeline and executes it returning the order.

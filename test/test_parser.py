@@ -19,6 +19,11 @@ class ParserTest(unittest.TestCase):
             },
             "models": [
                 {
+                    "name": "MODERNA",
+                    "width": 100,
+                    "height": 80,
+                },
+                {
                     "name": "CLOSE",
                     "width": 99.9,
                     "height": 100,
@@ -50,9 +55,10 @@ class ParserTest(unittest.TestCase):
 
     def test_bars(self):
         total_bar_length = 0
-        for bars in self.__bars.values():
-            for bar in bars:
-                total_bar_length += bar[0] * bar[1]
+        for configs in self.__bars.values():
+            for bar_config in configs.values():
+                for bar_len, bar_qty in bar_config:
+                    total_bar_length += bar_len * bar_qty
 
         total_bar_length = 0
         for model in self.__order.models:

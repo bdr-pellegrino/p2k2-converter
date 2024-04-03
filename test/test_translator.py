@@ -10,7 +10,9 @@ class TranslatorTest(unittest.TestCase):
     def setUpClass(cls):
         order_data = {
             "bars": {
-                "PROFILE": ((3000, 1), (4000, 1))
+                "CLOSE": {
+                    "PROFILE": ((3000, 1), (4000, 1))
+                }
             },
             "buyer": {
                 "full_name": "Giovanni Antonioni",
@@ -54,28 +56,6 @@ class TranslatorTest(unittest.TestCase):
                             ],
                         }
                     ]
-                },
-                {
-                    "name": "MOD",
-                    "width": 99.9,
-                    "height": 100,
-                    "profiles": [
-                        {
-                            "system": "TEST",
-                            "code": "PROFILE_2",
-                            "length": 100,
-                            "height": 100,
-                            "cuts": [
-                                {
-                                    "length": 3000,
-                                    "height": 100,
-                                    "angle_left": 90,
-                                    "angle_right": 90
-
-                                },
-                            ],
-                        }
-                    ]
                 }
             ]
         }
@@ -83,7 +63,7 @@ class TranslatorTest(unittest.TestCase):
         cls.__output = p2k2_translation(cls.__available_bars, cls.__order)
 
     def test_check_cut_distribution(self):
-        bars = self.__available_bars["PROFILE"]
+        bars = self.__available_bars["CLOSE"]["PROFILE"]
         cuts = self.__order.models[0].translate()["PROFILE"]
         allocations = optimize_cut_distribution(bars, cuts)
 
@@ -98,10 +78,11 @@ class TranslatorTest(unittest.TestCase):
 
     def test_check_output_cuts(self):
         bars_created = self.__output.body.bar
-        allocations = optimize_cut_distribution(self.__available_bars["PROFILE"],
+        allocations = optimize_cut_distribution(self.__available_bars["CLOSE"]["PROFILE"],
                                                 self.__order.models[0].translate()["PROFILE"])
+
         for bar in bars_created:
-            bar_cuts = [max(cut.il, cut.ol)for cut in bar.cut]
+            bar_cuts = [max(cut.il, cut.ol) for cut in bar.cut]
             allocation_cuts = [max(cut.il, cut.ol) for cut in allocations[bar.len]]
             self.assertCountEqual(bar_cuts, allocation_cuts)
 

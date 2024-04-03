@@ -22,7 +22,7 @@ def optimize_cut_distribution(available_bars, cuts,
     cuts_used = {}
     for i in range(len(cuts)):
         for j, (bar_length, num_bars) in enumerate(available_bars):
-            for k in range(num_bars):
+            for k in range(int(num_bars)):
                 cuts_used[i, j, k] = solver.BoolVar('Cut_%i_in_Bar_%i_%i' % (i, j, k))
 
     # Constraints:
@@ -30,18 +30,17 @@ def optimize_cut_distribution(available_bars, cuts,
     #   2. The sum of the cuts used in each bar is less than or equal to the length of the bar
     for i in range(len(cuts)):
         solver.Add(sum(cuts_used[i, j, k] for j, (bar_length, num_bars) in enumerate(available_bars) for k in
-                       range(num_bars)) <= 1)
+                       range(int(num_bars))) <= 1)
 
     for j, (bar_length, num_bars) in enumerate(available_bars):
-        for k in range(num_bars):
+        for k in range(int(num_bars)):
             bar_cuts_length = [max(cuts[i].ol, cuts[i].il) for i in range(len(cuts))]
-            total_length = sum(bar_cuts_length)
             solver.Add(sum(cuts_used[i, j, k] * bar_cuts_length[i] for i in range(len(cuts))) <= bar_length)
 
     # Objective: Maximize the number of cuts used
     total_cuts_used = sum(cuts_used[i, j, k] for i in range(len(cuts))
                           for j, (bar_length, num_bars) in enumerate(available_bars)
-                          for k in range(num_bars))
+                          for k in range(int(num_bars)))
 
     solver.Maximize(total_cuts_used)
     status = solver.Solve()
@@ -50,7 +49,7 @@ def optimize_cut_distribution(available_bars, cuts,
         bar_cuts_map = {}
         for i in range(len(cuts)):
             for j, (bar_length, num_bars) in enumerate(available_bars):
-                for k in range(num_bars):
+                for k in range(int(num_bars)):
                     if cuts_used[i, j, k].solution_value() > 0:
                         if bar_length not in bar_cuts_map:
                             bar_cuts_map[bar_length] = []
@@ -61,7 +60,7 @@ def optimize_cut_distribution(available_bars, cuts,
         raise Exception("Can't find a distribution for the cuts.")
 
 
-def p2k2_translation(available_bars: Dict[str, Tuple[Tuple[int, int], ...]], order) -> Job:
+def p2k2_translation(available_bars: Dict[str, Dict[str, Tuple[Tuple[int, int], ...]]], order) -> Job:
     """
     Translate the order to the P2K2 format.
     Args:
@@ -85,17 +84,18 @@ def p2k2_translation(available_bars: Dict[str, Tuple[Tuple[int, int], ...]], ord
             else:
                 cuts_for_profile[profile_name] += cuts
 
-    for profile_name, bars in available_bars.items():
-        profile = next((model.profiles[profile_name] for model in order.models if profile_name in model.profiles), None)
-        if profile is None:
-            raise Exception(f"Profile {profile_name} not found in the order.")
+    for model in order.models:
+        for profile_name, bars in available_bars[model.name].items():
+            profile = next((model.profiles[profile_name] for model in order.models if profile_name in model.profiles), None)
+            if profile is None:
+                raise Exception(f"Profile {profile_name} not found in the order.")
 
-        allocations = optimize_cut_distribution(bars, cuts_for_profile[profile_name])
-        for bar_length, cuts in allocations.items():
-            bar_builder = BarBuilder(brand=profile.brand, system=profile.system, profile_code=profile.code)
-            bar_builder.add_length(bar_length)
-            bar_builder.add_cuts(cuts)
-            output_bars.append(bar_builder.build())
+            allocations = optimize_cut_distribution(bars, cuts_for_profile[profile_name])
+            for bar_length, cuts in allocations.items():
+                bar_builder = BarBuilder(brand=profile.brand, system=profile.system, profile_code=profile.code)
+                bar_builder.add_length(bar_length)
+                bar_builder.add_cuts(cuts)
+                output_bars.append(bar_builder.build())
 
     job_builder = JobBuilder()
     job_builder.add_bars(output_bars)
