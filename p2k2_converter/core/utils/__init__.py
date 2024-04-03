@@ -1,10 +1,8 @@
 from typing import List, Dict
-from openpyxl.workbook import Workbook
 from p2k2_converter.p2k2.classes import Machining as P2k2Machining
-from p2k2_converter.core.classes import Model, Machining
+from p2k2_converter.core.classes import Machining
 from p2k2_converter.p2k2 import CutBuilder
 from p2k2_converter.core.utils.sentence import Sentence
-import re
 
 
 def __machining_application_index(dim: int, machinings: List[Machining], offset: int) -> Dict[int, List[Machining]]:

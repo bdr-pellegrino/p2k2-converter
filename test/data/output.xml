@@ -57,28 +57,6 @@
           <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
         </MACHININGS>
       </CUT>
-      <CUT>
-        <ANGL>90</ANGL>
-        <ANGR>90</ANGR>
-        <IL>951</IL>
-        <OL>951</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
-          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
-        </MACHININGS>
-      </CUT>
-      <CUT>
-        <ANGL>90</ANGL>
-        <ANGR>90</ANGR>
-        <IL>951</IL>
-        <OL>951</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
     </BAR>
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
@@ -136,7 +114,7 @@
     </BAR>
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
-      <SYST>CLOSE</SYST>
+      <SYST>MODERNA</SYST>
       <CODE>H</CODE>
       <DICL>STD</DICL>
       <DOCL>STD</DOCL>
@@ -154,56 +132,12 @@
     </BAR>
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
-      <SYST>MODERNA</SYST>
+      <SYST>CLOSE</SYST>
       <CODE>PROFILO DOGA</CODE>
       <DICL>STD</DICL>
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO DOGA" OFFSET="0"/>
-          <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
-        </MACHININGS>
-      </CUT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO DOGA" OFFSET="0"/>
-          <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
-        </MACHININGS>
-      </CUT>
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
@@ -211,7 +145,7 @@
         <OL>951</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
+        <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
           <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
@@ -224,7 +158,42 @@
         <OL>951</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
+        <LBL>ROW 11</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>951</IL>
+        <OL>951</OL>
+        <LBL>CLOSE ORDER ID None</LBL>
+        <LBL>CLOSE CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
+          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>951</IL>
+        <OL>951</OL>
+        <LBL>CLOSE ORDER ID None</LBL>
+        <LBL>CLOSE CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
+          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>951</IL>
+        <OL>951</OL>
+        <LBL>CLOSE ORDER ID None</LBL>
+        <LBL>CLOSE CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
       </CUT>
     </BAR>
     <BAR>
@@ -235,15 +204,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>970</IL>
-        <OL>970</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
@@ -262,24 +222,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
@@ -314,20 +256,6 @@
         <OL>1000</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-        </MACHININGS>
-      </CUT>
-      <CUT>
-        <ANGL>90</ANGL>
-        <ANGR>45</ANGR>
-        <IL>1000</IL>
-        <OL>1000</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
@@ -351,15 +279,6 @@
         <OL>999</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>90</ANGR>
-        <IL>999</IL>
-        <OL>999</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
       </CUT>
     </BAR>
@@ -371,20 +290,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>1000</IL>
-        <OL>1000</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-        </MACHININGS>
-      </CUT>
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
@@ -415,70 +320,17 @@
         <OL>999</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>90</ANGL>
-        <ANGR>90</ANGR>
-        <IL>999</IL>
-        <OL>999</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
       </CUT>
     </BAR>
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
-      <SYST>MODERNA</SYST>
+      <SYST>CLOSE</SYST>
       <CODE>PROFILO DOGA</CODE>
       <DICL>STD</DICL>
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO DOGA" OFFSET="0"/>
-          <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
-        </MACHININGS>
-      </CUT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
-        <LBL>MODERNA ORDER ID None</LBL>
-        <LBL>MODERNA CLIENT ID None</LBL>
-        <LBL>ROW 8</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO DOGA" OFFSET="0"/>
-          <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
-        </MACHININGS>
-      </CUT>
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
@@ -486,7 +338,7 @@
         <OL>951</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
+        <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
           <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
@@ -499,7 +351,42 @@
         <OL>951</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
+        <LBL>ROW 11</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>951</IL>
+        <OL>951</OL>
+        <LBL>CLOSE ORDER ID None</LBL>
+        <LBL>CLOSE CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
+          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>951</IL>
+        <OL>951</OL>
+        <LBL>CLOSE ORDER ID None</LBL>
+        <LBL>CLOSE CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
+          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>951</IL>
+        <OL>951</OL>
+        <LBL>CLOSE ORDER ID None</LBL>
+        <LBL>CLOSE CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
       </CUT>
     </BAR>
     <BAR>
@@ -510,15 +397,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>970</IL>
-        <OL>970</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
@@ -537,24 +415,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
@@ -589,20 +449,6 @@
         <OL>1000</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-        </MACHININGS>
-      </CUT>
-      <CUT>
-        <ANGL>90</ANGL>
-        <ANGR>45</ANGR>
-        <IL>1000</IL>
-        <OL>1000</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
@@ -619,15 +465,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>90</ANGR>
-        <IL>999</IL>
-        <OL>999</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>90</ANGR>
@@ -653,20 +490,6 @@
         <OL>1000</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-          <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
-        </MACHININGS>
-      </CUT>
-      <CUT>
-        <ANGL>45</ANGL>
-        <ANGR>45</ANGR>
-        <IL>1000</IL>
-        <OL>1000</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="FORO FISSAGGIO" OFFSET="1"/>
@@ -683,15 +506,6 @@
       <DOCL>STD</DOCL>
       <LEN>6000</LEN>
       <MLT>1</MLT>
-      <CUT>
-        <ANGL>90</ANGL>
-        <ANGR>90</ANGR>
-        <IL>999</IL>
-        <OL>999</OL>
-        <LBL>CLOSE ORDER ID None</LBL>
-        <LBL>CLOSE CLIENT ID None</LBL>
-        <LBL>ROW 10</LBL>
-      </CUT>
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>

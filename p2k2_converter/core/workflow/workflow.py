@@ -1,14 +1,11 @@
 from abc import ABC
 from typing import List
-
+from p2k2_converter.p2k2 import CutBuilder
 from openpyxl.workbook import Workbook
-
 from p2k2_converter.core.classes import Model, Profile, Cut, Machining
 from p2k2_converter.core.workflow import WorkflowStrategy
 import re
 import logging
-
-from p2k2_converter.p2k2 import CutBuilder
 
 
 class Workflow(WorkflowStrategy, ABC):

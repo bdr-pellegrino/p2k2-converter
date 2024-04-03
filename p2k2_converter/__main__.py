@@ -33,7 +33,6 @@ job = p2k2_translation(*order)
 
 config = SerializerConfig(pretty_print=True)
 serializer = XmlSerializer(config=config)
-print(serializer.render(job))
 
 
 output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"

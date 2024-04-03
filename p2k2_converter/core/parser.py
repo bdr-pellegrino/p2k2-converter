@@ -6,8 +6,7 @@ from collections import Counter
 from typing import List, Tuple, Dict
 from p2k2_converter.core.classes import Order, Buyer
 from p2k2_converter.core.workflow import workflow_for_product
-from p2k2_converter.pipeline import Pipeline
-from p2k2_converter.pipeline.branch import Branch, BranchBuilder
+from p2k2_converter.pipeline.branch import Branch
 from p2k2_converter.pipeline.source import XlsmSource
 
 
@@ -23,6 +22,7 @@ class Parser:
             logging.error(f"Error: {e}")
             raise
 
+        from p2k2_converter.pipeline import Pipeline
         self.__workflow_pipeline = Pipeline(source=XlsmSource(str(self.__workbook_path)))
         with open(config_file, "r") as file:
             self.__config_file = yaml.safe_load(file)
@@ -38,6 +38,7 @@ class Parser:
             Return a branch containing a preconfigured workflow for the product in input.
 
         """
+        from p2k2_converter.pipeline.branch import BranchBuilder
         args = (row_number, self.__config_file)
         strategy = workflow_for_product(product, *args)
         builder = BranchBuilder(f"{product}_WORKFLOW_{row_number}")
@@ -186,8 +187,6 @@ class Parser:
         order = Order(buyer=self.__get_buyer_information())
         for model in self.__workflow_pipeline.get_branches_result():
             order.models.append(model)
-
-        self.__calculate_bars_for_order(order)
 
         return self.__calculate_bars_for_order(order), order
 

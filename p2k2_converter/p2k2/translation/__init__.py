@@ -1,8 +1,8 @@
 import logging
 from typing import Dict, Tuple
 from ortools.linear_solver import pywraplp
-from .. import BarBuilder, JobBuilder
-from ..classes import Job
+from p2k2_converter.p2k2 import BarBuilder, JobBuilder
+from p2k2_converter.p2k2.classes import Job
 
 
 def optimize_cut_distribution(available_bars, cuts,
@@ -78,19 +78,28 @@ def p2k2_translation(available_bars: Dict[str, Dict[str, Tuple[Tuple[int, int], 
     for model in order.models:
         translation = model.translate()
 
+        profiles = {}
         for profile_name, cuts in translation.items():
-            if profile_name not in cuts_for_profile:
-                cuts_for_profile[profile_name] = cuts
+            if profile_name not in profiles:
+                profiles[profile_name] = cuts
             else:
-                cuts_for_profile[profile_name] += cuts
+                profiles[profile_name] += cuts
+
+        cuts_for_profile[model.name] = profiles
 
     for model in order.models:
         for profile_name, bars in available_bars[model.name].items():
-            profile = next((model.profiles[profile_name] for model in order.models if profile_name in model.profiles), None)
+            profile = next(
+                (
+                    order_model.profiles[profile_name] for order_model in order.models
+                    if profile_name in model.profiles and model.name == order_model.name
+                ),
+                None
+            )
             if profile is None:
                 raise Exception(f"Profile {profile_name} not found in the order.")
 
-            allocations = optimize_cut_distribution(bars, cuts_for_profile[profile_name])
+            allocations = optimize_cut_distribution(bars, cuts_for_profile[model.name][profile_name])
             for bar_length, cuts in allocations.items():
                 bar_builder = BarBuilder(brand=profile.brand, system=profile.system, profile_code=profile.code)
                 bar_builder.add_length(bar_length)

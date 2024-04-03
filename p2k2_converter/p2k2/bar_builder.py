@@ -1,5 +1,4 @@
 from typing import List
-
 from p2k2_converter.p2k2.classes import Cut, Sfrido, Bar
 
 

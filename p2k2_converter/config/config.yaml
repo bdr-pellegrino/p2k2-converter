@@ -182,7 +182,7 @@ MODERNA:
 
     - code: "H"
       brand: "PELLEGRINO"
-      system: "CLOSE"
+      system: "MODERNA"
       quantity-column: "ER"
       length-column: "ES"
       left-angle-cut: 0

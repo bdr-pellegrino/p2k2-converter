@@ -1,7 +1,6 @@
 from contextlib import contextmanager
 from openpyxl import load_workbook
 from openpyxl.workbook import Workbook
-from openpyxl.utils.exceptions import InvalidFileException
 from .base_source import BaseSource
 
 
