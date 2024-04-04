@@ -151,6 +151,7 @@ MODERNA:
       system: "MODERNA"
       quantity-column: "CR"
       length-column: "CS"
+      in-stock-column: "CQ"
       left-angle-cut: 90
       right-angle-cut: 90
       height: 200
@@ -163,6 +164,7 @@ MODERNA:
       system: "MODERNA"
       quantity-column: "EL"
       length-column: "EM"
+      in-stock-column: "CU"
       left-angle-cut: 0
       right-angle-cut: 0
       height: 200
@@ -175,6 +177,7 @@ MODERNA:
       system: "MODERNA"
       quantity-column: "EO"
       length-column: "EM"
+      in-stock-column: "EN"
       left-angle-cut: 0
       right-angle-cut: 0
       height: 200
@@ -185,6 +188,7 @@ MODERNA:
       system: "MODERNA"
       quantity-column: "ER"
       length-column: "ES"
+      in-stock-column: "EQ"
       left-angle-cut: 0
       right-angle-cut: 0
       height: 200

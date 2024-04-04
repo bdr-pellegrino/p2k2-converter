@@ -1,3 +1,4 @@
+from p2k2_converter.core.classes import Profile
 from p2k2_converter.core.workflow import Workflow
 from p2k2_converter.p2k2 import CutBuilder
 
@@ -52,6 +53,9 @@ class Moderna(Workflow):
             # Handling "CERNIERA TUBOLARE", "CERNIERA APERTA" and "H" profiles
             profile_codes = ["CERNIERA TUBOLARE", "CERNIERA APERTA", "H"]
             for profile_code in profile_codes:
+                if profile_code not in model.profiles:
+                    continue
+
                 profile = model.profiles[profile_code]
                 cuts = profile.cuts
                 builders = [

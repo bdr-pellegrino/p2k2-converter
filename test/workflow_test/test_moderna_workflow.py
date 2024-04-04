@@ -4,7 +4,7 @@ import yaml
 from p2k2_converter.core.workflow import Moderna
 from p2k2_converter.pipeline.source import XlsmSource
 from p2k2_converter.config import DEFAULT_CONFIG
-from test.data.moderna import WORKSHEET
+from test.data.moderna import WORKSHEET, IN_STOCK_FLAG_WORKSHEET
 
 
 class TestModernaWorkflow(unittest.TestCase):
@@ -12,6 +12,7 @@ class TestModernaWorkflow(unittest.TestCase):
     def setUp(self):
         self.__test_files = {
             "product_worksheet": WORKSHEET,
+            "in_stock_worksheet": IN_STOCK_FLAG_WORKSHEET,
             "config_file": DEFAULT_CONFIG
         }
 
@@ -19,6 +20,7 @@ class TestModernaWorkflow(unittest.TestCase):
             self.__profile_config = yaml.safe_load(file)
 
         self.__moderna_workflow = Moderna(row=8, config_file=self.__profile_config)
+
         self.__expected_configuration = {
             "PROFILO DOGA": {
                 "cuts_quantity": 4,
@@ -94,6 +96,20 @@ class TestModernaWorkflow(unittest.TestCase):
                 checked_profiles.append(code)
 
             self.assertEqual(checked_profiles, profiles)
+
+    def test_ignore_in_stock_profiles(self):
+        source = XlsmSource(self.__test_files["in_stock_worksheet"])
+        with source.open() as src:
+            _, model = self.__moderna_workflow.profiles_definition(
+                *self.__moderna_workflow.model_definition(src, None)
+            )
+
+            self.assertIn("PROFILO DOGA", model.profiles)
+            self.assertIn("PROFILO GANCIO-UNCINO", model.profiles)
+            self.assertNotIn("CERNIERA TUBOLARE", model.profiles)
+            self.assertNotIn("CERNIERA APERTA", model.profiles)
+            self.assertNotIn("H", model.profiles)
+
 
     def test_cuts_definition(self):
         source = XlsmSource(self.__test_files["product_worksheet"])

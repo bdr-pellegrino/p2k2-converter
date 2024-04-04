@@ -54,6 +54,11 @@ class Workflow(WorkflowStrategy, ABC):
         product_worksheet = workbook[self._model_config["worksheet"]]
 
         for profile in self._model_config["profiles"]:
+            if "in-stock-column" in profile:
+                in_stock = product_worksheet[f"{profile['in-stock-column']}{self._cell_row}"].value
+                if in_stock is not None:
+                    continue
+
             profile_class = Profile(brand=profile["brand"], system=profile["system"], code=profile["code"])
 
             if "refinement-column" in profile:
@@ -79,6 +84,9 @@ class Workflow(WorkflowStrategy, ABC):
         product_worksheet = workbook[self._model_config["worksheet"]]
 
         for profile in self._model_config["profiles"]:
+            if profile["code"] not in model.profiles:
+                continue
+
             target_profile = model.profiles[profile["code"]]
             quantity_position = f"{profile['quantity-column']}{self._cell_row}"
             length_position = f"{profile['length-column']}{self._cell_row}"
@@ -152,6 +160,8 @@ class Workflow(WorkflowStrategy, ABC):
         """
         product_worksheet = workbook[self._model_config["worksheet"]]
         for profile in self._model_config["profiles"]:
+            if profile["code"] not in model.profiles:
+                continue
             machining_list = self.get_machinings_for_profile(product_worksheet, profile)
             for machining in machining_list:
                 model.profiles[profile["code"]].machinings.append(machining)

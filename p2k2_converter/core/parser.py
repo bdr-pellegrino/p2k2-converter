@@ -151,7 +151,7 @@ class Parser:
                         pieces_used = min((total_length // bar_length) + 1, available_bars - global_bars_used[bar_length])
                         total_length -= pieces_used * bar_length
                         bars.append((bar_length, int(pieces_used)))
-                        global_bars_used[bar_length] += pieces_used  # increase the global count of bars used
+                        global_bars_used[bar_length] += pieces_used
 
                     if total_length <= 0:
                         break
