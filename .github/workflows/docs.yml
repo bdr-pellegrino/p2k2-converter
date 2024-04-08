@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate Documentation
         run: |
-          pdoc --html p2k2_converter --output-dir html
+          pdoc --html p2k2_converter --output-dir html --force
 
       - name: Deploy Documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
