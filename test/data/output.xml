@@ -74,6 +74,9 @@
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="MACHINING CERNIERA APERTA" OFFSET="1"/>
+        </MACHININGS>
       </CUT>
     </BAR>
     <BAR>
@@ -110,6 +113,9 @@
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="MACHINING H" OFFSET="1"/>
+        </MACHININGS>
       </CUT>
     </BAR>
     <BAR>

@@ -1,4 +1,5 @@
 from p2k2_converter.core.classes import Profile
+from p2k2_converter.core.utils import configure_cuts_for_profile
 from p2k2_converter.core.workflow import Workflow
 from p2k2_converter.p2k2 import CutBuilder
 
@@ -64,6 +65,8 @@ class Moderna(Workflow):
                     .add_right_cutting_angle(cut.angleR)
                     for cut in cuts
                 ]
+                default_offset = 1
+                builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
                 builders = self.apply_labels(builders, workbook)
                 output[profile_code] = [builder.build() for builder in builders]
 
