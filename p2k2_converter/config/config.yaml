@@ -136,8 +136,8 @@ MODERNA:
       quantity-column: "CI"
       length-column: "CJ"
       command-verse: "CP"
-      left-angle-cut: 0
-      right-angle-cut: 0
+      left-angle-cut: 90
+      right-angle-cut: 90
       height: 200
       bar-code: "PROFILO DOGA"
       machinings:
@@ -165,8 +165,8 @@ MODERNA:
       quantity-column: "EL"
       length-column: "EM"
       in-stock-column: "CU"
-      left-angle-cut: 0
-      right-angle-cut: 0
+      left-angle-cut: 90
+      right-angle-cut: 90
       height: 200
       bar-code: "CERNIERA APERTA"
       machinings:
@@ -178,8 +178,8 @@ MODERNA:
       quantity-column: "EO"
       length-column: "EM"
       in-stock-column: "EN"
-      left-angle-cut: 0
-      right-angle-cut: 0
+      left-angle-cut: 90
+      right-angle-cut: 90
       height: 200
       bar-code: "PROFILO GANCIO-UNCINO"
 
@@ -189,8 +189,8 @@ MODERNA:
       quantity-column: "ER"
       length-column: "ES"
       in-stock-column: "EQ"
-      left-angle-cut: 0
-      right-angle-cut: 0
+      left-angle-cut: 90
+      right-angle-cut: 90
       height: 200
       bar-code: "H"
       machinings:

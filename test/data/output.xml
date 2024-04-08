@@ -14,8 +14,8 @@
       <LEN>3000</LEN>
       <MLT>1</MLT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>806</IL>
         <OL>806</OL>
         <LBL>MODERNA ORDER ID None</LBL>
@@ -27,8 +27,8 @@
         </MACHININGS>
       </CUT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>806</IL>
         <OL>806</OL>
         <LBL>MODERNA ORDER ID None</LBL>
@@ -36,8 +36,8 @@
         <LBL>ROW 8</LBL>
       </CUT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>806</IL>
         <OL>806</OL>
         <LBL>MODERNA ORDER ID None</LBL>
@@ -45,8 +45,8 @@
         <LBL>ROW 8</LBL>
       </CUT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>806</IL>
         <OL>806</OL>
         <LBL>MODERNA ORDER ID None</LBL>
@@ -67,8 +67,8 @@
       <LEN>2000</LEN>
       <MLT>1</MLT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>812.5</IL>
         <OL>812.5</OL>
         <LBL>MODERNA ORDER ID None</LBL>
@@ -85,8 +85,8 @@
       <LEN>6000</LEN>
       <MLT>1</MLT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>812.5</IL>
         <OL>812.5</OL>
         <LBL>MODERNA ORDER ID None</LBL>
@@ -103,8 +103,8 @@
       <LEN>6000</LEN>
       <MLT>1</MLT>
       <CUT>
-        <ANGL>0</ANGL>
-        <ANGR>0</ANGR>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
         <IL>813</IL>
         <OL>813</OL>
         <LBL>MODERNA ORDER ID None</LBL>
