@@ -1,4 +1,0 @@
-openpyxl
-xsdata[cli,lxml,soap]
-pyyaml
-ortools
