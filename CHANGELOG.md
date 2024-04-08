@@ -1,3 +1,64 @@
+## [1.1.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.0.0...1.1.0) (2024-04-08)
+
+
+### Features
+
+* add cut definition ([366a622](https://github.com/bdr-pellegrino/p2k2_converter/commit/366a62291878c04e8ea728f8b69a0f2adeceed8e))
+* add labels to the cuts ([0ec7123](https://github.com/bdr-pellegrino/p2k2_converter/commit/0ec7123cce8552a742fc4b1a5e29021e59973060))
+* add machining definition to moderna product ([1468898](https://github.com/bdr-pellegrino/p2k2_converter/commit/14688986c8593eefcf2f8e65151b3c378fe714ee))
+* add model definition for moderna workflow ([56ba797](https://github.com/bdr-pellegrino/p2k2_converter/commit/56ba797e62f3e2c71508c033b9a64ae20eaf6422))
+* add optimal distribution of cuts on the available bars ([9e9b258](https://github.com/bdr-pellegrino/p2k2_converter/commit/9e9b25870420c3e4310a876b3df8635bd6d04648))
+* add translation function to moderna ([3ce8744](https://github.com/bdr-pellegrino/p2k2_converter/commit/3ce8744b809cbfa39ca714f9257cf0425d036b54))
+* add verse field to machining class ([72de9da](https://github.com/bdr-pellegrino/p2k2_converter/commit/72de9da4beb48fa30efb754ae61292c57e374e89))
+* **close:** refactor machining definition ([0514fd3](https://github.com/bdr-pellegrino/p2k2_converter/commit/0514fd37bd379e4e8e4188275020a979d119b835))
+* define TranslationUnit class ([4c39e8e](https://github.com/bdr-pellegrino/p2k2_converter/commit/4c39e8ef80e1b02b12d95ef3c52100ea046bf0dc))
+* insert translation step in the workflow strategy ([6726c0d](https://github.com/bdr-pellegrino/p2k2_converter/commit/6726c0d8fe4ce0c3e79bea55aa5c270ab13c6caa))
+* Is possible to specify a column in the excel file that signal if some  pieces are already in stock ([f43e242](https://github.com/bdr-pellegrino/p2k2_converter/commit/f43e24254e14aaa3ad1b159fde0f8084f791d289))
+* parser will now determine the number of bars needed for producing the order ([cc6375e](https://github.com/bdr-pellegrino/p2k2_converter/commit/cc6375ee8b607f1ead84bab7af990cb4c2b3e77e))
+
+
+### Bug Fixes
+
+* change angle cut of moderna products from 0 to 90 ([f1c1b74](https://github.com/bdr-pellegrino/p2k2_converter/commit/f1c1b749bc65e22f09360e112f6448d219238aa4))
+* fix bar labeling ([92891c5](https://github.com/bdr-pellegrino/p2k2_converter/commit/92891c58dd66da9de9121a687a1b6965ecc75411))
+* fix creation of bars in the translation phase ([d6bad8d](https://github.com/bdr-pellegrino/p2k2_converter/commit/d6bad8dcd46a51e5a086c0c48b957dc5275e6066))
+* fixed allocation of machining in cuts ([468f6c3](https://github.com/bdr-pellegrino/p2k2_converter/commit/468f6c314cf405eec0c8ed323c481b69d39abc8e))
+
+
+### Documentation
+
+* add comments on builder classes ([bde84bf](https://github.com/bdr-pellegrino/p2k2_converter/commit/bde84bfc3fafd790f465430496ba0217576e390b))
+
+
+### Tests
+
+* refactor close_workflow tests ([797d0ff](https://github.com/bdr-pellegrino/p2k2_converter/commit/797d0fffa66976b1ad370d909403936589285cb2))
+* refactor of test_machining_definition in close workflow test ([50694ef](https://github.com/bdr-pellegrino/p2k2_converter/commit/50694efb461da3d17e473f6d3490d64dc11a8a9d))
+* refactor tests ([8a35bd8](https://github.com/bdr-pellegrino/p2k2_converter/commit/8a35bd8f5aa7d23abc3db1991c12d4d356648f3e))
+* separate test_parse in test_check_user_information and test_models in parser test file ([3b41625](https://github.com/bdr-pellegrino/p2k2_converter/commit/3b416254dddbf008aa1dd2e43f5a79be588b57c6))
+
+
+### Build and continuous integration
+
+* disable @semantic-release/exec ([3d29341](https://github.com/bdr-pellegrino/p2k2_converter/commit/3d29341884ec7e5672ee5f2797ab9016845f6afb))
+
+
+### General maintenance
+
+* prepare test files for moderna files ([775ac32](https://github.com/bdr-pellegrino/p2k2_converter/commit/775ac32c616582ae397442004df45501708d3ade))
+
+
+### Refactoring
+
+* automatic workflow class instantiation ([3264109](https://github.com/bdr-pellegrino/p2k2_converter/commit/3264109023883e84d7693f6a71fd05a732ec49d1))
+* change data structure for passing bar quantity and length ([dd673af](https://github.com/bdr-pellegrino/p2k2_converter/commit/dd673af22a0a6d35f75f293de173938b6b518415))
+* handling refinement ([ef8e00d](https://github.com/bdr-pellegrino/p2k2_converter/commit/ef8e00d3f2d34f73aaeed41e828488be140f1452))
+* include moderna machinings for "CERNIERA TUBOLARE", "CERNIERA APERTA" and "H" ([1c5c238](https://github.com/bdr-pellegrino/p2k2_converter/commit/1c5c238a9c64261302a9592c166b2c5feb20a888))
+* moving translation functions from translator class to __init__.py in translation package ([51e7f34](https://github.com/bdr-pellegrino/p2k2_converter/commit/51e7f341d50aa559838332203e3414f13aabcd51))
+* refactor p2k2_translation method ([a0c8832](https://github.com/bdr-pellegrino/p2k2_converter/commit/a0c88323a8ce8f93f8b74e5a1dc2a7b100ec3568))
+* refactoring of the translation_definition method in close workflow file ([a466c1f](https://github.com/bdr-pellegrino/p2k2_converter/commit/a466c1fb442ac966b655ac54bf4b8447b8c58c6d))
+* remove Bar classes from core_classes package ([204c4c2](https://github.com/bdr-pellegrino/p2k2_converter/commit/204c4c2f2484b50d05ab242f0617d1394531a53b))
+
 ## 1.0.0 (2024-02-20)
 
 
