@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir -p ./docs
           pdoc --html p2k2_converter --force
-          cp -r ./p2k2_converter ./docs
+          cp -r ./html/p2k2_converter ./docs
 
       - name: ls
         run: ls -la ./docs
