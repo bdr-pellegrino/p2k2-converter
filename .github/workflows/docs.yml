@@ -30,6 +30,7 @@ jobs:
       - name: ls1
         run: |
           ls -la ./docs
+          ls -la ./docs/p2k2_converter
 
       - name: Deploy Documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
