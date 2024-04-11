@@ -67,14 +67,14 @@ class TranslatorTest(unittest.TestCase):
         cuts = self.__order.models[0].translate()["PROFILE"]
         allocations = optimize_cut_distribution(bars, cuts)
 
-        self.assertEqual([3000, 1000], [max(cut.il, cut.ol) for cut in allocations[4000]])
-        self.assertEqual([2000], [max(cut.il, cut.ol) for cut in allocations[3000]])
+        self.assertEqual([3000, 1000], [max(cut.il, cut.ol) for cut in allocations[4000][0]])
+        self.assertEqual([2000], [max(cut.il, cut.ol) for cut in allocations[3000][0]])
 
     def test_check_output_bars(self):
         bars_created = self.__output.body.bar
         self.assertEqual(len(bars_created), 2)
-        self.assertEqual(bars_created[0].len, 4000)
-        self.assertEqual(bars_created[1].len, 3000)
+        self.assertEqual(bars_created[0].len, 3000)
+        self.assertEqual(bars_created[1].len, 4000)
 
     def test_check_output_cuts(self):
         bars_created = self.__output.body.bar
@@ -83,7 +83,7 @@ class TranslatorTest(unittest.TestCase):
 
         for bar in bars_created:
             bar_cuts = [max(cut.il, cut.ol) for cut in bar.cut]
-            allocation_cuts = [max(cut.il, cut.ol) for cut in allocations[bar.len]]
+            allocation_cuts = [max(cut.il, cut.ol) for allocation in allocations[bar.len] for cut in allocation]
             self.assertCountEqual(bar_cuts, allocation_cuts)
 
 

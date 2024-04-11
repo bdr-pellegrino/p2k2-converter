@@ -125,10 +125,10 @@ class Parser:
         for model in order.models:
             profile_cuts = {}
             for profile_code, profile in model.profiles.items():
-                if profile_code not in profile_cuts:
-                    profile_cuts[profile_code] = []
-                profile_cuts[profile_code] += [cut.length for cut in profile.cuts]
-            model_profile_cuts[model.name] = profile_cuts
+                profile_cuts.setdefault(profile_code, []).extend(cut.length for cut in profile.cuts)
+            model_profile_cuts.setdefault(model.name, {}).update(
+                {key: model_profile_cuts[model.name].get(key, []) + profile_cuts[key] for key in profile_cuts.keys()}
+            )
 
         global_config = self.__config_file["GLOBALS"]
         bars_worksheet = self.__workbook[self.__config_file["GLOBALS"]["available-bar-worksheet"]]
@@ -164,7 +164,6 @@ class Parser:
                 profile_bars[profile_code] = tuple(bars)
 
             model_profile_bars[model_name] = profile_bars
-
         return model_profile_bars
 
     def parse(self) -> Tuple[Dict[str, Dict[str, Tuple[Tuple[int, int], ...]]], Order]:
