@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.1.0...1.1.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* solve bar allocation bug ([864ce89](https://github.com/bdr-pellegrino/p2k2_converter/commit/864ce892d75767a34349a4b873a5f688e4c35697))
+
 ## [1.1.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.0.0...1.1.0) (2024-04-08)
 
 
