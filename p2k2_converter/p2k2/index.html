@@ -1,0 +1,2101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>p2k2_converter.p2k2 API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>p2k2_converter.p2k2</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from p2k2_converter.p2k2.cut_builder import CutBuilder
+from p2k2_converter.p2k2.bar_builder import BarBuilder
+from p2k2_converter.p2k2.job_builder import JobBuilder
+
+__all__ = [&#34;CutBuilder&#34;, &#34;BarBuilder&#34;, &#34;JobBuilder&#34;]</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="p2k2_converter.p2k2.bar_builder" href="bar_builder.html">p2k2_converter.p2k2.bar_builder</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="p2k2_converter.p2k2.classes" href="classes/index.html">p2k2_converter.p2k2.classes</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="p2k2_converter.p2k2.cut_builder" href="cut_builder.html">p2k2_converter.p2k2.cut_builder</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="p2k2_converter.p2k2.job_builder" href="job_builder.html">p2k2_converter.p2k2.job_builder</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt><code class="name"><a title="p2k2_converter.p2k2.translation" href="translation/index.html">p2k2_converter.p2k2.translation</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="p2k2_converter.p2k2.BarBuilder"><code class="flex name class">
+<span>class <span class="ident">BarBuilder</span></span>
+<span>(</span><span>brand: str, system: str, profile_code: str)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BarBuilder:
+
+    def __init__(self, brand: str, system: str, profile_code: str):
+        self.__bars_cut_together = 1
+        self.__height = None
+        self.__off_cut = None
+        self.__remaining_length = None
+        self.__length = None
+        self.__brand = brand
+        self.__system = system
+        self.__profile_code = profile_code
+        self.__cuts = []
+        self.__outer_color = &#34;STD&#34;
+        self.__inner_color = &#34;STD&#34;
+
+    def add_inner_color(self, inner_color: str) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the inner color of the bar
+
+        Args:
+            inner_color: The code of the inner color
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__inner_color = inner_color
+        return self
+
+    def add_outer_color(self, outer_color: str) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the outer color of the bar
+
+        Args:
+            outer_color: the code of the outer color
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__outer_color = outer_color
+        return self
+
+    def add_length(self, length: float) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the length of the used bar
+
+        Args:
+            length: The length of the bar in millimeters
+
+        Returns:
+            The builder instance
+
+        &#34;&#34;&#34;
+        self.__length = length
+        return self
+
+    def add_remaining_length(self, remaining_length: float) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the remaining length of the bar
+
+        Args:
+            remaining_length: The remaining length of the bar in millimeters
+
+        Returns:
+            The builder instance
+
+        &#34;&#34;&#34;
+        self.__remaining_length = remaining_length
+        return self
+
+    def add_height(self, height: int) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the height of the bar
+
+        Args:
+            height: The height of the bar in millimeters
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__height = height
+        return self
+
+    def add_bars_cut_together(self, bars_cut_together: int) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the number of bar that are cut together
+
+        Args:
+            bars_cut_together: The number of bars cuts together, usually 1.
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__bars_cut_together = bars_cut_together
+        return self
+
+    def add_cut(self, cut: Cut) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Add a cut to the bar
+
+        Args:
+            cut: A cut class that should be inserted in the bar
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__cuts.append(cut)
+        return self
+
+    def add_cuts(self, cuts: List[Cut]) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Add a list of cuts to the bar
+
+        Args:
+            cuts: A list of cuts that should be inserted in the bar
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__cuts += cuts
+        return self
+
+    def add_off_cut(self, code: str, trolley: int, slot: int) -&gt; &#39;BarBuilder&#39;:
+        &#34;&#34;&#34;
+        Add an off cut (Sfrido) in the bar
+
+        Args:
+            code: The off cut code
+            trolley: The trolley
+            slot: The slot
+
+        Returns:
+            The builder instance
+        &#34;&#34;&#34;
+        self.__off_cut = Sfrido(code, trolley, slot)
+        return self
+
+    def build(self) -&gt; &#39;Bar&#39;:
+        &#34;&#34;&#34;
+        Build an instance of the bar with the information collected.
+
+        Returns:
+            An instance of a Bar
+
+        &#34;&#34;&#34;
+        if len(self.__cuts) == 0:
+            raise ValueError(&#34;No cuts added to bar&#34;)
+
+        if self.__length is None:
+            raise ValueError(&#34;No length added to bar&#34;)
+
+        return Bar(
+            bran=self.__brand,
+            syst=self.__system,
+            code=self.__profile_code,
+            dicl=self.__inner_color,
+            docl=self.__outer_color,
+            len=self.__length,
+            lenr=self.__remaining_length,
+            h=self.__height,
+            mlt=self.__bars_cut_together,
+            cut=self.__cuts,
+            sfrido=self.__off_cut
+        )</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_bars_cut_together"><code class="name flex">
+<span>def <span class="ident">add_bars_cut_together</span></span>(<span>self, bars_cut_together: int) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the number of bar that are cut together</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bars_cut_together</code></strong></dt>
+<dd>The number of bars cuts together, usually 1.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_bars_cut_together(self, bars_cut_together: int) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the number of bar that are cut together
+
+    Args:
+        bars_cut_together: The number of bars cuts together, usually 1.
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__bars_cut_together = bars_cut_together
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_cut"><code class="name flex">
+<span>def <span class="ident">add_cut</span></span>(<span>self, cut: <a title="p2k2_converter.p2k2.classes.p2k2.Cut" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Cut">Cut</a>) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a cut to the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cut</code></strong></dt>
+<dd>A cut class that should be inserted in the bar</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_cut(self, cut: Cut) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Add a cut to the bar
+
+    Args:
+        cut: A cut class that should be inserted in the bar
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__cuts.append(cut)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_cuts"><code class="name flex">
+<span>def <span class="ident">add_cuts</span></span>(<span>self, cuts: List[<a title="p2k2_converter.p2k2.classes.p2k2.Cut" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Cut">Cut</a>]) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a list of cuts to the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cuts</code></strong></dt>
+<dd>A list of cuts that should be inserted in the bar</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_cuts(self, cuts: List[Cut]) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Add a list of cuts to the bar
+
+    Args:
+        cuts: A list of cuts that should be inserted in the bar
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__cuts += cuts
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_height"><code class="name flex">
+<span>def <span class="ident">add_height</span></span>(<span>self, height: int) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the height of the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>height</code></strong></dt>
+<dd>The height of the bar in millimeters</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_height(self, height: int) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the height of the bar
+
+    Args:
+        height: The height of the bar in millimeters
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__height = height
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_inner_color"><code class="name flex">
+<span>def <span class="ident">add_inner_color</span></span>(<span>self, inner_color: str) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the inner color of the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>inner_color</code></strong></dt>
+<dd>The code of the inner color</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_inner_color(self, inner_color: str) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the inner color of the bar
+
+    Args:
+        inner_color: The code of the inner color
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__inner_color = inner_color
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_length"><code class="name flex">
+<span>def <span class="ident">add_length</span></span>(<span>self, length: float) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the length of the used bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong></dt>
+<dd>The length of the bar in millimeters</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_length(self, length: float) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the length of the used bar
+
+    Args:
+        length: The length of the bar in millimeters
+
+    Returns:
+        The builder instance
+
+    &#34;&#34;&#34;
+    self.__length = length
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_off_cut"><code class="name flex">
+<span>def <span class="ident">add_off_cut</span></span>(<span>self, code: str, trolley: int, slot: int) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add an off cut (Sfrido) in the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>code</code></strong></dt>
+<dd>The off cut code</dd>
+<dt><strong><code>trolley</code></strong></dt>
+<dd>The trolley</dd>
+<dt><strong><code>slot</code></strong></dt>
+<dd>The slot</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_off_cut(self, code: str, trolley: int, slot: int) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Add an off cut (Sfrido) in the bar
+
+    Args:
+        code: The off cut code
+        trolley: The trolley
+        slot: The slot
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__off_cut = Sfrido(code, trolley, slot)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_outer_color"><code class="name flex">
+<span>def <span class="ident">add_outer_color</span></span>(<span>self, outer_color: str) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the outer color of the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>outer_color</code></strong></dt>
+<dd>the code of the outer color</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_outer_color(self, outer_color: str) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the outer color of the bar
+
+    Args:
+        outer_color: the code of the outer color
+
+    Returns:
+        The builder instance
+    &#34;&#34;&#34;
+    self.__outer_color = outer_color
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.add_remaining_length"><code class="name flex">
+<span>def <span class="ident">add_remaining_length</span></span>(<span>self, remaining_length: float) ‑> <a title="p2k2_converter.p2k2.bar_builder.BarBuilder" href="bar_builder.html#p2k2_converter.p2k2.bar_builder.BarBuilder">BarBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the remaining length of the bar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>remaining_length</code></strong></dt>
+<dd>The remaining length of the bar in millimeters</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The builder instance</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_remaining_length(self, remaining_length: float) -&gt; &#39;BarBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the remaining length of the bar
+
+    Args:
+        remaining_length: The remaining length of the bar in millimeters
+
+    Returns:
+        The builder instance
+
+    &#34;&#34;&#34;
+    self.__remaining_length = remaining_length
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.BarBuilder.build"><code class="name flex">
+<span>def <span class="ident">build</span></span>(<span>self) ‑> <a title="p2k2_converter.p2k2.classes.p2k2.Bar" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Bar">Bar</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build an instance of the bar with the information collected.</p>
+<h2 id="returns">Returns</h2>
+<p>An instance of a Bar</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build(self) -&gt; &#39;Bar&#39;:
+    &#34;&#34;&#34;
+    Build an instance of the bar with the information collected.
+
+    Returns:
+        An instance of a Bar
+
+    &#34;&#34;&#34;
+    if len(self.__cuts) == 0:
+        raise ValueError(&#34;No cuts added to bar&#34;)
+
+    if self.__length is None:
+        raise ValueError(&#34;No length added to bar&#34;)
+
+    return Bar(
+        bran=self.__brand,
+        syst=self.__system,
+        code=self.__profile_code,
+        dicl=self.__inner_color,
+        docl=self.__outer_color,
+        len=self.__length,
+        lenr=self.__remaining_length,
+        h=self.__height,
+        mlt=self.__bars_cut_together,
+        cut=self.__cuts,
+        sfrido=self.__off_cut
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder"><code class="flex name class">
+<span>class <span class="ident">CutBuilder</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CutBuilder:
+    def __init__(self):
+        self.__trolley_code = None
+        self.__trolley_slot_code = None
+        self.__stop_code = None
+        self.__area = None
+        self.__bar_code = None
+        self.__exit_number = None
+        self.__square_number = None
+        self.__customer_name = None
+        self.__typology = None
+        self.__order_code = None
+        self.__right_trim_cut_angle = None
+        self.__left_trim_cut_angle = None
+        self.__right_trim_cut_length = None
+        self.__left_trim_cut_length = None
+        self.__inferior_cut_length = None
+        self.__superior_cut_length = None
+        self.__right_beta_cutting_angle = None
+        self.__right_cutting_angle = None
+        self.__left_cutting_angle = None
+        self.__left_beta_cutting_angle = None
+        self.__labels = []
+        self.__machinings = []
+        self.__forbidden_spaces = []
+
+    def add_left_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Insert the left cutting angle
+
+        Args:
+            angle: the measure of the angle using degrees
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__left_cutting_angle = angle
+        return self
+
+    def add_right_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the right cutting angle
+
+        Args:
+            angle: the measure of the angle using degrees
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__right_cutting_angle = angle
+        return self
+
+    def add_right_beta_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the right beta cutting angle
+
+        Args:
+            angle: the measure of the angle using degrees
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__right_beta_cutting_angle = angle
+        return self
+
+    def add_left_beta_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the left beta cutting angle
+
+        Args:
+            angle: the measure of the angle using degrees
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__left_beta_cutting_angle = angle
+        return self
+
+    def add_cut_length(self, length: float) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the length of a cut
+
+        Args:
+            length: the measure of the piece to be cut
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.add_superior_cut_length(length)
+        self.add_inferior_cut_length(length)
+        return self
+
+    def add_superior_cut_length(self, length: float) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the superior cut length of the piece
+
+        Args:
+            length: The superior length of the piece to be cut
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__superior_cut_length = length
+        return self
+
+    def add_inferior_cut_length(self, length: float) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the inferior cut length of the piece
+
+        Args:
+            length: The inferior length of the piece to be cut
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__inferior_cut_length = length
+        return self
+
+    def add_left_trim_cut_length(self, length: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the left trim cut length of the piece
+
+        Args:
+            length: The left trim cut length of the piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__left_trim_cut_length = length
+        return self
+
+    def add_right_trim_cut_length(self, length: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the right trim cut length of the piece
+
+        Args:
+            length: The right trim cut length of the piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__right_trim_cut_length = length
+        return self
+
+    def add_left_trim_cut_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the left trim cut angle of the piece
+
+        Args:
+            angle: The right trim cut angle of the piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__left_trim_cut_angle = angle
+        return self
+
+    def add_right_trim_cut_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the right trim cut angle of the piece
+
+        Args:
+            angle: The right trim cut angle of the piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__right_trim_cut_angle = angle
+        return self
+
+    def add_order_code(self, code: str) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the order code associated with this piece
+
+        Args:
+            code: The code associated with this piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__order_code = code
+        return self
+
+    def add_typology(self, typology: str) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the typology code associated with this piece
+
+        Args:
+            typology: The typology of this piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__typology = typology
+        return self
+
+    def add_customer_name(self, name: str) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the customer name
+
+        Args:
+            name: Name of the customer
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__customer_name = name
+        return self
+
+    def add_square_number(self, number: str) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the square number (&#34;idquadro&#34;) of the piece
+
+        Args:
+            number: The square number
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__square_number = number
+        return self
+
+    def add_bar_code(self, code: str) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the barcode of the piece
+
+        Args:
+            code: the barcode
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__bar_code = code
+        return self
+
+    def add_label(self, label: str) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify a label for this piece.
+        Only four labels are allowed for each piece
+
+        Args:
+            label: The content of the label
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        if len(self.__labels) &lt; 4:
+            self.__labels.append(label)
+        else:
+            raise ValueError(&#34;Max 4 labels allowed&#34;)
+        return self
+
+    def add_machining(self, code: str, offset: float, clamp_near: int = None) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify a machining for this piece.
+
+        Args:
+            code: The machining code
+            offset: The offset where the machining should be applied
+            clamp_near: The clamp near value (default to None)
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__machinings.append(Machining(code, offset, clamp_near))
+        return self
+
+    def add_machining_item(self, machining: Machining):
+        &#34;&#34;&#34;
+        Specify a machining item for this piece.
+
+        Args:
+            machining: The machining to add
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__machinings.append(machining)
+
+    def add_exit(self, exit_number: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the exit for this piece
+
+        Args:
+            exit_number: The exit number of the machine
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__exit_number = exit_number
+        return self
+
+    def add_area(self, area: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the area number for this piece
+
+
+        Args:
+            area: The area number of the piece
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__area = area
+        return self
+
+    def add_stop(self, stop_code: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify a stop code for this piece
+
+        Args:
+            stop_code: The stop code
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__stop_code = stop_code
+        return self
+
+    def add_trolley(self, trolley_code: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify a trolley for the piece
+
+        Args:
+            trolley_code: The specific code of the trolley to use
+
+        Returns:
+            The instance of the builder
+
+        &#34;&#34;&#34;
+        self.__trolley_code = trolley_code
+        return self
+
+    def add_trolley_slot(self, trolley_slot_code: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify the trolley slot
+
+        Args:
+            trolley_slot_code: The trolley slot code
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__trolley_slot_code = trolley_slot_code
+        return self
+
+    def add_forbidden_space(self, start: int, end: int) -&gt; &#39;CutBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify a forbidden space for the piece.
+
+        Args:
+            start: The starting offset of the forbidden space
+            end: The ending offset of the forbidden space
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__forbidden_spaces.append(Forbiddenspace(start, end))
+        return self
+
+    def build(self) -&gt; Cut:
+        &#34;&#34;&#34;
+        Build an instance of the cut with the information collected.
+
+        Returns:
+            An instance of a Cut
+        &#34;&#34;&#34;
+        if self.__left_cutting_angle is None or self.__right_cutting_angle is None:
+            raise ValueError(&#34;Cutting angles are both required for producing a cut&#34;)
+
+        if self.__inferior_cut_length is None or self.__superior_cut_length is None:
+            raise ValueError(&#34;Cutting lengths are both required for producing a cut&#34;)
+
+        if len(self.__machinings) &gt; 0:
+            self.__machinings = Machinings(self.__machinings)
+        else:
+            self.__machinings = None
+
+        return Cut(
+            angl=self.__left_cutting_angle,
+            angr=self.__right_cutting_angle,
+            ab1=self.__left_beta_cutting_angle,
+            ab2=self.__right_beta_cutting_angle,
+            il=self.__inferior_cut_length,
+            ol=self.__superior_cut_length,
+            trml=self.__left_trim_cut_length,
+            trmr=self.__right_trim_cut_length,
+            tal=self.__left_trim_cut_angle,
+            tar=self.__right_trim_cut_angle,
+            orcd=self.__order_code,
+            tina=self.__typology,
+            csna=self.__customer_name,
+            idquadro=self.__square_number,
+            bcod=self.__bar_code,
+            lbl=self.__labels,
+            machinings=self.__machinings,
+            exit=self.__exit_number,
+            area=self.__area,
+            stop=self.__stop_code,
+            trolley=self.__trolley_code,
+            slot=self.__trolley_slot_code,
+            forbiddenspaces=self.__forbidden_spaces
+        )</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_area"><code class="name flex">
+<span>def <span class="ident">add_area</span></span>(<span>self, area: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the area number for this piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>area</code></strong></dt>
+<dd>The area number of the piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_area(self, area: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the area number for this piece
+
+
+    Args:
+        area: The area number of the piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__area = area
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_bar_code"><code class="name flex">
+<span>def <span class="ident">add_bar_code</span></span>(<span>self, code: str) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the barcode of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>code</code></strong></dt>
+<dd>the barcode</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_bar_code(self, code: str) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the barcode of the piece
+
+    Args:
+        code: the barcode
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__bar_code = code
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_customer_name"><code class="name flex">
+<span>def <span class="ident">add_customer_name</span></span>(<span>self, name: str) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the customer name</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>name</code></strong></dt>
+<dd>Name of the customer</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_customer_name(self, name: str) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the customer name
+
+    Args:
+        name: Name of the customer
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__customer_name = name
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_cut_length"><code class="name flex">
+<span>def <span class="ident">add_cut_length</span></span>(<span>self, length: float) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the length of a cut</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong></dt>
+<dd>the measure of the piece to be cut</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_cut_length(self, length: float) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the length of a cut
+
+    Args:
+        length: the measure of the piece to be cut
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.add_superior_cut_length(length)
+    self.add_inferior_cut_length(length)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_exit"><code class="name flex">
+<span>def <span class="ident">add_exit</span></span>(<span>self, exit_number: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the exit for this piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>exit_number</code></strong></dt>
+<dd>The exit number of the machine</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_exit(self, exit_number: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the exit for this piece
+
+    Args:
+        exit_number: The exit number of the machine
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__exit_number = exit_number
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_forbidden_space"><code class="name flex">
+<span>def <span class="ident">add_forbidden_space</span></span>(<span>self, start: int, end: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a forbidden space for the piece.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong></dt>
+<dd>The starting offset of the forbidden space</dd>
+<dt><strong><code>end</code></strong></dt>
+<dd>The ending offset of the forbidden space</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_forbidden_space(self, start: int, end: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify a forbidden space for the piece.
+
+    Args:
+        start: The starting offset of the forbidden space
+        end: The ending offset of the forbidden space
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__forbidden_spaces.append(Forbiddenspace(start, end))
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_inferior_cut_length"><code class="name flex">
+<span>def <span class="ident">add_inferior_cut_length</span></span>(<span>self, length: float) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the inferior cut length of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong></dt>
+<dd>The inferior length of the piece to be cut</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_inferior_cut_length(self, length: float) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the inferior cut length of the piece
+
+    Args:
+        length: The inferior length of the piece to be cut
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__inferior_cut_length = length
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_label"><code class="name flex">
+<span>def <span class="ident">add_label</span></span>(<span>self, label: str) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a label for this piece.
+Only four labels are allowed for each piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>label</code></strong></dt>
+<dd>The content of the label</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_label(self, label: str) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify a label for this piece.
+    Only four labels are allowed for each piece
+
+    Args:
+        label: The content of the label
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    if len(self.__labels) &lt; 4:
+        self.__labels.append(label)
+    else:
+        raise ValueError(&#34;Max 4 labels allowed&#34;)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_left_beta_cutting_angle"><code class="name flex">
+<span>def <span class="ident">add_left_beta_cutting_angle</span></span>(<span>self, angle: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the left beta cutting angle</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>angle</code></strong></dt>
+<dd>the measure of the angle using degrees</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_left_beta_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the left beta cutting angle
+
+    Args:
+        angle: the measure of the angle using degrees
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__left_beta_cutting_angle = angle
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_left_cutting_angle"><code class="name flex">
+<span>def <span class="ident">add_left_cutting_angle</span></span>(<span>self, angle: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Insert the left cutting angle</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>angle</code></strong></dt>
+<dd>the measure of the angle using degrees</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_left_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Insert the left cutting angle
+
+    Args:
+        angle: the measure of the angle using degrees
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__left_cutting_angle = angle
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_left_trim_cut_angle"><code class="name flex">
+<span>def <span class="ident">add_left_trim_cut_angle</span></span>(<span>self, angle: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the left trim cut angle of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>angle</code></strong></dt>
+<dd>The right trim cut angle of the piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_left_trim_cut_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the left trim cut angle of the piece
+
+    Args:
+        angle: The right trim cut angle of the piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__left_trim_cut_angle = angle
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_left_trim_cut_length"><code class="name flex">
+<span>def <span class="ident">add_left_trim_cut_length</span></span>(<span>self, length: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the left trim cut length of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong></dt>
+<dd>The left trim cut length of the piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_left_trim_cut_length(self, length: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the left trim cut length of the piece
+
+    Args:
+        length: The left trim cut length of the piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__left_trim_cut_length = length
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_machining"><code class="name flex">
+<span>def <span class="ident">add_machining</span></span>(<span>self, code: str, offset: float, clamp_near: int = None) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a machining for this piece.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>code</code></strong></dt>
+<dd>The machining code</dd>
+<dt><strong><code>offset</code></strong></dt>
+<dd>The offset where the machining should be applied</dd>
+<dt><strong><code>clamp_near</code></strong></dt>
+<dd>The clamp near value (default to None)</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_machining(self, code: str, offset: float, clamp_near: int = None) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify a machining for this piece.
+
+    Args:
+        code: The machining code
+        offset: The offset where the machining should be applied
+        clamp_near: The clamp near value (default to None)
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__machinings.append(Machining(code, offset, clamp_near))
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_machining_item"><code class="name flex">
+<span>def <span class="ident">add_machining_item</span></span>(<span>self, machining: <a title="p2k2_converter.p2k2.classes.p2k2.Machining" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Machining">Machining</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a machining item for this piece.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>machining</code></strong></dt>
+<dd>The machining to add</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_machining_item(self, machining: Machining):
+    &#34;&#34;&#34;
+    Specify a machining item for this piece.
+
+    Args:
+        machining: The machining to add
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__machinings.append(machining)</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_order_code"><code class="name flex">
+<span>def <span class="ident">add_order_code</span></span>(<span>self, code: str) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the order code associated with this piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>code</code></strong></dt>
+<dd>The code associated with this piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_order_code(self, code: str) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the order code associated with this piece
+
+    Args:
+        code: The code associated with this piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__order_code = code
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_right_beta_cutting_angle"><code class="name flex">
+<span>def <span class="ident">add_right_beta_cutting_angle</span></span>(<span>self, angle: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the right beta cutting angle</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>angle</code></strong></dt>
+<dd>the measure of the angle using degrees</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_right_beta_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the right beta cutting angle
+
+    Args:
+        angle: the measure of the angle using degrees
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__right_beta_cutting_angle = angle
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_right_cutting_angle"><code class="name flex">
+<span>def <span class="ident">add_right_cutting_angle</span></span>(<span>self, angle: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the right cutting angle</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>angle</code></strong></dt>
+<dd>the measure of the angle using degrees</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_right_cutting_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the right cutting angle
+
+    Args:
+        angle: the measure of the angle using degrees
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__right_cutting_angle = angle
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_right_trim_cut_angle"><code class="name flex">
+<span>def <span class="ident">add_right_trim_cut_angle</span></span>(<span>self, angle: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the right trim cut angle of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>angle</code></strong></dt>
+<dd>The right trim cut angle of the piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_right_trim_cut_angle(self, angle: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the right trim cut angle of the piece
+
+    Args:
+        angle: The right trim cut angle of the piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__right_trim_cut_angle = angle
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_right_trim_cut_length"><code class="name flex">
+<span>def <span class="ident">add_right_trim_cut_length</span></span>(<span>self, length: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the right trim cut length of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong></dt>
+<dd>The right trim cut length of the piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_right_trim_cut_length(self, length: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the right trim cut length of the piece
+
+    Args:
+        length: The right trim cut length of the piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__right_trim_cut_length = length
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_square_number"><code class="name flex">
+<span>def <span class="ident">add_square_number</span></span>(<span>self, number: str) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the square number ("idquadro") of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>number</code></strong></dt>
+<dd>The square number</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_square_number(self, number: str) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the square number (&#34;idquadro&#34;) of the piece
+
+    Args:
+        number: The square number
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__square_number = number
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_stop"><code class="name flex">
+<span>def <span class="ident">add_stop</span></span>(<span>self, stop_code: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a stop code for this piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>stop_code</code></strong></dt>
+<dd>The stop code</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_stop(self, stop_code: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify a stop code for this piece
+
+    Args:
+        stop_code: The stop code
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__stop_code = stop_code
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_superior_cut_length"><code class="name flex">
+<span>def <span class="ident">add_superior_cut_length</span></span>(<span>self, length: float) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the superior cut length of the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong></dt>
+<dd>The superior length of the piece to be cut</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_superior_cut_length(self, length: float) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the superior cut length of the piece
+
+    Args:
+        length: The superior length of the piece to be cut
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__superior_cut_length = length
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_trolley"><code class="name flex">
+<span>def <span class="ident">add_trolley</span></span>(<span>self, trolley_code: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a trolley for the piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>trolley_code</code></strong></dt>
+<dd>The specific code of the trolley to use</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_trolley(self, trolley_code: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify a trolley for the piece
+
+    Args:
+        trolley_code: The specific code of the trolley to use
+
+    Returns:
+        The instance of the builder
+
+    &#34;&#34;&#34;
+    self.__trolley_code = trolley_code
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_trolley_slot"><code class="name flex">
+<span>def <span class="ident">add_trolley_slot</span></span>(<span>self, trolley_slot_code: int) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the trolley slot</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>trolley_slot_code</code></strong></dt>
+<dd>The trolley slot code</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_trolley_slot(self, trolley_slot_code: int) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the trolley slot
+
+    Args:
+        trolley_slot_code: The trolley slot code
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__trolley_slot_code = trolley_slot_code
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.add_typology"><code class="name flex">
+<span>def <span class="ident">add_typology</span></span>(<span>self, typology: str) ‑> <a title="p2k2_converter.p2k2.cut_builder.CutBuilder" href="cut_builder.html#p2k2_converter.p2k2.cut_builder.CutBuilder">CutBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify the typology code associated with this piece</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>typology</code></strong></dt>
+<dd>The typology of this piece</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_typology(self, typology: str) -&gt; &#39;CutBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify the typology code associated with this piece
+
+    Args:
+        typology: The typology of this piece
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__typology = typology
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.CutBuilder.build"><code class="name flex">
+<span>def <span class="ident">build</span></span>(<span>self) ‑> <a title="p2k2_converter.p2k2.classes.p2k2.Cut" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Cut">Cut</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build an instance of the cut with the information collected.</p>
+<h2 id="returns">Returns</h2>
+<p>An instance of a Cut</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build(self) -&gt; Cut:
+    &#34;&#34;&#34;
+    Build an instance of the cut with the information collected.
+
+    Returns:
+        An instance of a Cut
+    &#34;&#34;&#34;
+    if self.__left_cutting_angle is None or self.__right_cutting_angle is None:
+        raise ValueError(&#34;Cutting angles are both required for producing a cut&#34;)
+
+    if self.__inferior_cut_length is None or self.__superior_cut_length is None:
+        raise ValueError(&#34;Cutting lengths are both required for producing a cut&#34;)
+
+    if len(self.__machinings) &gt; 0:
+        self.__machinings = Machinings(self.__machinings)
+    else:
+        self.__machinings = None
+
+    return Cut(
+        angl=self.__left_cutting_angle,
+        angr=self.__right_cutting_angle,
+        ab1=self.__left_beta_cutting_angle,
+        ab2=self.__right_beta_cutting_angle,
+        il=self.__inferior_cut_length,
+        ol=self.__superior_cut_length,
+        trml=self.__left_trim_cut_length,
+        trmr=self.__right_trim_cut_length,
+        tal=self.__left_trim_cut_angle,
+        tar=self.__right_trim_cut_angle,
+        orcd=self.__order_code,
+        tina=self.__typology,
+        csna=self.__customer_name,
+        idquadro=self.__square_number,
+        bcod=self.__bar_code,
+        lbl=self.__labels,
+        machinings=self.__machinings,
+        exit=self.__exit_number,
+        area=self.__area,
+        stop=self.__stop_code,
+        trolley=self.__trolley_code,
+        slot=self.__trolley_slot_code,
+        forbiddenspaces=self.__forbidden_spaces
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="p2k2_converter.p2k2.JobBuilder"><code class="flex name class">
+<span>class <span class="ident">JobBuilder</span></span>
+<span>(</span><span>version: <a title="p2k2_converter.p2k2.classes.p2k2.Version" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Version">Version</a> = Version(mj=1, mn=0))</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class JobBuilder:
+    def __init__(self, version: Version = Version(mj=1, mn=0)):
+        self.__version = version
+        self.__bars = []
+        self.__pdat = []
+
+    def add_pdat(self, code: str, internal_color_code: str,
+                 external_color_code: str, bar_quantity: int) -&gt; &#39;JobBuilder&#39;:
+        &#34;&#34;&#34;
+        Specify a PDAT node for the following Job
+
+        Args:
+            code: The profile code
+            internal_color_code: The internal color code
+            external_color_code: The external color code
+            bar_quantity: The quantity of the bar present
+
+        Returns:
+            The instance of the builder
+
+        &#34;&#34;&#34;
+        self.__pdat.append(Pdat(code, internal_color_code, external_color_code, bar_quantity))
+        return self
+
+    def add_bar(self, bar: Bar) -&gt; &#39;JobBuilder&#39;:
+        &#34;&#34;&#34;
+        Add a Bar for the following Job
+
+        Args:
+            bar: The bar to add to the Job
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        self.__bars.append(bar)
+        return self
+
+    def add_bars(self, bars: list[Bar]) -&gt; &#39;JobBuilder&#39;:
+        &#34;&#34;&#34;
+        Add a list of bars in the following Job
+
+        Args:
+            bars: The bar list to add
+
+        Returns:
+            The instance of the builder
+        &#34;&#34;&#34;
+        for bar in bars:
+            self.add_bar(bar)
+        return self
+
+    def build(self) -&gt; Job:
+        &#34;&#34;&#34;
+        Build an instance of the job with the information collected.
+
+        Returns:
+            An instance of a Job
+        &#34;&#34;&#34;
+        if len(self.__bars) == 0:
+            raise ValueError(&#34;No bars added to job&#34;)
+
+        version = self.__version
+        head = Head(self.__pdat) if len(self.__pdat) &gt; 0 else None
+        body = Body(self.__bars)
+        return Job(version, head, body)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="p2k2_converter.p2k2.JobBuilder.add_bar"><code class="name flex">
+<span>def <span class="ident">add_bar</span></span>(<span>self, bar: <a title="p2k2_converter.p2k2.classes.p2k2.Bar" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Bar">Bar</a>) ‑> <a title="p2k2_converter.p2k2.job_builder.JobBuilder" href="job_builder.html#p2k2_converter.p2k2.job_builder.JobBuilder">JobBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a Bar for the following Job</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bar</code></strong></dt>
+<dd>The bar to add to the Job</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_bar(self, bar: Bar) -&gt; &#39;JobBuilder&#39;:
+    &#34;&#34;&#34;
+    Add a Bar for the following Job
+
+    Args:
+        bar: The bar to add to the Job
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    self.__bars.append(bar)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.JobBuilder.add_bars"><code class="name flex">
+<span>def <span class="ident">add_bars</span></span>(<span>self, bars: list[<a title="p2k2_converter.p2k2.classes.p2k2.Bar" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Bar">Bar</a>]) ‑> <a title="p2k2_converter.p2k2.job_builder.JobBuilder" href="job_builder.html#p2k2_converter.p2k2.job_builder.JobBuilder">JobBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a list of bars in the following Job</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bars</code></strong></dt>
+<dd>The bar list to add</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_bars(self, bars: list[Bar]) -&gt; &#39;JobBuilder&#39;:
+    &#34;&#34;&#34;
+    Add a list of bars in the following Job
+
+    Args:
+        bars: The bar list to add
+
+    Returns:
+        The instance of the builder
+    &#34;&#34;&#34;
+    for bar in bars:
+        self.add_bar(bar)
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.JobBuilder.add_pdat"><code class="name flex">
+<span>def <span class="ident">add_pdat</span></span>(<span>self, code: str, internal_color_code: str, external_color_code: str, bar_quantity: int) ‑> <a title="p2k2_converter.p2k2.job_builder.JobBuilder" href="job_builder.html#p2k2_converter.p2k2.job_builder.JobBuilder">JobBuilder</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Specify a PDAT node for the following Job</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>code</code></strong></dt>
+<dd>The profile code</dd>
+<dt><strong><code>internal_color_code</code></strong></dt>
+<dd>The internal color code</dd>
+<dt><strong><code>external_color_code</code></strong></dt>
+<dd>The external color code</dd>
+<dt><strong><code>bar_quantity</code></strong></dt>
+<dd>The quantity of the bar present</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The instance of the builder</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_pdat(self, code: str, internal_color_code: str,
+             external_color_code: str, bar_quantity: int) -&gt; &#39;JobBuilder&#39;:
+    &#34;&#34;&#34;
+    Specify a PDAT node for the following Job
+
+    Args:
+        code: The profile code
+        internal_color_code: The internal color code
+        external_color_code: The external color code
+        bar_quantity: The quantity of the bar present
+
+    Returns:
+        The instance of the builder
+
+    &#34;&#34;&#34;
+    self.__pdat.append(Pdat(code, internal_color_code, external_color_code, bar_quantity))
+    return self</code></pre>
+</details>
+</dd>
+<dt id="p2k2_converter.p2k2.JobBuilder.build"><code class="name flex">
+<span>def <span class="ident">build</span></span>(<span>self) ‑> <a title="p2k2_converter.p2k2.classes.p2k2.Job" href="classes/p2k2.html#p2k2_converter.p2k2.classes.p2k2.Job">Job</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build an instance of the job with the information collected.</p>
+<h2 id="returns">Returns</h2>
+<p>An instance of a Job</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build(self) -&gt; Job:
+    &#34;&#34;&#34;
+    Build an instance of the job with the information collected.
+
+    Returns:
+        An instance of a Job
+    &#34;&#34;&#34;
+    if len(self.__bars) == 0:
+        raise ValueError(&#34;No bars added to job&#34;)
+
+    version = self.__version
+    head = Head(self.__pdat) if len(self.__pdat) &gt; 0 else None
+    body = Body(self.__bars)
+    return Job(version, head, body)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="p2k2_converter" href="../index.html">p2k2_converter</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="p2k2_converter.p2k2.bar_builder" href="bar_builder.html">p2k2_converter.p2k2.bar_builder</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.classes" href="classes/index.html">p2k2_converter.p2k2.classes</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.cut_builder" href="cut_builder.html">p2k2_converter.p2k2.cut_builder</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.job_builder" href="job_builder.html">p2k2_converter.p2k2.job_builder</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.translation" href="translation/index.html">p2k2_converter.p2k2.translation</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="p2k2_converter.p2k2.BarBuilder" href="#p2k2_converter.p2k2.BarBuilder">BarBuilder</a></code></h4>
+<ul class="">
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_bars_cut_together" href="#p2k2_converter.p2k2.BarBuilder.add_bars_cut_together">add_bars_cut_together</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_cut" href="#p2k2_converter.p2k2.BarBuilder.add_cut">add_cut</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_cuts" href="#p2k2_converter.p2k2.BarBuilder.add_cuts">add_cuts</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_height" href="#p2k2_converter.p2k2.BarBuilder.add_height">add_height</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_inner_color" href="#p2k2_converter.p2k2.BarBuilder.add_inner_color">add_inner_color</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_length" href="#p2k2_converter.p2k2.BarBuilder.add_length">add_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_off_cut" href="#p2k2_converter.p2k2.BarBuilder.add_off_cut">add_off_cut</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_outer_color" href="#p2k2_converter.p2k2.BarBuilder.add_outer_color">add_outer_color</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.add_remaining_length" href="#p2k2_converter.p2k2.BarBuilder.add_remaining_length">add_remaining_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.BarBuilder.build" href="#p2k2_converter.p2k2.BarBuilder.build">build</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="p2k2_converter.p2k2.CutBuilder" href="#p2k2_converter.p2k2.CutBuilder">CutBuilder</a></code></h4>
+<ul class="">
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_area" href="#p2k2_converter.p2k2.CutBuilder.add_area">add_area</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_bar_code" href="#p2k2_converter.p2k2.CutBuilder.add_bar_code">add_bar_code</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_customer_name" href="#p2k2_converter.p2k2.CutBuilder.add_customer_name">add_customer_name</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_cut_length" href="#p2k2_converter.p2k2.CutBuilder.add_cut_length">add_cut_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_exit" href="#p2k2_converter.p2k2.CutBuilder.add_exit">add_exit</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_forbidden_space" href="#p2k2_converter.p2k2.CutBuilder.add_forbidden_space">add_forbidden_space</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_inferior_cut_length" href="#p2k2_converter.p2k2.CutBuilder.add_inferior_cut_length">add_inferior_cut_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_label" href="#p2k2_converter.p2k2.CutBuilder.add_label">add_label</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_left_beta_cutting_angle" href="#p2k2_converter.p2k2.CutBuilder.add_left_beta_cutting_angle">add_left_beta_cutting_angle</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_left_cutting_angle" href="#p2k2_converter.p2k2.CutBuilder.add_left_cutting_angle">add_left_cutting_angle</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_left_trim_cut_angle" href="#p2k2_converter.p2k2.CutBuilder.add_left_trim_cut_angle">add_left_trim_cut_angle</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_left_trim_cut_length" href="#p2k2_converter.p2k2.CutBuilder.add_left_trim_cut_length">add_left_trim_cut_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_machining" href="#p2k2_converter.p2k2.CutBuilder.add_machining">add_machining</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_machining_item" href="#p2k2_converter.p2k2.CutBuilder.add_machining_item">add_machining_item</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_order_code" href="#p2k2_converter.p2k2.CutBuilder.add_order_code">add_order_code</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_right_beta_cutting_angle" href="#p2k2_converter.p2k2.CutBuilder.add_right_beta_cutting_angle">add_right_beta_cutting_angle</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_right_cutting_angle" href="#p2k2_converter.p2k2.CutBuilder.add_right_cutting_angle">add_right_cutting_angle</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_right_trim_cut_angle" href="#p2k2_converter.p2k2.CutBuilder.add_right_trim_cut_angle">add_right_trim_cut_angle</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_right_trim_cut_length" href="#p2k2_converter.p2k2.CutBuilder.add_right_trim_cut_length">add_right_trim_cut_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_square_number" href="#p2k2_converter.p2k2.CutBuilder.add_square_number">add_square_number</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_stop" href="#p2k2_converter.p2k2.CutBuilder.add_stop">add_stop</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_superior_cut_length" href="#p2k2_converter.p2k2.CutBuilder.add_superior_cut_length">add_superior_cut_length</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_trolley" href="#p2k2_converter.p2k2.CutBuilder.add_trolley">add_trolley</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_trolley_slot" href="#p2k2_converter.p2k2.CutBuilder.add_trolley_slot">add_trolley_slot</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.add_typology" href="#p2k2_converter.p2k2.CutBuilder.add_typology">add_typology</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.CutBuilder.build" href="#p2k2_converter.p2k2.CutBuilder.build">build</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="p2k2_converter.p2k2.JobBuilder" href="#p2k2_converter.p2k2.JobBuilder">JobBuilder</a></code></h4>
+<ul class="">
+<li><code><a title="p2k2_converter.p2k2.JobBuilder.add_bar" href="#p2k2_converter.p2k2.JobBuilder.add_bar">add_bar</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.JobBuilder.add_bars" href="#p2k2_converter.p2k2.JobBuilder.add_bars">add_bars</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.JobBuilder.add_pdat" href="#p2k2_converter.p2k2.JobBuilder.add_pdat">add_pdat</a></code></li>
+<li><code><a title="p2k2_converter.p2k2.JobBuilder.build" href="#p2k2_converter.p2k2.JobBuilder.build">build</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
