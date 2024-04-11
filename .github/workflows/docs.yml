@@ -22,12 +22,10 @@ jobs:
 
       - name: Generate Documentation
         run: |
-          mkdir -p ./docs
           pdoc --html p2k2_converter --force
-          cp -r ./html/p2k2_converter ./docs
 
-      - name: ls
-        run: ls -la ./docs
+      - name: Copy files in the documentation folder folder
+        run: mkdir -p ./docs && cp -r ./html/p2k2_converter ./docs
 
       - name: Deploy Documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
