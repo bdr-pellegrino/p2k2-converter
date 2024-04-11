@@ -24,13 +24,8 @@ jobs:
         run: |
           pdoc --html p2k2_converter --force
 
-      - name: Copy files in the documentation folder folder
-        run: mkdir -p ./docs && cp -r ./html/p2k2_converter ./docs
-
-      - name: ls1
-        run: |
-          ls -la ./docs
-          ls -la ./docs/p2k2_converter
+      - name: Copy files in the documentation folder
+        run: mkdir -p ./docs && cp -r ./html/p2k2_converter/* ./docs
 
       - name: Deploy Documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
