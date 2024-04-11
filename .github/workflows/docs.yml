@@ -27,6 +27,10 @@ jobs:
       - name: Copy files in the documentation folder folder
         run: mkdir -p ./docs && cp -r ./html/p2k2_converter ./docs
 
+      - name: ls1
+        run: |
+          ls -la ./docs
+
       - name: Deploy Documentation to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
