@@ -196,6 +196,54 @@ MODERNA:
       machinings:
         - code: "MACHINING H"
 
+CLICK_RAPID:
+  worksheet: "prod CLICK_RAPID"
+  product-column: "C"
+  pieces-column: "D"
+  width-column: "E"
+  height-column: "F"
+  starting-row: 8
+  ending-row: 23
 
+  profiles:
+    - code: "PROFILO DOGA"
+      brand: "PELLEGRINO"
+      system: "CLICK_RAPID"
+      quantity-column: "CI"
+      length-column: "CJ"
+      command-verse: "CP"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "PROFILO DOGA"
+      machinings:
+        - code: "LAVORAZIONE SUPERIORE"
+        - code: "LAVORAZIONE INFERIORE"
+        - code: "FORO CHIAVISTELLO VERTICALE"
+          offset-column: "FB"
+          quantity-column: "EZ"
+
+
+    - code: "CANALINO VERTICALE"
+      brand: "PELLEGRINO"
+      system: "CLICK_RAPID"
+      quantity-column: "CR"
+      length-column: "CS"
+      in-stock-column: "CQ"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      height: 200
+      bar-code: "CANALINO VERTICALE"
+
+    - code: "PROFILO DI TENUTA LATERALE"
+      brand: "PELLEGRINO"
+      system: "CLICK_RAPID"
+      quantity-column: "EU"
+      length-column: "EX"
+      in-stock-column: "ET"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "PROFILO DI TENUTA LATERALE"
 
 

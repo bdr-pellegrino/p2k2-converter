@@ -129,6 +129,122 @@
     </BAR>
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
+      <SYST>CLICK_RAPID</SYST>
+      <CODE>PROFILO DOGA</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>981</IL>
+        <OL>981</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="LAVORAZIONE SUPERIORE" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>981</IL>
+        <OL>981</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>981</IL>
+        <OL>981</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>981</IL>
+        <OL>981</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>981</IL>
+        <OL>981</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="LAVORAZIONE INFERIORE" OFFSET="1"/>
+          <MACHINING WCODE="FORO CHIAVISTELLO VERTICALE" OFFSET="288.3333333333333"/>
+          <MACHINING WCODE="FORO CHIAVISTELLO VERTICALE" OFFSET="576.6666666666666"/>
+        </MACHININGS>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>CLICK_RAPID</SYST>
+      <CODE>CANALINO VERTICALE</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>45</ANGR>
+        <IL>999</IL>
+        <OL>999</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>45</ANGR>
+        <IL>999</IL>
+        <OL>999</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>CLICK_RAPID</SYST>
+      <CODE>PROFILO DI TENUTA LATERALE</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1028.5</IL>
+        <OL>1028.5</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1028.5</IL>
+        <OL>1028.5</OL>
+        <LBL>CLICK_RAPID ORDER ID None</LBL>
+        <LBL>CLICK_RAPID CLIENT ID None</LBL>
+        <LBL>ROW 9</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
       <SYST>CLOSE</SYST>
       <CODE>PROFILO DOGA</CODE>
       <DICL>STD</DICL>
