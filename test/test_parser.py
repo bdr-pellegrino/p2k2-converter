@@ -24,6 +24,11 @@ class ParserTest(unittest.TestCase):
                     "height": 80,
                 },
                 {
+                    "name": "CLICK_RAPID",
+                    "width": 99.9,
+                    "height": 100,
+                },
+                {
                     "name": "CLOSE",
                     "width": 99.9,
                     "height": 100,
