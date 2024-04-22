@@ -268,7 +268,7 @@ MODU:
 
     - code: "TAGLIO GUIDA"
       brand: "PELLEGRINO"
-      system: "MODI"
+      system: "MODU"
       quantity-column: "BB"
       length-column: "BC"
       left-angle-cut: 90
