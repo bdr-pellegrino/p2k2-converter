@@ -10,7 +10,7 @@ class Close(Workflow):
     def __init__(self, row: int, config_file: dict):
         super().__init__(row, config_file, "CLOSE")
 
-    def machining_definition(self, workbook, model):
+    def machining_definition(self, workbook, model) -> [Workbook, Model]:
         """
         Configure and add the cuts to be applied to the Close product.
 

@@ -8,6 +8,23 @@ import re
 import logging
 
 
+def _sanitize_numeric_value(value) -> float:
+    """
+    Sanitize the value to a float type.
+
+    Args:
+        value: The value to sanitize
+
+    Returns:
+        The sanitized value
+    """
+    if type(value) == str:
+        match = re.search(r'\b\d+,\d+\b', value)
+        if match:
+            return float(match.group().replace(',', '.'))
+    return value
+
+
 class Workflow(WorkflowStrategy, ABC):
 
     def __init__(self, row: int, config_file: dict, product_name: str):
@@ -120,7 +137,7 @@ class Workflow(WorkflowStrategy, ABC):
         if "machinings" in profile:
             for machining in profile["machinings"]:
                 code = machining["code"]
-                if 'starting-column' and 'ending-column' in machining:
+                if 'starting-column' in machining and 'ending-column' in machining:
                     starting_position = f"{machining['starting-column']}{self._cell_row}"
                     ending_position = f"{machining['ending-column']}{self._cell_row}"
                     cell_data = product_worksheet[f"{starting_position}:{ending_position}"]
@@ -134,14 +151,23 @@ class Workflow(WorkflowStrategy, ABC):
                     for value in sorted(cell_values):
                         if not value:
                             continue
-
-                        if type(value) == str:
-                            match = re.search(r'\b\d+,\d+\b', value)
-                            if match:
-                                value = float(match.group().replace(',', '.'))
+                        value = _sanitize_numeric_value(value)
                         output.append(Machining(code, value))
+
+                elif 'quantity-column' in machining:
+                    quantity_position = f"{machining['quantity-column']}{self._cell_row}"
+                    quantity = int(product_worksheet[quantity_position].value)
+                    offset_value = 0
+                    for _ in range(quantity):
+
+                        if 'offset-column' in machining:
+                            offset_position = f"{machining['offset-column']}{self._cell_row}"
+                            offset_value = _sanitize_numeric_value(product_worksheet[offset_position].value)
+
+                        output.append(Machining(code, offset_value))
+
                 else:
-                    message = f"Configuration for {code} machining doesn't comprehend starting and ending position"
+                    message = f"Configuration for {code} machining doesn't comprehend any information about the quantity or the offset."
                     logging.warning(message)
                     output.append(Machining(code, 0))
 
