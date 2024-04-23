@@ -4,11 +4,12 @@ from p2k2_converter.core.workflow.close import Close
 from p2k2_converter.core.workflow.moderna import Moderna
 from p2k2_converter.core.workflow.modx import Modx
 from p2k2_converter.core.workflow.modu import Modu
+from p2k2_converter.core.workflow.modi import Modi
 from p2k2_converter.core.workflow.click_rapid import ClickRapid
 from p2k2_converter.core.utils import Sentence
 
 
-__class_names__ = {Close, Moderna, ClickRapid, Modu}
+__class_names__ = {Close, Moderna, ClickRapid, Modu, Modi}
 
 
 def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy:
@@ -28,4 +29,15 @@ def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy
         if name == class_name:
             return workflow_class(*args, **kwargs)
 
-__all__ = ["WorkflowStrategy", "Workflow", "Close", "Moderna", "ClickRapid", "Modx", "Modu", "workflow_for_product"]
+
+__all__ = [
+    "WorkflowStrategy",
+    "Workflow",
+    "Close",
+    "Moderna",
+    "ClickRapid",
+    "Modx",
+    "Modu",
+    "Modi",
+    "workflow_for_product"
+]
