@@ -9,43 +9,49 @@ from p2k2_converter.p2k2 import CutBuilder
 class Modx(Workflow, ABC):
 
     def translation_definition(self, workbook, model) -> [Workbook, Model]:
-        output = {}
 
-        profile_code = "PROFILO DOGA"
-        profile = model.profiles[profile_code]
-        cuts = profile.cuts
+        def translation():
+            output = {}
 
-        # Create a list of CutBuilder with the information of the cuts
-        builders = [
-            CutBuilder().add_cut_length(cut.length)
-            .add_left_cutting_angle(cut.angleL)
-            .add_right_cutting_angle(cut.angleR)
-            for cut in cuts
-        ]
+            profile_code = "PROFILO DOGA"
+            profile = model.profiles[profile_code]
+            cuts = profile.cuts
 
-        builders = self.apply_labels(builders, workbook)
-        output[profile_code] = [builder.build() for builder in builders]
+            # Create a list of CutBuilder with the information of the cuts
+            builders = [
+                CutBuilder().add_cut_length(cut.length)
+                .add_left_cutting_angle(cut.angleL)
+                .add_right_cutting_angle(cut.angleR)
+                for cut in cuts
+            ]
 
-        profile_code = "TAGLIO GUIDA"
-        profile = model.profiles[profile_code]
-        cuts = profile.cuts
-        machinings = profile.machinings
+            builders = self.apply_labels(builders, workbook)
+            output[profile_code] = [builder.build() for builder in builders]
 
-        model_height = model.height
-        profile_code_1 = f"{machinings[0]} {model_height}"
-        profile_code_2 = f"{machinings[1]} {model_height}"
+            profile_code = "TAGLIO GUIDA"
+            profile = model.profiles[profile_code]
+            cuts = profile.cuts
+            machinings = profile.machinings
 
-        builders = [
-            CutBuilder().add_cut_length(cut.length)
-            .add_left_cutting_angle(cut.angleL)
-            .add_right_cutting_angle(cut.angleR)
-            for cut in cuts
-        ]
+            model_height = model.height
+            profile_code_1 = f"{machinings[0].code} {model_height}"
+            profile_code_2 = f"{machinings[1].code} {model_height}"
 
-        builders[0].add_machining(profile_code_1, 1)
-        builders[1].add_machining(profile_code_2, 1)
+            builders = [
+                CutBuilder().add_cut_length(cut.length)
+                .add_left_cutting_angle(cut.angleL)
+                .add_right_cutting_angle(cut.angleR)
+                for cut in cuts
+            ]
 
-        output[profile_code] = [builder.build() for builder in builders]
+            builders[0].add_machining(profile_code_1, 1)
+            builders[1].add_machining(profile_code_2, 1)
 
-        return output
+            output[profile_code] = [builder.build() for builder in builders]
+
+            return output
+
+        model.set_translation_strategy(translation)
+        return workbook, model
+
 
