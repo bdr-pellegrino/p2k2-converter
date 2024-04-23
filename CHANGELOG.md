@@ -1,3 +1,15 @@
+## [1.2.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.1.1...1.2.0) (2024-04-22)
+
+
+### Features
+
+* add support for click_rapid product ([4bfaf4a](https://github.com/bdr-pellegrino/p2k2_converter/commit/4bfaf4aa3c9c0f0c949825f265742c6565b96aa9))
+
+
+### Tests
+
+* fix parser test introducing CLICK_RAPID product ([422870b](https://github.com/bdr-pellegrino/p2k2_converter/commit/422870b04ac3b9a04e883535bb8edff0423c7ea2))
+
 ## [1.1.1](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.1.0...1.1.1) (2024-04-11)
 
 
