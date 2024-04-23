@@ -37,6 +37,16 @@ class ParserTest(unittest.TestCase):
                     "name": "CLOSE",
                     "width": 99.9,
                     "height": 100,
+                },
+                {
+                    "name": "MODU",
+                    "width": 99.9,
+                    "height": 100,
+                },
+                {
+                    "name": "MODI",
+                    "width": 99.9,
+                    "height": 100,
                 }
             ]
         }
