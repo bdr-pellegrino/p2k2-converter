@@ -279,6 +279,38 @@ MODU:
         - code: "PEZZO DX"
         - code: "PEZZO SX"
 
+MODI:
+  worksheet: "prod MODI"
+  product-column: "C"
+  pieces-column: "D"
+  width-column: "E"
+  height-column: "F"
+  starting-row: 8
+  ending-row: 22
+
+  profiles:
+    - code: "PROFILO DOGA"
+      brand: "PELLEGRINO"
+      system: "MODI"
+      quantity-column: "CI"
+      length-column: "CJ"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "PROFILO DOGA"
+
+    - code: "TAGLIO GUIDA"
+      brand: "PELLEGRINO"
+      system: "MODI"
+      quantity-column: "EU"
+      length-column: "EX"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "TAGLIO GUIDA"
+      machinings:
+        - code: "PEZZO DX"
+        - code: "PEZZO SX"
 
 
 
