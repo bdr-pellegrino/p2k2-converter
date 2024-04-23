@@ -656,5 +656,86 @@
         </MACHININGS>
       </CUT>
     </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>MODI</SYST>
+      <CODE>PROFILO DOGA</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>949</IL>
+        <OL>949</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>949</IL>
+        <OL>949</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>949</IL>
+        <OL>949</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>949</IL>
+        <OL>949</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>949</IL>
+        <OL>949</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>MODI</SYST>
+      <CODE>TAGLIO GUIDA</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1112</IL>
+        <OL>1112</OL>
+        <MACHININGS>
+          <MACHINING WCODE="PEZZO DX 100" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1112</IL>
+        <OL>1112</OL>
+        <MACHININGS>
+          <MACHINING WCODE="PEZZO SX 100" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+    </BAR>
   </BODY>
 </JOB>
