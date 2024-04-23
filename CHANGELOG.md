@@ -1,3 +1,29 @@
+## [1.3.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.2.0...1.3.0) (2024-04-23)
+
+
+### Features
+
+* add modu class ([b37cfb4](https://github.com/bdr-pellegrino/p2k2_converter/commit/b37cfb4438c80d75928bf98110b7f0ab2584e5ba))
+* add modx class ([3846378](https://github.com/bdr-pellegrino/p2k2_converter/commit/384637829babe4bd5834dfacef6cbff0480fa391))
+* add support class for modi ([fe4de7f](https://github.com/bdr-pellegrino/p2k2_converter/commit/fe4de7f0b7c30d98c438f3bdbe59e15b84a9142d))
+* add support for modi ([6062ec7](https://github.com/bdr-pellegrino/p2k2_converter/commit/6062ec7b11846aea55736f0ecc7175b44f11453c))
+* implement translation_definition for Modx class ([a861ab3](https://github.com/bdr-pellegrino/p2k2_converter/commit/a861ab3f62de546b6dec0e270c75fc63f7c89dcd))
+
+
+### Bug Fixes
+
+* restore modi configurations ([5b40195](https://github.com/bdr-pellegrino/p2k2_converter/commit/5b40195c173eb78a07dabee85f8c73d07d4ab1d3))
+
+
+### Tests
+
+* fixed parser test ([7f77c48](https://github.com/bdr-pellegrino/p2k2_converter/commit/7f77c4887c8fb95023abb90c7f5c2e466183909d))
+
+
+### Refactoring
+
+* add MODU  entries to workflow_for_product function ([89b2e67](https://github.com/bdr-pellegrino/p2k2_converter/commit/89b2e67af24d7fe06e58db9c61b6269fb859c75d))
+
 ## [1.2.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.1.1...1.2.0) (2024-04-22)
 
 
