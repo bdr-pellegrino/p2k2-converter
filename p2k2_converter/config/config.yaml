@@ -246,4 +246,39 @@ CLICK_RAPID:
       height: 200
       bar-code: "PROFILO DI TENUTA LATERALE"
 
+MODU:
+  worksheet: "prod MODU"
+  product-column: "C"
+  pieces-column: "D"
+  width-column: "E"
+  height-column: "F"
+  starting-row: 6
+  ending-row: 22
+
+  profiles:
+    - code: "PROFILO DOGA"
+      brand: "PELLEGRINO"
+      system: "MODU"
+      quantity-column: "AU"
+      length-column: "AV"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "PROFILO DOGA"
+
+    - code: "TAGLIO GUIDA"
+      brand: "PELLEGRINO"
+      system: "MODU"
+      quantity-column: "BB"
+      length-column: "BC"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "TAGLIO GUIDA"
+      machinings:
+        - code: "PEZZO DX"
+        - code: "PEZZO SX"
+
+
+
 
