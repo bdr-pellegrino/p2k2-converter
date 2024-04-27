@@ -9,7 +9,6 @@ from p2k2_converter.p2k2 import CutBuilder
 class Modx(Workflow, ABC):
 
     def translation_definition(self, workbook, model) -> [Workbook, Model]:
-
         def translation():
             output = {}
 

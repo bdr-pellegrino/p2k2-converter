@@ -21,31 +21,31 @@ class ParserTest(unittest.TestCase):
                 {
                     "name": "MODERNA",
                     "width": 100,
-                    "height": 80,
+                    "height": 99,
                 },
                 {
                     "name": "CLICK_RAPID",
-                    "width": 99.9,
+                    "width": 99,
                     "height": 100,
                 },
                 {
                     "name": "CLOSE",
-                    "width": 99.9,
+                    "width": 99,
                     "height": 100,
                 },
                 {
                     "name": "CLOSE",
-                    "width": 99.9,
+                    "width": 99,
                     "height": 100,
                 },
                 {
                     "name": "MODU",
-                    "width": 99.9,
+                    "width": 99,
                     "height": 100,
                 },
                 {
                     "name": "MODI",
-                    "width": 99.9,
+                    "width": 99,
                     "height": 100,
                 }
             ]

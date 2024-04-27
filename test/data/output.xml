@@ -16,21 +16,21 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
+        <IL>796</IL>
+        <OL>796</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
         <MACHININGS>
           <MACHINING WCODE="FORO DOGA" OFFSET="0"/>
-          <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
+          <MACHINING WCODE="FORO DOGA" OFFSET="796"/>
         </MACHININGS>
       </CUT>
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
+        <IL>796</IL>
+        <OL>796</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
@@ -38,8 +38,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
+        <IL>796</IL>
+        <OL>796</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
@@ -56,14 +56,23 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>806</IL>
-        <OL>806</OL>
+        <IL>796</IL>
+        <OL>796</OL>
+        <LBL>MODERNA ORDER ID None</LBL>
+        <LBL>MODERNA CLIENT ID None</LBL>
+        <LBL>ROW 8</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>796</IL>
+        <OL>796</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
         <MACHININGS>
           <MACHINING WCODE="FORO DOGA" OFFSET="0"/>
-          <MACHINING WCODE="FORO DOGA" OFFSET="806"/>
+          <MACHINING WCODE="FORO DOGA" OFFSET="796"/>
         </MACHININGS>
       </CUT>
     </BAR>
@@ -78,8 +87,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>812.5</IL>
-        <OL>812.5</OL>
+        <IL>1012.5</IL>
+        <OL>1012.5</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
@@ -88,7 +97,7 @@
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
       <SYST>MODERNA</SYST>
-      <CODE>CERNIERA APERTA</CODE>
+      <CODE>CERNIERA TUBOLARE</CODE>
       <DICL>STD</DICL>
       <DOCL>STD</DOCL>
       <LEN>2000</LEN>
@@ -96,8 +105,29 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>812.5</IL>
-        <OL>812.5</OL>
+        <IL>1013</IL>
+        <OL>1013</OL>
+        <LBL>MODERNA ORDER ID None</LBL>
+        <LBL>MODERNA CLIENT ID None</LBL>
+        <LBL>ROW 8</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="MACHINING CERNIERA TUBOLARE" OFFSET="1"/>
+        </MACHININGS>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>MODERNA</SYST>
+      <CODE>CERNIERA APERTA</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1012.5</IL>
+        <OL>1012.5</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
@@ -117,8 +147,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>813</IL>
-        <OL>813</OL>
+        <IL>1013</IL>
+        <OL>1013</OL>
         <LBL>MODERNA ORDER ID None</LBL>
         <LBL>MODERNA CLIENT ID None</LBL>
         <LBL>ROW 8</LBL>
@@ -138,8 +168,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>981</IL>
-        <OL>981</OL>
+        <IL>972</IL>
+        <OL>972</OL>
         <LBL>CLICK_RAPID ORDER ID None</LBL>
         <LBL>CLICK_RAPID CLIENT ID None</LBL>
         <LBL>ROW 9</LBL>
@@ -150,8 +180,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>981</IL>
-        <OL>981</OL>
+        <IL>972</IL>
+        <OL>972</OL>
         <LBL>CLICK_RAPID ORDER ID None</LBL>
         <LBL>CLICK_RAPID CLIENT ID None</LBL>
         <LBL>ROW 9</LBL>
@@ -159,8 +189,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>981</IL>
-        <OL>981</OL>
+        <IL>972</IL>
+        <OL>972</OL>
         <LBL>CLICK_RAPID ORDER ID None</LBL>
         <LBL>CLICK_RAPID CLIENT ID None</LBL>
         <LBL>ROW 9</LBL>
@@ -168,8 +198,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>981</IL>
-        <OL>981</OL>
+        <IL>972</IL>
+        <OL>972</OL>
         <LBL>CLICK_RAPID ORDER ID None</LBL>
         <LBL>CLICK_RAPID CLIENT ID None</LBL>
         <LBL>ROW 9</LBL>
@@ -177,15 +207,13 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>981</IL>
-        <OL>981</OL>
+        <IL>972</IL>
+        <OL>972</OL>
         <LBL>CLICK_RAPID ORDER ID None</LBL>
         <LBL>CLICK_RAPID CLIENT ID None</LBL>
         <LBL>ROW 9</LBL>
         <MACHININGS>
           <MACHINING WCODE="LAVORAZIONE INFERIORE" OFFSET="1"/>
-          <MACHINING WCODE="FORO CHIAVISTELLO VERTICALE" OFFSET="288.3333333333333"/>
-          <MACHINING WCODE="FORO CHIAVISTELLO VERTICALE" OFFSET="576.6666666666666"/>
         </MACHININGS>
       </CUT>
     </BAR>
@@ -272,6 +300,10 @@
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 10</LBL>
+        <MACHININGS>
+          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
+          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
+        </MACHININGS>
       </CUT>
       <CUT>
         <ANGL>90</ANGL>
@@ -281,10 +313,6 @@
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 10</LBL>
-        <MACHININGS>
-          <MACHINING WCODE="CERNIERA FORI ANTA" OFFSET="1"/>
-          <MACHINING WCODE="FORO SCASSI TELAIO" OFFSET="1"/>
-        </MACHININGS>
       </CUT>
       <CUT>
         <ANGL>90</ANGL>
@@ -487,8 +515,8 @@
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
+        <IL>946</IL>
+        <OL>946</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 10</LBL>
@@ -496,8 +524,8 @@
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
+        <IL>946</IL>
+        <OL>946</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 10</LBL>
@@ -505,8 +533,8 @@
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
+        <IL>946</IL>
+        <OL>946</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -514,8 +542,8 @@
       <CUT>
         <ANGL>45</ANGL>
         <ANGR>45</ANGR>
-        <IL>955</IL>
-        <OL>955</OL>
+        <IL>946</IL>
+        <OL>946</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -559,8 +587,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>999</IL>
-        <OL>999</OL>
+        <IL>990</IL>
+        <OL>990</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 10</LBL>
@@ -568,8 +596,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>999</IL>
-        <OL>999</OL>
+        <IL>990</IL>
+        <OL>990</OL>
         <LBL>CLOSE ORDER ID None</LBL>
         <LBL>CLOSE CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -586,8 +614,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODU ORDER ID None</LBL>
         <LBL>MODU CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -595,8 +623,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODU ORDER ID None</LBL>
         <LBL>MODU CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -604,8 +632,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODU ORDER ID None</LBL>
         <LBL>MODU CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -613,8 +641,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODU ORDER ID None</LBL>
         <LBL>MODU CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -622,8 +650,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODU ORDER ID None</LBL>
         <LBL>MODU CLIENT ID None</LBL>
         <LBL>ROW 11</LBL>
@@ -667,8 +695,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODI ORDER ID None</LBL>
         <LBL>MODI CLIENT ID None</LBL>
         <LBL>ROW 13</LBL>
@@ -676,8 +704,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODI ORDER ID None</LBL>
         <LBL>MODI CLIENT ID None</LBL>
         <LBL>ROW 13</LBL>
@@ -685,8 +713,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODI ORDER ID None</LBL>
         <LBL>MODI CLIENT ID None</LBL>
         <LBL>ROW 13</LBL>
@@ -694,8 +722,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODI ORDER ID None</LBL>
         <LBL>MODI CLIENT ID None</LBL>
         <LBL>ROW 13</LBL>
@@ -703,8 +731,8 @@
       <CUT>
         <ANGL>90</ANGL>
         <ANGR>90</ANGR>
-        <IL>949</IL>
-        <OL>949</OL>
+        <IL>940</IL>
+        <OL>940</OL>
         <LBL>MODI ORDER ID None</LBL>
         <LBL>MODI CLIENT ID None</LBL>
         <LBL>ROW 13</LBL>

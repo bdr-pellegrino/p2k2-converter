@@ -49,7 +49,7 @@ class Branch:
 
     def get_result(self) -> Q:
         if not self.__executed:
-            raise RuntimeError("Branch not executed yet")
+            raise RuntimeError(f"Branch: {self.__name} not executed yet")
         return copy(self.__result)
 
     def execute(self, source: any) -> T:
