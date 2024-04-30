@@ -506,4 +506,101 @@ FULL_W:
       height: 200
       bar-code: "PROFILO SOGLIA"
 
+FULL_G:
+  worksheet: "prod FULL_G"
+  product-column: "C"
+  pieces-column: "D"
+  width-column: "E"
+  height-column: "F"
+  starting-row: 8
+  ending-row: 22
+
+  profiles:
+    - code: "PROFILO DOGA"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      refinement-column: "CM"
+      quantity-column: "CI"
+      length-column: "CJ"
+      command-verse: "CP"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "PROFILO DOGA"
+      machinings:
+        - code: "CERNIERA FORI ANTA"
+          starting-column: "DW"
+          ending-column: "EB"
+        - code: "FORO SCASSI TELAIO"
+          starting-column: "ED"
+          ending-column: "EF"
+
+    - code: "CANALINO VERTICALE"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      quantity-column: "CR"
+      length-column: "CS"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      height: 200
+      bar-code: "CANALINO VERTICALE"
+
+    - code: "CANALINO ORIZZONTALE"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      quantity-column: "CV"
+      length-column: "CW"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      height: 200
+      bar-code: "CANALINO ORIZZONTALE"
+
+    - code: "MONTANTE SX"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      quantity-column: "DA"
+      length-column: "DB"
+      left-angle-cut: 90
+      right-angle-cut: 45
+      height: 200
+      bar-code: "MONTANTE SX"
+      machinings:
+        - code: "FORO FISSAGGIO"
+          starting-column: "DQ"
+          ending-column: "DU"
+
+    - code: "TRAVERSO SUPERIORE"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      quantity-column: "DE"
+      length-column: "DF"
+      left-angle-cut: 45
+      right-angle-cut: 90
+      height: 200
+      bar-code: "TRAVERSO SUPERIORE"
+
+    - code: "MONTANTE DX"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      quantity-column: "DI"
+      length-column: "DJ"
+      left-angle-cut: 45
+      right-angle-cut: 45
+      height: 200
+      bar-code: "MONTANTE DX"
+      machinings:
+        - code: "FORO FISSAGGIO"
+          starting-column: "DQ"
+          ending-column: "DU"
+
+    - code: "PROFILO SOGLIA"
+      brand: "PELLEGRINO"
+      system: "FULL_G"
+      quantity-column: "DM"
+      length-column: "DN"
+      left-angle-cut: 90
+      right-angle-cut: 90
+      height: 200
+      bar-code: "PROFILO SOGLIA"
+
 
