@@ -5,11 +5,13 @@ from p2k2_converter.core.workflow.moderna import Moderna
 from p2k2_converter.core.workflow.modx import Modx
 from p2k2_converter.core.workflow.modu import Modu
 from p2k2_converter.core.workflow.modi import Modi
+from p2k2_converter.core.workflow.full_d import FullD
+from p2k2_converter.core.workflow.full_w import FullW
 from p2k2_converter.core.workflow.click_rapid import ClickRapid
 from p2k2_converter.core.utils import Sentence
 
 
-__class_names__ = {Close, Moderna, ClickRapid, Modu, Modi}
+__class_names__ = {Close, Moderna, ClickRapid, Modu, Modi, FullD, FullW}
 
 
 def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy:
@@ -39,5 +41,6 @@ __all__ = [
     "Modx",
     "Modu",
     "Modi",
+    "FullD",
     "workflow_for_product"
 ]

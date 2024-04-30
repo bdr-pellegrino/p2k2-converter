@@ -147,7 +147,7 @@ class BarBuilder:
 
         """
         if len(self.__cuts) == 0:
-            raise ValueError("No cuts added to bar")
+            raise ValueError(f"No cuts added to with brand {self.__brand}, system {self.__system} and code {self.__profile_code}.")
 
         if self.__length is None:
             raise ValueError("No length added to bar")

@@ -1,3 +1,7 @@
+import logging
+import traceback
+
+
 from p2k2_converter.pipeline.branch import Branch
 from p2k2_converter.pipeline.source import BaseSource
 from typing import TypeVar, List
@@ -31,6 +35,9 @@ class Pipeline:
                     branch.execute(opened_source)
                 self.__executed = True
         except Exception as e:
+            logging.error(f"Error while executin the pipeline: {e}")
+            traceback_info = traceback.format_exc()
+            print(traceback_info)
             self.__executed = False
 
     def get(self, name: str) -> T:

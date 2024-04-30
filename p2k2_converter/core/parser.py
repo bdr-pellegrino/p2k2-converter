@@ -79,8 +79,6 @@ class Parser:
                 name = row[0].value
                 pieces = row[1].value
 
-                print(f"Row: {row} Name: {name}, Pieces: {pieces}")
-
                 if name == product:
                     logging.info(f"Creating workflow for {name} with {pieces} pieces.")
                     for _ in range(pieces):

@@ -117,7 +117,6 @@ class Workflow(WorkflowStrategy, ABC):
                 target_profile.cuts.append(
                     Cut(cut_length, cut_height, profile["left-angle-cut"], profile["right-angle-cut"])
                 )
-
             target_profile.length = sum(cut.length for cut in target_profile.cuts)
         return [workbook, model]
 
@@ -145,7 +144,7 @@ class Workflow(WorkflowStrategy, ABC):
                     cell_values = [
                        cell.value for position in cell_data
                        for index, cell in enumerate(position)
-                       if filter_index(index, code) and cell.value
+                       if filter_index and filter_index(index, code) and cell.value
                     ]
 
                     for value in sorted(cell_values):
