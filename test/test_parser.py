@@ -12,7 +12,7 @@ class ParserTest(unittest.TestCase):
             "buyer": {
                 "full_name": "Giovanni Antonioni",
                 "address": "Via D.Prova, 11",
-                "email": "g.ant@email.com",
+                "email": "g.ant@email.it",
                 "phone": "123-4567951",
                 "cell_phone": "333-4445558",
                 "city": "Altrove",
@@ -20,8 +20,8 @@ class ParserTest(unittest.TestCase):
             "models": [
                 {
                     "name": "MODERNA",
-                    "width": 100,
-                    "height": 99,
+                    "width": 99,
+                    "height": 100,
                 },
                 {
                     "name": "CLICK_RAPID",
@@ -45,6 +45,21 @@ class ParserTest(unittest.TestCase):
                 },
                 {
                     "name": "MODI",
+                    "width": 99,
+                    "height": 100,
+                },
+                {
+                    "name": "FULL_D",
+                    "width": 99,
+                    "height": 100,
+                },
+                {
+                    "name": "FULL_W",
+                    "width": 99,
+                    "height": 100,
+                },
+                {
+                    "name": "FULL_G",
                     "width": 99,
                     "height": 100,
                 }
