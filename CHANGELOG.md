@@ -1,3 +1,22 @@
+## [1.4.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.3.0...1.4.0) (2024-05-02)
+
+
+### Features
+
+* add Full workflow class ([6416b71](https://github.com/bdr-pellegrino/p2k2_converter/commit/6416b7167966f5d03618bc22ec675a2dd92d776c))
+* add support for full_g ([d373810](https://github.com/bdr-pellegrino/p2k2_converter/commit/d3738102a8ca4b22d120467b7939f0317b6b7d1c))
+* add support for full_w and full_d ([470fecb](https://github.com/bdr-pellegrino/p2k2_converter/commit/470fecba3e1e0d836793bb3d749e56d446ff60f5))
+
+
+### Tests
+
+* fix test execution ([81d4903](https://github.com/bdr-pellegrino/p2k2_converter/commit/81d4903e0650b61b7de4f1da5ec6156972215f23))
+
+
+### General maintenance
+
+* add new version of the barrier file ([186115c](https://github.com/bdr-pellegrino/p2k2_converter/commit/186115cc8d2d413062c286fa27cb718e16748b0a))
+
 ## [1.3.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.2.0...1.3.0) (2024-04-23)
 
 
