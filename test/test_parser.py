@@ -49,6 +49,11 @@ class ParserTest(unittest.TestCase):
                     "height": 100,
                 },
                 {
+                    "name": "GATE",
+                    "width": 99,
+                    "height": 100,
+                },
+                {
                     "name": "FULL_D",
                     "width": 99,
                     "height": 100,

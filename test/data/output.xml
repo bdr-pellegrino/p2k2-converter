@@ -767,6 +767,177 @@
     </BAR>
     <BAR>
       <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>PROFILO DOGA</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1000</IL>
+        <OL>1000</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1000</IL>
+        <OL>1000</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1000</IL>
+        <OL>1000</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1000</IL>
+        <OL>1000</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>1000</IL>
+        <OL>1000</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>MONTANTE SX</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>45</ANGR>
+        <IL>990</IL>
+        <OL>990</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>MONTANTE DX</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>45</ANGR>
+        <IL>990</IL>
+        <OL>990</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>CANALINO VERTICALE</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>45</ANGR>
+        <IL>1008</IL>
+        <OL>1008</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>CANALINO ORIZZONTALE</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>45</ANGR>
+        <IL>946</IL>
+        <OL>946</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>45</ANGR>
+        <IL>946</IL>
+        <OL>946</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>TRAVERSO SUPERIORE</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>45</ANGL>
+        <ANGR>90</ANGR>
+        <IL>990</IL>
+        <OL>990</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
+      <SYST>GATE</SYST>
+      <CODE>PROFILO SOGLIA</CODE>
+      <DICL>STD</DICL>
+      <DOCL>STD</DOCL>
+      <LEN>6000</LEN>
+      <MLT>1</MLT>
+      <CUT>
+        <ANGL>90</ANGL>
+        <ANGR>90</ANGR>
+        <IL>990</IL>
+        <OL>990</OL>
+        <LBL>GATE ORDER ID None</LBL>
+        <LBL>GATE CLIENT ID None</LBL>
+        <LBL>ROW 14</LBL>
+      </CUT>
+    </BAR>
+    <BAR>
+      <BRAN>PELLEGRINO</BRAN>
       <SYST>FULL_D</SYST>
       <CODE>PROFILO DOGA</CODE>
       <DICL>STD</DICL>

@@ -8,11 +8,12 @@ from p2k2_converter.core.workflow.modi import Modi
 from p2k2_converter.core.workflow.full_d import FullD
 from p2k2_converter.core.workflow.full_w import FullW
 from p2k2_converter.core.workflow.full_g import FullG
+from p2k2_converter.core.workflow.gate import Gate
 from p2k2_converter.core.workflow.click_rapid import ClickRapid
 from p2k2_converter.core.utils import Sentence
 
 
-__class_names__ = {Close, Moderna, ClickRapid, Modu, Modi, FullD, FullW, FullG}
+__class_names__ = {Close, Moderna, ClickRapid, Modu, Modi, FullD, FullW, FullG, Gate}
 
 
 def workflow_for_product(product_name: str, *args, **kwargs) -> WorkflowStrategy:
@@ -45,5 +46,6 @@ __all__ = [
     "Modi",
     "FullD",
     "FullW",
-    "FullG"
+    "FullG",
+    "Gate"
 ]
