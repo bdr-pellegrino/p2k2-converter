@@ -1,3 +1,21 @@
+## [1.5.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.4.0...1.5.0) (2024-05-02)
+
+
+### Features
+
+* add configuration for gate ([aa260b1](https://github.com/bdr-pellegrino/p2k2_converter/commit/aa260b14b832b0c90380233319f43fc521bbf3fb))
+* add Gate class ([4df7736](https://github.com/bdr-pellegrino/p2k2_converter/commit/4df77360287dbd5ab46d86e9c442cfbb039270b0))
+
+
+### Tests
+
+* fix test execution adding gate to parser ([4689941](https://github.com/bdr-pellegrino/p2k2_converter/commit/4689941a2475684c661ad002a0bc391c4e6657c2))
+
+
+### General maintenance
+
+* use new version of test file ([5fad92f](https://github.com/bdr-pellegrino/p2k2_converter/commit/5fad92f4e5757490c2b31ec9ee8c3798100a849a))
+
 ## [1.4.0](https://github.com/bdr-pellegrino/p2k2_converter/compare/1.3.0...1.4.0) (2024-05-02)
 
 
