@@ -96,7 +96,6 @@ class FullW(Workflow):
                 builders = self.apply_labels(builders, workbook)
                 output[profile_code] = [builder.build() for builder in builders]
 
-            print(output)
             return output
 
         model.set_translation_strategy(translation)

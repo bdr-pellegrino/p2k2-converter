@@ -670,6 +670,9 @@
         <ANGR>90</ANGR>
         <IL>1125</IL>
         <OL>1125</OL>
+        <LBL>MODU ORDER ID None</LBL>
+        <LBL>MODU CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="PEZZO DX 100" OFFSET="1"/>
         </MACHININGS>
@@ -679,6 +682,9 @@
         <ANGR>90</ANGR>
         <IL>1125</IL>
         <OL>1125</OL>
+        <LBL>MODU ORDER ID None</LBL>
+        <LBL>MODU CLIENT ID None</LBL>
+        <LBL>ROW 11</LBL>
         <MACHININGS>
           <MACHINING WCODE="PEZZO SX 100" OFFSET="1"/>
         </MACHININGS>
@@ -751,6 +757,9 @@
         <ANGR>90</ANGR>
         <IL>1112</IL>
         <OL>1112</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
         <MACHININGS>
           <MACHINING WCODE="PEZZO DX 100" OFFSET="1"/>
         </MACHININGS>
@@ -760,6 +769,9 @@
         <ANGR>90</ANGR>
         <IL>1112</IL>
         <OL>1112</OL>
+        <LBL>MODI ORDER ID None</LBL>
+        <LBL>MODI CLIENT ID None</LBL>
+        <LBL>ROW 13</LBL>
         <MACHININGS>
           <MACHINING WCODE="PEZZO SX 100" OFFSET="1"/>
         </MACHININGS>

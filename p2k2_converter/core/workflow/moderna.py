@@ -2,6 +2,7 @@ from p2k2_converter.core.classes import Profile
 from p2k2_converter.core.utils import configure_cuts_for_profile
 from p2k2_converter.core.workflow import Workflow
 from p2k2_converter.p2k2 import CutBuilder
+from p2k2_converter.p2k2.translation import Translation
 
 
 class Moderna(Workflow):
@@ -11,22 +12,7 @@ class Moderna(Workflow):
 
     def translation_definition(self, workbook, model):
 
-        def translation():
-            output = {}
-
-            # Handling "PROFILO DOGA" profile
-            profile_code = "PROFILO DOGA"
-            profile = model.profiles[profile_code]
-            cuts = profile.cuts
-            machinings = profile.machinings
-
-            builders = [
-                CutBuilder().add_cut_length(cut.length)
-                .add_left_cutting_angle(cut.angleL)
-                .add_right_cutting_angle(cut.angleR)
-                for cut in cuts
-            ]
-
+        def stave_profile_translation(profile, builders, cuts, machinings):
             cut_len = cuts[0].length
             working_code = machinings[0].code
             builders[0].add_machining(working_code, machinings[0].offset) \
@@ -34,43 +20,29 @@ class Moderna(Workflow):
             builders[-1].add_machining(working_code, machinings[2].offset) \
                 .add_machining(working_code, cut_len - machinings[3].offset)
 
-            builders = self.apply_labels(builders, workbook)
-            output[profile_code] = [builder.build() for builder in builders]
+            return tuple([builder.build() for builder in builders])
 
-            # Handling "PROFILO GANCIO-UNCINO" profile
-            profile_code = "PROFILO GANCIO-UNCINO"
-            profile = model.profiles[profile_code]
-            cuts = profile.cuts
+        def configuration_cut_translation(profile, builders, cuts, machinings):
+            default_offset = 1
+            builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
+            return tuple([builder.build() for builder in builders])
 
-            builders = [
-                CutBuilder().add_cut_length(cut.length)
-                .add_left_cutting_angle(cut.angleL)
-                .add_right_cutting_angle(cut.angleR)
-                for cut in cuts
-            ]
-            builders = self.apply_labels(builders, workbook)
-            output[profile_code] = [builder.build() for builder in builders]
+        def default_translation(profile, builders, cuts, machinings):
+            return tuple([builder.build() for builder in builders])
 
-            # Handling "CERNIERA TUBOLARE", "CERNIERA APERTA" and "H" profiles
+        def translation():
+            order_id, client_id = self.get_product_info(workbook)
+            translation_helper = Translation(model, order_id, client_id, self._cell_row)
+            translation_helper.add_profile_translation("PROFILO DOGA", stave_profile_translation)
+            translation_helper.add_profile_translation("PROFILO GANCIO-UNCINO", default_translation)
+
             profile_codes = ["CERNIERA TUBOLARE", "CERNIERA APERTA", "H"]
             for profile_code in profile_codes:
                 if profile_code not in model.profiles:
                     continue
+                translation_helper.add_profile_translation(profile_code, configuration_cut_translation)
 
-                profile = model.profiles[profile_code]
-                cuts = profile.cuts
-                builders = [
-                    CutBuilder().add_cut_length(cut.length)
-                    .add_left_cutting_angle(cut.angleL)
-                    .add_right_cutting_angle(cut.angleR)
-                    for cut in cuts
-                ]
-                default_offset = 1
-                builders = configure_cuts_for_profile(builders, profile.machinings, profile.length, default_offset)
-                builders = self.apply_labels(builders, workbook)
-                output[profile_code] = [builder.build() for builder in builders]
-
-            return output
+            return translation_helper.translate()
 
         model.set_translation_strategy(translation)
         return [workbook, model]

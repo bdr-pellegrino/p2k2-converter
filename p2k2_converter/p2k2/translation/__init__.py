@@ -1,8 +1,90 @@
 import logging
 from typing import Dict, Tuple
 from ortools.linear_solver import pywraplp
-from p2k2_converter.p2k2 import BarBuilder, JobBuilder
+from p2k2_converter.p2k2 import BarBuilder, JobBuilder, CutBuilder
 from p2k2_converter.p2k2.classes import Job
+
+
+class Translation:
+    def __init__(self, model, order_id, client_id, cell_row):
+        self.__translation_map = {}
+        self.__model = model
+        self.__order_id = order_id
+        self.__client_id = client_id
+        self._cell_row = cell_row
+
+    def get_translation_map(self):
+        """
+        Get the translation map of the model.
+
+        Returns:
+            The translation map of the model
+        """
+        return self.__translation_map
+
+    def add_profile_translation(self, profile_code, translation):
+        """
+        Add a translation function for a profile of the model.
+
+        Args:
+            profile_code: The code of the profile to translate
+            translation: The translation function to use for the profile
+        """
+        self.__translation_map[profile_code] = translation
+
+    def translate_profile(self, profile_code):
+        """
+        Translate a profile of the model in the P2K2 format.
+
+        Args:
+            profile_code: The code of the profile to translate
+
+        Returns:
+            A tuple of P2k2Cut instances representing the profile in the P2K2 format
+        """
+        profile = self.__model.profiles[profile_code]
+        cuts, machining = profile.cuts, profile.machinings
+        builders = [
+            CutBuilder().add_cut_length(cut.length)
+            .add_left_cutting_angle(cut.angleL)
+            .add_right_cutting_angle(cut.angleR)
+            for cut in cuts
+        ]
+
+        translation_function = self.__translation_map.get(profile_code)
+
+        return translation_function(profile, self.__apply_labels(builders), cuts, machining)
+
+    def translate(self):
+        """
+        Translate all profiles of the model in the P2K2 format.
+        """
+        translation = {}
+        for profile_code in self.__translation_map.keys():
+            translation[profile_code] = self.translate_profile(profile_code)
+        return translation
+
+    def __apply_labels(self, builders):
+        """
+        Apply the labels to the cuts.
+
+        Args:
+            builders: The list of cut builders
+            workbook: The workbook instance
+
+        Returns:
+            The list of cut builders with the labels applied
+        """
+        cut_list = []
+        for builder in builders:
+            builder.add_label(
+                f"{self.__model.name} ORDER ID {self.__order_id}")
+            builder.add_label(
+                f"{self.__model.name} CLIENT ID {self.__client_id}")
+            builder.add_label(f"ROW {self._cell_row}")
+            cut_list.append(builder)
+
+        return tuple(cut_list)
 
 
 def optimize_cut_distribution(available_bars, cuts,
@@ -113,4 +195,4 @@ def p2k2_translation(available_bars: Dict[str, Dict[str, Tuple[Tuple[int, int], 
     return job_builder.build()
 
 
-__all__ = ["optimize_cut_distribution", "p2k2_translation"]
+__all__ = ["optimize_cut_distribution", "p2k2_translation", "Translation"]
