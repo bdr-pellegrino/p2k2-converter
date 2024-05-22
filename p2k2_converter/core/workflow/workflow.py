@@ -192,6 +192,13 @@ class Workflow(WorkflowStrategy, ABC):
                 model.profiles[profile["code"]].machinings.append(machining)
         return [workbook, model]
 
+    def get_product_info(self, workbook):
+        info_worksheet = workbook[self._global_config["info-worksheet"]]
+        order_id = info_worksheet[self._global_config['order-id-position']].value
+        client_id = info_worksheet[self._global_config['client-id-position']].value
+
+        return order_id, client_id
+
     def apply_labels(self, builders: List[CutBuilder], workbook: Workbook):
         """
         Apply the labels to the cuts.
