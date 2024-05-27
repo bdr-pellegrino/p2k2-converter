@@ -20,7 +20,7 @@ GLOBALS:
   ending-row-bar: 74
   default-bar-length: 6000
   info-worksheet: "tmp"
-  order-id-position: "C4"
+  order-id-position: "C10"
   client-id-position: "C20"
 
 CLOSE:
