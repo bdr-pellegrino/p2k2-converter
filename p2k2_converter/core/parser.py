@@ -189,3 +189,11 @@ class Parser:
 
         return self.__calculate_bars_for_order(order), order
 
+    def get_filename(self) -> str:
+        buyer_info = self.__get_buyer_information()
+
+        global_config = self.__config_file["GLOBALS"]
+        info_worksheet = self.__workbook[global_config["info-worksheet"]]
+        return f"{buyer_info.full_name}_{info_worksheet[global_config['order-id-position']].value}"
+
+
