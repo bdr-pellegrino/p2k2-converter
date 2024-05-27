@@ -34,8 +34,10 @@ job = p2k2_translation(*order)
 config = SerializerConfig(pretty_print=True)
 serializer = XmlSerializer(config=config)
 
+filename = file_parser.get_filename()
 
-output_path = args.output if args.output is not None else Path(args.file).parent / "output.xml"
+
+output_path = args.output if args.output is not None else Path(args.file).parent / f"{filename}.xml"
 with open(output_path, "w") as file:
     file.write(serializer.render(job))
 
